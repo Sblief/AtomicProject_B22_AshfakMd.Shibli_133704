@@ -10,7 +10,7 @@
                 Enter Your Book Name
             </h2>
             <div class="form-group">
-                <label class="control-label col-sm-2">Enter Book Name</label>
+                <label class="control-label col-sm-2">Book Title</label>
                 <div class="col-sm-6">
                     <input type="text" class="form-control" id="title" name="title" placeholder="Enter Book Name">
                 </div>
