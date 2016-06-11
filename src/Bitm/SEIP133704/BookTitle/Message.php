@@ -15,7 +15,8 @@ class Message
             $_message = self::getMessage();
             return $_message;
             
-        } else {
+        }
+        else {
             self::setMessage($message);
         }
         

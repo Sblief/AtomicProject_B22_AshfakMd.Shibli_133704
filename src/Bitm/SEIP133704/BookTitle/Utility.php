@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Ashfak Md. Shibli
- * Date: 11-06-16
- * Time: PM 01.23
- */
 
 namespace App\Bitm\SEIP133704\BookTitle;
 

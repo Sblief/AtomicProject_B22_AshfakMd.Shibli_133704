@@ -45,7 +45,7 @@
 
             }
             if(array_key_exists("id",$data)){
-                $this->title = $data['id'];
+                $this->id = $data['id'];
 
             }
 
@@ -68,7 +68,8 @@
 
             $resultInsert=mysqli_query($this->conn,$queryInsert);
             if($resultInsert){
-                echo "Data has been stored successfully";
+                Message::message("Data has been stored successfully");
+                Utility::redirect("index.php");
             }
             else {
                 echo "Error";

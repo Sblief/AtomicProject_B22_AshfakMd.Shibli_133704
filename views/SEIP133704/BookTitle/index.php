@@ -9,7 +9,7 @@
 
     $newBook =  new Book();
     $bookList = $newBook->index();
-    //Utility::dd($bookList);
+    //Utility::d($_SESSION);
 
     $tableColumn = array("SL","ID","Book Title","Action","","");
 
@@ -19,7 +19,7 @@
 
 <div class="container-fluid" style="margin-top: 100px">
     <h2>Book List</h2>
-    <h3><?php echo Message::message("Data Inserted Successfully") ?></h3>
+    <?php echo Message::message() ;?>
     <table class="table table-bordered table-responsive">
 
         <thead>
