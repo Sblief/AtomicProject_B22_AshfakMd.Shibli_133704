@@ -11,7 +11,7 @@
     $bookList = $newBook->index();
     //Utility::dd($bookList);
 
-    $tableColumn = array('SL','ID','Book Title',"Action","","");
+    $tableColumn = array("SL","ID","Book Title","Action","","");
 
 ?>
 
