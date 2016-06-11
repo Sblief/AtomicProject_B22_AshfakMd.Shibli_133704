@@ -78,8 +78,8 @@
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="index.php">HOME</a></li>
-                    <li><a href="add.php">ADD</a></li>
-                    <li><a href="trash.php">TRASH</a></li>
+                    <li><a href="create.php">ADD</a></li>
+                    <li><a href="delete.php">TRASH</a></li>
                 </ul>
             </div>
         </div>

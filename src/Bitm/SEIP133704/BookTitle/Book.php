@@ -1,5 +1,7 @@
 <?php
-namespace App\Bitm\SEIP133704\BookTitle;
+    namespace App\Bitm\SEIP133704\BookTitle;
+    use App\Bitm\SEIP133704\BookTitle\Message;
+    use App\Bitm\SEIP133704\BookTitle\Utility;
 
     class Book
     {
@@ -12,6 +14,8 @@ namespace App\Bitm\SEIP133704\BookTitle;
         public $host = "localhost";
         public $password = "";
         public $tableName = "book"; //Don't Change this. It will make data missing.
+        public $tableColumn1 = "ID";
+        public $tableColumn2 = "bookTitle";
 
         public $created = "";
         public $created_by = "";
@@ -49,22 +53,22 @@ namespace App\Bitm\SEIP133704\BookTitle;
         }
         public function store()
         {
-            $querySelectTable = "SELECT ID FROM $this->tableName";
+            $querySelectTable = "SELECT $this->tableColumn1 FROM $this->tableName";
             $resultSelectTable = mysqli_query($this->conn, $querySelectTable);
 
             if(empty($resultSelectTable)) {
-                $queryCreateTable = "CREATE TABLE BOOK (
-                          ID int(11) AUTO_INCREMENT,
-                          bookTitle varchar(100) NOT NULL,
-                          PRIMARY KEY  (ID)
+                $queryCreateTable = "CREATE TABLE $this->tableName (
+                          $this->tableColumn1 int(11) AUTO_INCREMENT,
+                          $this->tableColumn2 varchar(100) NOT NULL,
+                          PRIMARY KEY  ($this->tableColumn1)
                           )";
                 $resultCreateTable = mysqli_query($this->conn, $queryCreateTable);
             }
-            $queryInsert = "INSERT INTO `".$this->dbName."`.`".$this->tableName."` ( `bookTitle`) VALUES ( '".$this->title."')";
+            $queryInsert = "INSERT INTO `".$this->dbName."`.`".$this->tableName."` ( `".$this->tableColumn2."`) VALUES ( '".$this->title."')";
 
             $resultInsert=mysqli_query($this->conn,$queryInsert);
             if($resultInsert){
-                echo "Data Has been stored sucessfully";
+                echo "Data has been stored successfully";
             }
             else {
                 echo "Error";
@@ -75,7 +79,13 @@ namespace App\Bitm\SEIP133704\BookTitle;
 
         public function index()
         {
-            echo "I am listing Data";
+            $_bookList =  array();
+            $query = "SELECT * FROM $this->tableName ";
+            $result =  mysqli_query($this->conn,$query);
+            while($row = mysqli_fetch_object($result)){
+                $_bookList[]= $row;
+            }
+            return $_bookList;
 
         }
 
