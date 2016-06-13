@@ -1,5 +1,5 @@
 <?php
-    session_start();
+    
     include_once ("../../../vendor/autoload.php");
     include "header.php";
     use App\Bitm\SEIP133704\BookTitle\Book;
@@ -41,7 +41,7 @@
             <td><?php echo $books->ID ;?></td>
             <td><?php echo $books->bookTitle ;?></td>
             <td>
-                <a href="view.php" ><button type="button" class="btn btn-info">View</button></a>
+                <a href="view.php?id=<?php echo $books->ID ?>" ><button type="button" class="btn btn-info">View</button></a>
                 <a href="edit.php" ><button type="button" class="btn btn-info">Edit</button></a>
                 <button type="button" class="btn btn-danger">Delete</button>
                 <button type="button" class="btn btn-warning">Trash</button>
