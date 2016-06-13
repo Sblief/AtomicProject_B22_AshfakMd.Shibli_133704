@@ -28,7 +28,6 @@
                 <li class="list-group-item"> </li>
                 <li class="list-group-item"> </li>
             </ul>
-
         </div>
 
 
