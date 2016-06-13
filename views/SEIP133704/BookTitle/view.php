@@ -8,6 +8,7 @@
     $viewBook= new Book();
     $viewBook->prepare($_GET);
     $singleItem = $viewBook->view();
+    //Utility::dd($singleItem);
 ?>
 <div class="container" style="margin-bottom: 100px">
     <div class="panel panel-default">
@@ -22,9 +23,9 @@
         </div>
         <div class="panel-body" style="margin-bottom: 88px">
             <ul class="list-group">
-                <li class="list-group-item">SL   01</li>
-                <li class="list-group-item">ID   07</li>
-                <li class="list-group-item">PHP Advanced Version 5 </li>
+                <li class="list-group-item">ID:   <?php echo $singleItem->ID?></li>
+                <li class="list-group-item">Book Name:   <?php echo $singleItem->bookTitle?></li>
+                <li class="list-group-item"> </li>
                 <li class="list-group-item"> </li>
             </ul>
 

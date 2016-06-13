@@ -102,13 +102,26 @@
 
         }
         public function view(){
-            echo "I am viewing data";
-
+            $query="SELECT * FROM `".$this->tableName."` WHERE `".$this->tableColumn1."`=".$this->id;
+            $result= mysqli_query($this->conn,$query);
+            $row= mysqli_fetch_object($result);
+            return $row;
         }
-        public function update()
-        {
-            echo "I am updating data";
+        public function update(){
+            $query="UPDATE `atomicprojectB22_133704`.`book` SET `bookTitle` = '".$this->title."' WHERE `book`.`ID` = ".$this->id;
+            echo $query;
 
+            $result=mysqli_query($this->conn,$query);
+            if($result){
+                Message::message("
+                        <div class=\"alert alert-info\">
+                                <strong>Success!</strong> Data has been updated  successfully.
+                        </div>");
+                Utility::redirect("index.php");
+            }
+            else {
+                echo "Error";
+            }
         }
         public function delete()
         {
