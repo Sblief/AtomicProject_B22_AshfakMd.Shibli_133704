@@ -1,7 +1,7 @@
 <?php
 include_once ("../../../vendor/autoload.php");
 use App\Bitm\SEIP133704\BookTitle\Book;
-//use App\Bitm\SEIP133704\BookTitle\Utility;
+use App\Bitm\SEIP133704\GlobalClasses\Utility;
 
 //Utility::redirect("index.php");
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Bitm\SEIP133704\BookTitle;
+namespace App\Bitm\SEIP133704\GlobalClasses;
 
 if (!isset($_SESSION['message'])){
     session_start();

@@ -3,8 +3,8 @@
     include_once ("../../../vendor/autoload.php");
     include "header.php";
     use App\Bitm\SEIP133704\BookTitle\Book;
-    use App\Bitm\SEIP133704\BookTitle\Utility;
-    use App\Bitm\SEIP133704\BookTitle\Message;
+    use App\Bitm\SEIP133704\GlobalClasses\Utility;
+    use App\Bitm\SEIP133704\GlobalClasses\Message;
 
 
     $newBook =  new Book();

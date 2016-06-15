@@ -1,7 +1,7 @@
 <?php
     namespace App\Bitm\SEIP133704\BookTitle;
-    use App\Bitm\SEIP133704\BookTitle\Message;
-    use App\Bitm\SEIP133704\BookTitle\Utility;
+    use App\Bitm\SEIP133704\GlobalClasses\Message;
+    use App\Bitm\SEIP133704\GlobalClasses\Utility;
 
     class Book
     {

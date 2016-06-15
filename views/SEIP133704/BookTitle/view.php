@@ -2,7 +2,7 @@
     include_once ("../../../vendor/autoload.php");
     include "header.php";
     use App\Bitm\SEIP133704\BookTitle\Book;
-    use App\Bitm\SEIP133704\BookTitle\Utility;
+    use App\Bitm\SEIP133704\GlobalClasses\Utility;
 
 
     $viewBook= new Book();
