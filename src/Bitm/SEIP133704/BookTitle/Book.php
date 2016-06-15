@@ -16,12 +16,13 @@
         public $tableName = "book"; //Don't Change this. It will make data missing.
         public $tableColumn1 = "ID";
         public $tableColumn2 = "bookTitle";
+        public $tableColumn3 = "deleted_at";
 
         public $created = "";
         public $created_by = "";
         public $modified = "";
         public $modified_by = "";
-        public $deleted_at = "";
+        
 
         public function __construct($book = false)
         {
@@ -59,7 +60,8 @@
             if(empty($resultSelectTable)) {
                 $queryCreateTable = "CREATE TABLE $this->tableName (
                           $this->tableColumn1 int(11) AUTO_INCREMENT,
-                          $this->tableColumn2 varchar(100) NOT NULL,
+                          $this->tableColumn2 varchar(255) NOT NULL,
+                          $this->tableColumn3 varchar(255) NULL,
                           PRIMARY KEY  ($this->tableColumn1)
                           )";
                 $resultCreateTable = mysqli_query($this->conn, $queryCreateTable);
@@ -68,11 +70,18 @@
 
             $resultInsert=mysqli_query($this->conn,$queryInsert);
             if($resultInsert){
-                Message::message("Data has been stored successfully");
+                Message::message("
+                        <div class=\"alert alert-info\">
+                                <strong>Success!</strong> Data has been stored  successfully.
+                        </div>");
                 Utility::redirect("index.php");
             }
             else {
-                echo "Error";
+                Message::message("
+                        <div class=\"alert alert-danger\">
+                                <strong>Failure!</strong> Data has not been stored successfully.
+                        </div>");
+                Utility::redirect("index.php");
             }
             
             
@@ -81,7 +90,7 @@
         public function index()
         {
             $_bookList =  array();
-            $query = "SELECT * FROM $this->tableName ";
+            $query = "SELECT * FROM $this->tableName WHERE `$this->tableColumn3` IS NULL ";
             $result =  mysqli_query($this->conn,$query);
             while($row = mysqli_fetch_object($result)){
                 $_bookList[]= $row;
@@ -90,25 +99,16 @@
 
         }
 
-        public function create()
-        {
-            echo "I am create form";
 
-        }
-        
-        public function edit()
-        {
-            echo "I am editing data";
-
-        }
         public function view(){
             $query="SELECT * FROM `".$this->tableName."` WHERE `".$this->tableColumn1."`=".$this->id;
             $result= mysqli_query($this->conn,$query);
             $row= mysqli_fetch_object($result);
             return $row;
         }
-        public function update(){
-            $query="UPDATE `atomicprojectB22_133704`.`book` SET `bookTitle` = '".$this->title."' WHERE `book`.`ID` = ".$this->id;
+        public function update()
+        {
+            $query="UPDATE `".$this->dbName."`.`".$this->tableName."` SET `".$this->tableColumn2."` = '".$this->title."' WHERE `".$this->tableName."`.`".$this->tableColumn1."` = ".$this->id;
             echo $query;
 
             $result=mysqli_query($this->conn,$query);
@@ -120,12 +120,91 @@
                 Utility::redirect("index.php");
             }
             else {
-                echo "Error";
+                Message::message("
+                        <div class=\"alert alert-danger\">
+                                <strong>Failure!</strong> Data has not been updated  successfully.
+                        </div>");
+                Utility::redirect("index.php");
             }
         }
         public function delete()
         {
-            echo "I delete data";
+
+            $query="DELETE FROM `".$this->dbName."`.`".$this->tableName."` WHERE `".$this->tableName."`.`".$this->tableColumn1."` = ".$this->id;
+            echo $query;
+
+            $result=mysqli_query($this->conn,$query);
+            if($result){
+                Message::message("
+                        <div class=\"alert alert-info\">
+                                <strong>Success!</strong> Data has been deleted  successfully.
+                        </div>");
+                Utility::redirect("index.php");
+            }
+            else {
+                Message::message("
+                        <div class=\"alert alert-danger\">
+                                <strong>Failure!</strong> Data has not been deleted  successfully.
+                        </div>");
+                Utility::redirect("index.php");
+            }
+
+
 
         }
+
+        public function trash()
+        {
+            $this->tableColumn3 = time();
+            $query="UPDATE `".$this->dbName."`.`".$this->tableName."` SET `deleted_at` = ".$this->tableColumn3." WHERE `".$this->tableName."`.`".$this->tableColumn1."` = ".$this->id;
+            echo $query;
+
+            $result=mysqli_query($this->conn,$query);
+            if($result){
+                Message::message("
+                        <div class=\"alert alert-info\">
+                                <strong>Success!</strong> Data has been trashed  successfully.
+                        </div>");
+                Utility::redirect("index.php");
+            }
+            else {
+                Message::message("
+                        <div class=\"alert alert-danger\">
+                                <strong>Failure!</strong> Data has not been trashed.
+                        </div>");
+                Utility::redirect("index.php");
+            }
+        }
+        public function trashed()
+        {
+            $_bookList =  array();
+            $query = "SELECT * FROM $this->tableName WHERE `$this->tableColumn3` IS NOT NULL ";
+            $result =  mysqli_query($this->conn,$query);
+            while($row = mysqli_fetch_object($result)){
+                $_bookList[]= $row;
+            }
+            return $_bookList;
+
+        }
+        public function recover()
+        {
+            $query="UPDATE `".$this->dbName."`.`".$this->tableName."` SET `".$this->tableColumn3."` = NULL WHERE `".$this->tableName."`.`".$this->tableColumn1."` = ".$this->id;
+            $result=mysqli_query($this->conn,$query);
+            if($result){
+                Message::message("
+                        <div class=\"alert alert-info\">
+                                <strong>Success!</strong> Data has been recovered  successfully.
+                        </div>");
+                Utility::redirect("index.php");
+            }
+            else {
+                Message::message("
+                        <div class=\"alert alert-danger\">
+                                <strong>Failure!</strong> Data has not been recovered  successfully.
+                        </div>");
+                Utility::redirect("index.php");
+            }
+        }
+
+
     }

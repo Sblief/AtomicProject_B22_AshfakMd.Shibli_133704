@@ -1,5 +1,5 @@
 <?php
-    
+    session_start();
     include_once ("../../../vendor/autoload.php");
     include "header.php";
     use App\Bitm\SEIP133704\BookTitle\Book;
@@ -19,7 +19,8 @@
 
 <div class="container-fluid" style="margin-top: 100px">
     <h2>Book List</h2>
-    <?php echo Message::message() ;?>
+    <?php if(array_key_exists('message',$_SESSION) && (!empty($_SESSION['message'])))
+        echo Message::message() ;?>
     <table class="table table-bordered table-responsive">
 
         <thead>
@@ -43,8 +44,8 @@
             <td>
                 <a href="view.php?id=<?php echo $books->ID ?>" ><button type="button" class="btn btn-info">View</button></a>
                 <a href="edit.php?id=<?php echo $books->ID ?>" ><button type="button" class="btn btn-info">Edit</button></a>
-                <button type="button" class="btn btn-danger">Delete</button>
-                <button type="button" class="btn btn-warning">Trash</button>
+                <a href="delete.php?id=<?php echo $books->ID ?>" ><button type="button" class="btn btn-danger" id="delete">Delete</button>
+                    <a href="trash.php?id=<?php echo $books->ID ?>" ><button type="button" class="btn btn-warning">Trash</button>
             </td>
         </tr>
         <?php } ?>
