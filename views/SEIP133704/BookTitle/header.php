@@ -1,3 +1,8 @@
+<?php
+    include_once ('../../../vendor/autoload.php');
+    use App\Bitm\SEIP133704\BookTitle\Uses;
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -74,7 +79,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.php">Book Library</a>
+                <a class="navbar-brand" href="index.php"><?php Uses::siteName() ?></a>
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav navbar-right">

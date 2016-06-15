@@ -1,6 +1,7 @@
 <?php
     include_once ("../../../vendor/autoload.php");
     use App\Bitm\SEIP133704\BookTitle\Book;
+    use App\Bitm\SEIP133704\BookTitle\Uses;
 
     $edit = new Book();
     $edit->prepare($_GET);
@@ -15,13 +16,13 @@
 
         <form class="form-horizontal" role="form" method="post" style="margin-top: 100px" action="update.php">
             <h2 style="padding-left: 80px; margin-bottom: 20px">
-                Edit Your Book Name
+                Edit Your <?php Uses::siteKeyword() ?>
             </h2>
             <div class="form-group">
-                <label class="control-label col-sm-2">Book Title</label>
+                <label class="control-label col-sm-2"><?php Uses::siteKeyword() ?></label>
                 <div class="col-sm-6">
                     <input type="hidden" name="id" id="title" value="<?php echo $singleItem->ID ?>">
-                    <input type="text" class="form-control" id="title" name="title" placeholder="Enter Book Name" value="<?php echo $singleItem->bookTitle ?>">
+                    <input type="text" class="form-control" id="title" name="title" placeholder="Enter <?php Uses::siteKeyword() ?>" value="<?php echo $singleItem->bookTitle ?>">
                 </div>
             </div>
             <div class="form-group">

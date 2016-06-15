@@ -1,4 +1,9 @@
-<?php include "header.php" ?>
+<?php
+    include "header.php";
+    $siteDataKeyword = "Book Title";
+
+
+?>
 <title>
     Book
 </title>
@@ -7,12 +12,13 @@
 
         <form class="form-horizontal" role="form" method="post" style="margin-top: 100px" action="store.php">
             <h2 style="padding-left: 80px; margin-bottom: 20px">
-                Enter Your Book Name
+                Enter <?php echo $siteDataKeyword  ?>
+
             </h2>
             <div class="form-group">
-                <label class="control-label col-sm-2">Book Title</label>
+                <label class="control-label col-sm-2"><?php echo $siteDataKeyword  ?></label>
                 <div class="col-sm-6">
-                    <input type="text" class="form-control" id="title" name="title" placeholder="Enter Book Name">
+                    <input type="text" class="form-control" id="title" name="title" placeholder="Enter Your <?php echo $siteDataKeyword  ?>">
                 </div>
             </div>
             <div class="form-group">

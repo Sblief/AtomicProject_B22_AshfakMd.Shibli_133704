@@ -3,6 +3,7 @@
     include "header.php";
     use App\Bitm\SEIP133704\BookTitle\Book;
     use App\Bitm\SEIP133704\GlobalClasses\Utility;
+    use App\Bitm\SEIP133704\BookTitle\Uses;
 
 
     $viewBook= new Book();
@@ -18,13 +19,13 @@
     <p></p>
     <div class="container-viewport panel-default">
         <div class="panel-heading">
-            Single View
+            <?php Uses::siteKeyword() ?>
 
         </div>
         <div class="panel-body" style="margin-bottom: 88px">
             <ul class="list-group">
                 <li class="list-group-item">ID:   <?php echo $singleItem->ID?></li>
-                <li class="list-group-item">Book Name:   <?php echo $singleItem->bookTitle?></li>
+                <li class="list-group-item"><?php Uses::siteKeyword() ?>:   <?php echo $singleItem->bookTitle?></li>
                 <li class="list-group-item"> </li>
                 <li class="list-group-item"> </li>
             </ul>

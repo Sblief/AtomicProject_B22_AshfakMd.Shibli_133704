@@ -5,6 +5,7 @@
     use App\Bitm\SEIP133704\BookTitle\Book;
     use App\Bitm\SEIP133704\GlobalClasses\Utility;
     use App\Bitm\SEIP133704\GlobalClasses\Message;
+    use App\Bitm\SEIP133704\BookTitle\Uses;
 
 
     $newBook =  new Book();
@@ -18,11 +19,10 @@
 <div class="container">
 
 <div class="container-fluid" style="margin-top: 100px">
-    <h2>Book List</h2>
-    <div id="message">
+    <h2><?php Uses::siteKeyword() ?> List</h2>
+
     <?php if(array_key_exists('message',$_SESSION) && (!empty($_SESSION['message'])))
         echo Message::message() ;?>
-    </div>
     <table class="table table-bordered table-responsive">
 
         <thead>
@@ -68,9 +68,6 @@
 </div>
 </div>
     <script>
-        $('#message').show().delay(2000).fadeOut();
-
-
         $(document).ready(function(){
             $("#delete").click(function(){
                 if (!confirm("Do you want to delete")){

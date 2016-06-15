@@ -136,9 +136,12 @@
             $result=mysqli_query($this->conn,$query);
             if($result){
                 Message::message("
-                        <div class=\"alert alert-info\">
+                        <div id=\"message\" class=\"alert alert-info\">
                                 <strong>Success!</strong> Data has been deleted  successfully.
-                        </div>");
+                        </div>
+                        <script>
+                            $('#message').show().delay(2000).fadeOut();
+                        </script>");
                 Utility::redirect("index.php");
             }
             else {

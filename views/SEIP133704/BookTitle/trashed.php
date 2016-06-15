@@ -4,6 +4,7 @@
     use App\Bitm\SEIP133704\BookTitle\Book;
     use App\Bitm\SEIP133704\GlobalClasses\Utility;
     use App\Bitm\SEIP133704\GlobalClasses\Message;
+    use App\Bitm\SEIP133704\BookTitle\Uses;
     
     
     $newBook =  new Book();
@@ -18,7 +19,7 @@
 
     
             <div class="container-fluid" style="margin-top: 100px">
-                <h2>Trashed Book List</h2>
+                <h2>Trashed <?php Uses::siteKeyword() ?> List</h2>
                 <?php
                     if(!empty($bookList)){
                 ?>
