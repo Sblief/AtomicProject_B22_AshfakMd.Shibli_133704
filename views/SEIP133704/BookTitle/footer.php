@@ -4,8 +4,12 @@
         background-color: #39554d;
         color: #c0ffff;
         padding: 15px;
+        position: absolute;
+        width: 100%;
     }
 </style>
 <footer class="container-fluid  text-center">
     <p><span class="glyphicon glyphicon-copyright-mark"></span> Copyright Atomic Projects 2016</p>
 </footer>
+
+

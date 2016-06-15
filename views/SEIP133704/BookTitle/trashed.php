@@ -12,12 +12,16 @@
     
     $tableColumn = array("SL","ID","Book Title","Action","","");
     
-    ?>
+?>
     
         <div class="container">
+
     
             <div class="container-fluid" style="margin-top: 100px">
                 <h2>Trashed Book List</h2>
+                <?php
+                    if(!empty($bookList)){
+                ?>
                 <form action="recovermultiple.php" method="post" id="multiple">
                 <button type="submit"  class="btn btn-warning">Recover Selected</button>
                 <button type="button"  class="btn btn-danger" id="multiple_delete">Delete Selected</button>
@@ -68,6 +72,13 @@
             </div>
         </div>
 
+<?php }
+    else{
+        echo "<br><h1>Empty Trash Box</h1>";
+      
+    }
+?>
+
 <script>
     $('#multiple_delete').on('click',function () {
         document.forms[0].action= "deletemultiple.php";
@@ -75,4 +86,3 @@
 
     })
 </script>
-<?php include "footer.php"?>
