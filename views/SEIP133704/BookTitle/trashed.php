@@ -18,10 +18,14 @@
     
             <div class="container-fluid" style="margin-top: 100px">
                 <h2>Trashed Book List</h2>
+                <form action="recovermultiple.php" method="post" id="multiple">
+                <button type="submit"  class="btn btn-warning">Recover Selected</button>
+                <button type="button"  class="btn btn-danger" id="multiple_delete">Delete Selected</button>
                 <table class="table table-bordered table-responsive">
     
                     <thead>
                     <tr>
+                        <th>Check Item</th>
                         <th><?php echo $tableColumn[0] ?></th>
                         <th><?php echo $tableColumn[1] ?></th>
                         <th><?php echo $tableColumn[2] ?></th>
@@ -35,6 +39,7 @@
                         $sl++;
                         ?>
                         <tr>
+                            <td><input type="checkbox" name="mark[]" value="<?php echo $books->ID ?>"></td>
                             <td><?php echo $sl ;?></td>
                             <td><?php echo $books->ID ;?></td>
                             <td><?php echo $books->bookTitle ;?></td>
@@ -48,6 +53,7 @@
     
                     </tbody>
                 </table>
+                </form>
             </div>
             <div class="container" align="right" style="margin-bottom: 100px">
                 <ul class="pagination"  >
@@ -61,4 +67,12 @@
                 </ul>
             </div>
         </div>
+
+<script>
+    $('#multiple_delete').on('click',function () {
+        document.forms[0].action= "deletemultiple.php";
+        $('#multiple').submit();
+
+    })
+</script>
 <?php include "footer.php"?>

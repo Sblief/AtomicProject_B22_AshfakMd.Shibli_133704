@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="../../../resource/bootstrap-3.3.6/css/bootstrap.min.css">
         <script src="../../../resource/bootstrap-3.3.6/js/bootstrap.min.js"></script>
+        <script src="../../../resource/jquery/jquery-3.0.0.min.js"></script>
 </head>
     <title>Book Library</title>
     <style>

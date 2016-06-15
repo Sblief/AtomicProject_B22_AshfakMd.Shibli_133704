@@ -206,5 +206,52 @@
             }
         }
 
+        public function recoverSelected($IDs= Array() )
+        {
+            if (is_array($IDs) && count($IDs) > 0) {
+                $ids = implode(",",$IDs);
+                $query = "UPDATE `" . $this->dbName . "`.`" . $this->tableName . "` SET `" . $this->tableColumn3 . "` = NULL WHERE `" . $this->tableName . "`.`" . $this->tableColumn1 . "` IN (" . $ids. ")";
+                $result = mysqli_query($this->conn, $query);
+                if ($result) {
+                    Message::message("
+                        <div class=\"alert alert-info\">
+                                <strong>Success!</strong> Data has been recovered  successfully.
+                        </div>");
+                    Utility::redirect("index.php");
+                } else {
+                    Message::message("
+                        <div class=\"alert alert-danger\">
+                                <strong>Failure!</strong> Data has not been recovered  successfully.
+                        </div>");
+                    Utility::redirect("index.php");
+                }
+            }
+        }
+
+        public function deleteSelected($IDs= Array() )
+        {
+            if (is_array($IDs) && count($IDs) > 0) {
+                $ids = implode(",",$IDs);
+                $query = "DELETE FROM `".$this->dbName."`.`".$this->tableName."` WHERE `".$this->tableName."`.`".$this->tableColumn1."` IN (" . $ids. ")";
+                $result = mysqli_query($this->conn, $query);
+                if ($result) {
+                    Message::message("
+                        <div class=\"alert alert-info\">
+                                <strong>Success!</strong> Data has been deleted  successfully.
+                        </div>");
+                    Utility::redirect("index.php");
+                } else {
+                    Message::message("
+                        <div class=\"alert alert-danger\">
+                                <strong>Failure!</strong> Data has not been deleted  successfully.
+                        </div>");
+                    Utility::redirect("index.php");
+                }
+            }
+        }
+
+
+
+
 
     }
