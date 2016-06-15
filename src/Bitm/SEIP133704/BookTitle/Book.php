@@ -17,6 +17,7 @@
         public $tableColumn1 = "ID";
         public $tableColumn2 = "bookTitle";
         public $tableColumn3 = "deleted_at";
+        public $tableColumn3Input = NULL;
 
         public $created = "";
         public $created_by = "";
@@ -71,16 +72,22 @@
             $resultInsert=mysqli_query($this->conn,$queryInsert);
             if($resultInsert){
                 Message::message("
-                        <div class=\"alert alert-info\">
+                        <div id=\"message\" class=\"alert alert-info\">
                                 <strong>Success!</strong> Data has been stored  successfully.
-                        </div>");
+                        </div>
+                        <script>
+                            $('#message').show().delay(2000).fadeOut();
+                        </script>");
                 Utility::redirect("index.php");
             }
             else {
                 Message::message("
-                        <div class=\"alert alert-danger\">
+                        <div id=\"message\" class=\"alert alert-danger\">
                                 <strong>Failure!</strong> Data has not been stored successfully.
-                        </div>");
+                        </div>
+                        <script>
+                            $('#message').show().delay(2000).fadeOut();
+                        </script>");
                 Utility::redirect("index.php");
             }
             
@@ -114,16 +121,22 @@
             $result=mysqli_query($this->conn,$query);
             if($result){
                 Message::message("
-                        <div class=\"alert alert-info\">
+                        <div id=\"message\" class=\"alert alert-info\">
                                 <strong>Success!</strong> Data has been updated  successfully.
-                        </div>");
+                        </div>
+                        <script>
+                            $('#message').show().delay(2000).fadeOut();
+                        </script>");
                 Utility::redirect("index.php");
             }
             else {
                 Message::message("
-                        <div class=\"alert alert-danger\">
+                        <div id=\"message\" class=\"alert alert-danger\">
                                 <strong>Failure!</strong> Data has not been updated  successfully.
-                        </div>");
+                        </div>
+                        <script>
+                            $('#message').show().delay(2000).fadeOut();
+                        </script>");
                 Utility::redirect("index.php");
             }
         }
@@ -146,9 +159,12 @@
             }
             else {
                 Message::message("
-                        <div class=\"alert alert-danger\">
+                        <div id=\"message\" class=\"alert alert-danger\">
                                 <strong>Failure!</strong> Data has not been deleted  successfully.
-                        </div>");
+                        </div>
+                        <script>
+                            $('#message').show().delay(2000).fadeOut();
+                        </script>");
                 Utility::redirect("index.php");
             }
 
@@ -158,35 +174,41 @@
 
         public function trash()
         {
-            $this->tableColumn3 = time();
-            $query="UPDATE `".$this->dbName."`.`".$this->tableName."` SET `deleted_at` = ".$this->tableColumn3." WHERE `".$this->tableName."`.`".$this->tableColumn1."` = ".$this->id;
+            $this->tableColumn3Input = time();
+            $query="UPDATE `".$this->dbName."`.`".$this->tableName."` SET `".$this->tableColumn3."` = ".$this->tableColumn3Input." WHERE `".$this->tableName."`.`".$this->tableColumn1."` = ".$this->id;
             echo $query;
 
             $result=mysqli_query($this->conn,$query);
             if($result){
                 Message::message("
-                        <div class=\"alert alert-info\">
+                        <div id=\"message\" class=\"alert alert-info\">
                                 <strong>Success!</strong> Data has been trashed  successfully.
-                        </div>");
+                        </div>
+                        <script>
+                            $('#message').show().delay(2000).fadeOut();
+                        </script>");
                 Utility::redirect("index.php");
             }
             else {
                 Message::message("
-                        <div class=\"alert alert-danger\">
+                        <div id=\"message\" class=\"alert alert-danger\">
                                 <strong>Failure!</strong> Data has not been trashed.
-                        </div>");
+                        </div>
+                        <script>
+                            $('#message').show().delay(2000).fadeOut();
+                        </script>");
                 Utility::redirect("index.php");
             }
         }
         public function trashed()
         {
-            $_bookList =  array();
+            $_list =  array();
             $query = "SELECT * FROM $this->tableName WHERE `$this->tableColumn3` IS NOT NULL ";
             $result =  mysqli_query($this->conn,$query);
             while($row = mysqli_fetch_object($result)){
-                $_bookList[]= $row;
+                $_list[]= $row;
             }
-            return $_bookList;
+            return $_list;
 
         }
         public function recover()
@@ -195,16 +217,22 @@
             $result=mysqli_query($this->conn,$query);
             if($result){
                 Message::message("
-                        <div class=\"alert alert-info\">
+                        <div id=\"message\" class=\"alert alert-info\">
                                 <strong>Success!</strong> Data has been recovered  successfully.
-                        </div>");
+                        </div>
+                        <script>
+                            $('#message').show().delay(2000).fadeOut();
+                        </script>");
                 Utility::redirect("index.php");
             }
             else {
                 Message::message("
-                        <div class=\"alert alert-danger\">
+                        <div id=\"message\" class=\"alert alert-danger\">
                                 <strong>Failure!</strong> Data has not been recovered  successfully.
-                        </div>");
+                        </div>
+                        <script>
+                            $('#message').show().delay(2000).fadeOut();
+                        </script>");
                 Utility::redirect("index.php");
             }
         }
@@ -217,15 +245,21 @@
                 $result = mysqli_query($this->conn, $query);
                 if ($result) {
                     Message::message("
-                        <div class=\"alert alert-info\">
+                        <div id=\"message\" class=\"alert alert-info\">
                                 <strong>Success!</strong> Data has been recovered  successfully.
-                        </div>");
+                        </div>
+                        <script>
+                            $('#message').show().delay(2000).fadeOut();
+                        </script>");
                     Utility::redirect("index.php");
                 } else {
                     Message::message("
-                        <div class=\"alert alert-danger\">
+                        <div id=\"message\" class=\"alert alert-danger\">
                                 <strong>Failure!</strong> Data has not been recovered  successfully.
-                        </div>");
+                        </div>
+                        <script>
+                            $('#message').show().delay(2000).fadeOut();
+                        </script>");
                     Utility::redirect("index.php");
                 }
             }
@@ -239,15 +273,21 @@
                 $result = mysqli_query($this->conn, $query);
                 if ($result) {
                     Message::message("
-                        <div class=\"alert alert-info\">
+                        <div id=\"message\" class=\"alert alert-info\">
                                 <strong>Success!</strong> Data has been deleted  successfully.
-                        </div>");
+                        </div>
+                        <script>
+                            $('#message').show().delay(2000).fadeOut();
+                        </script>");
                     Utility::redirect("index.php");
                 } else {
                     Message::message("
-                        <div class=\"alert alert-danger\">
+                        <div id=\"message\" class=\"alert alert-danger\">
                                 <strong>Failure!</strong> Data has not been deleted  successfully.
-                        </div>");
+                        </div>
+                        <script>
+                            $('#message').show().delay(2000).fadeOut();
+                        </script>");
                     Utility::redirect("index.php");
                 }
             }
