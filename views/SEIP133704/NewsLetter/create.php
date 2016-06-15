@@ -18,7 +18,7 @@
             <div class="form-group">
                 <label class="control-label col-sm-2"><?php echo Uses::siteKeyword() ?></label>
                 <div class="col-sm-6">
-                    <input type="text" class="form-control" id="title" name="title" placeholder="Enter Your <?php echo Uses::siteKeyword()  ?>">
+                    <input type="email" class="form-control" id="title" name="title" placeholder="Enter Your <?php echo Uses::siteKeyword()  ?>">
                 </div>
             </div>
             <div class="form-group">
