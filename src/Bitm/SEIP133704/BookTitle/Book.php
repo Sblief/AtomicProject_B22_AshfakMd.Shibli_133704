@@ -89,13 +89,13 @@
 
         public function index()
         {
-            $_bookList =  array();
+            $_list =  array();
             $query = "SELECT * FROM $this->tableName WHERE `$this->tableColumn3` IS NULL ";
             $result =  mysqli_query($this->conn,$query);
             while($row = mysqli_fetch_object($result)){
-                $_bookList[]= $row;
+                $_list[]= $row;
             }
-            return $_bookList;
+            return $_list;
 
         }
 
@@ -131,7 +131,7 @@
         {
 
             $query="DELETE FROM `".$this->dbName."`.`".$this->tableName."` WHERE `".$this->tableName."`.`".$this->tableColumn1."` = ".$this->id;
-            echo $query;
+            //echo $query;
 
             $result=mysqli_query($this->conn,$query);
             if($result){

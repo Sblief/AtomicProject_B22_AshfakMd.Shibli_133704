@@ -19,8 +19,10 @@
 
 <div class="container-fluid" style="margin-top: 100px">
     <h2>Book List</h2>
+    <div id="message">
     <?php if(array_key_exists('message',$_SESSION) && (!empty($_SESSION['message'])))
         echo Message::message() ;?>
+    </div>
     <table class="table table-bordered table-responsive">
 
         <thead>
@@ -65,4 +67,17 @@
     </ul>
 </div>
 </div>
+    <script>
+        $('#message').show().delay(2000).fadeOut();
+
+
+        $(document).ready(function(){
+            $("#delete").click(function(){
+                if (!confirm("Do you want to delete")){
+                    return false;
+                }
+            });
+        });
+
+    </script>
 <?php include "footer.php"?>
