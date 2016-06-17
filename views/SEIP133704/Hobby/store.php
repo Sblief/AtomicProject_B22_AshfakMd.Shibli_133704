@@ -15,3 +15,4 @@ $_POST['hobby']=$comm_separated;
 $hobbyNew = new Hobby();
 $hobbyNew->prepare($_POST);
 $hobbyNew->store();
+
