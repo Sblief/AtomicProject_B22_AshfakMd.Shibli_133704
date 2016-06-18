@@ -3,4 +3,5 @@
 use App\Bitm\SEIP133704\Hobby\Hobby;
 
     $delete = new Hobby();
-    echo $delete->delete();
+    $delete->prepare($_GET);
+    $delete->delete();

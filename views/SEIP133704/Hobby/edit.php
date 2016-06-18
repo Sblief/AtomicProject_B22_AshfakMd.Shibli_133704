@@ -20,7 +20,7 @@ use App\Bitm\SEIP133704\Hobby\Hobby;
     <div class="container" style="margin-top: 100px">
         <h2>Edit  your hobby</h2>
 
-        <form role="form" method="post" action="update.php">
+        <form role="form" method="post" action="update.php?id=<?php echo $_GET['id'] ?>">
             <div class="checkbox">
                 <label><input type="checkbox" name=hobby[] value="Cricket" <?php Hobby::checked("Cricket", $dataArray)  ?>>Playing Cricket</label>
             </div>

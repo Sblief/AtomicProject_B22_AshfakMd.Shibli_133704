@@ -9,7 +9,6 @@ use App\Bitm\SEIP133704\Hobby\Uses;
 
 $selected_hobby= $_POST['hobby'];
 $comm_separated=implode(",",$selected_hobby);
-echo $comm_separated;
 $_POST['hobby']=$comm_separated;
 
 $hobbyNew = new Hobby();

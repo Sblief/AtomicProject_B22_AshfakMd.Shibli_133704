@@ -9,7 +9,7 @@ class Hobby
     public $title = "";
 
     public $conn;
-    public $dbName = "atomicprojectB22_133704";
+    public $dbName = "atomicprojectb22_133704";
     public $user = "root";
     public $host = "localhost";
     public $password = "";
@@ -43,9 +43,10 @@ class Hobby
     public function prepare ($data="")
     {
 
-        $data = explode(",",$data);
+
         if(array_key_exists("hobby",$data)){
             $this->title = $data['hobby'];
+
             
 
         }
@@ -64,14 +65,15 @@ class Hobby
         if(empty($resultSelectTable)) {
             $queryCreateTable = "CREATE TABLE $this->tableName (
                           $this->tableColumn1 int(11) AUTO_INCREMENT,
-                          $this->tableColumn2 varchar(255) NOT NULL,
+                          $this->tableColumn2 varchar(255),
                           $this->tableColumn3 varchar(255) NULL,
                           PRIMARY KEY  ($this->tableColumn1)
                           )";
             $resultCreateTable = mysqli_query($this->conn, $queryCreateTable);
         }
         $queryInsert = "INSERT INTO `".$this->dbName."`.`".$this->tableName."` ( `".$this->tableColumn2."`) VALUES ( '".$this->title."')";
-
+//        echo $queryInsert;
+//        die();
         $resultInsert=mysqli_query($this->conn,$queryInsert);
         if($resultInsert){
             Message::message("
@@ -119,9 +121,7 @@ class Hobby
     public function update()
     {
         $query="UPDATE `".$this->dbName."`.`".$this->tableName."` SET `".$this->tableColumn2."` = '".$this->title."' WHERE `".$this->tableName."`.`".$this->tableColumn1."` = ".$this->id;
-        echo $query;
-        die();
-
+        
         $result=mysqli_query($this->conn,$query);
         if($result){
             Message::message("

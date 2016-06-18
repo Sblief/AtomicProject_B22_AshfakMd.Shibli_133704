@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 include_once ("../../../vendor/autoload.php");
 include "header.php";
 
@@ -23,8 +23,8 @@ $tableColumn = array("SL","ID","Hobbies","Action","","");
         <div class="container-fluid" style="margin-top: 100px">
             <h2><?php Uses::siteKeyword() ?> List</h2>
 
-<!-- //if(array_key_exists('message',$_SESSION) && (!empty($_SESSION['message'])))-->
-<!--//                echo Message::message() ;?>-->
+<?php if(array_key_exists('message',$_SESSION) && (!empty($_SESSION['message'])))
+               echo Message::message() ;?>
             <table class="table table-bordered table-responsive">
 
                 <thead>
