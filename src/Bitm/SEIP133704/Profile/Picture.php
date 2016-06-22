@@ -1,5 +1,8 @@
 <?php
 namespace App\Bitm\SEIP133704\Profile;
+use App\Bitm\SEIP133704\GlobalClasses\Utility;
+use App\Bitm\SEIP133704\GlobalClasses\Message;
+use App\Bitm\SEIP133704\Profile\Uses;
 
 class Picture
 {
@@ -70,7 +73,7 @@ class Picture
                           )";
             $resultCreateTable = mysqli_query($this->conn, $queryCreateTable);
         }
-        $queryInsert = "INSERT INTO `".$this->dbName."`.`".$this->tableName."` ( `".$this->tableColumn2."`) VALUES ( '".$this->title."')";
+        $queryInsert = "INSERT INTO `".$this->dbName."`.`".$this->tableName."` ( `".$this->tableColumn2."`, `".$this->tableColumn3."`) VALUES ( '".$this->name."','".$this->image_name."')";
 
         $resultInsert=mysqli_query($this->conn,$queryInsert);
         if($resultInsert){

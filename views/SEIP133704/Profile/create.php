@@ -13,13 +13,14 @@
 
         <form class="form-horizontal" role="form" method="post" style="margin-top: 100px" action="store.php" enctype="multipart/form-data">
             <h2 style="padding-left: 80px; margin-bottom: 20px">
-                Enter <?php echo Uses::siteKeyword()  ?>
+                Upload <?php echo Uses::siteKeyword()  ?>
 
             </h2>
             <div class="form-group">
-                <label class="control-label col-sm-2"><?php echo Uses::siteKeyword()  ?></label>
                 <div class="col-sm-6">
-                    <label for="pwd">Enter Your <?php echo Uses::siteKeyword()  ?></label>
+                    <label for="user">User Name</label>
+                    <input type="text" class="form-control" id="name" name="name">
+                    <label for="pwd">Upload Your <?php echo Uses::siteKeyword()  ?></label>
                     <input type="file" class="form-control" id="title" name="image">
                 </div>
             </div>
