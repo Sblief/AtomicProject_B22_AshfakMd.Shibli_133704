@@ -9,7 +9,7 @@
 use App\Bitm\SEIP133704\Profile\Picture;
 use App\Bitm\SEIP133704\Profile\Uses;
 
-    $deleteMultiple = new Book();
+    $deleteMultiple = new Picture();
     $deleteMultiple->deleteSelected($_POST['mark']);
 
 

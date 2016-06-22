@@ -279,7 +279,7 @@
                         <script>
                             $('#message').show().delay(2000).fadeOut();
                         </script>");
-                    Utility::redirect("index.php");
+                    Utility::redirect("trashed.php");
                 } else {
                     Message::message("
                         <div id=\"message\" class=\"alert alert-danger\">
@@ -288,7 +288,7 @@
                         <script>
                             $('#message').show().delay(2000).fadeOut();
                         </script>");
-                    Utility::redirect("index.php");
+                    Utility::redirect("trashed.php");
                 }
             }
         }

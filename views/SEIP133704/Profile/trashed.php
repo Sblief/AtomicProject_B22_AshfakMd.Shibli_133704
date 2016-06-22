@@ -8,11 +8,11 @@ use App\Bitm\SEIP133704\Profile\Uses;
 
     
     
-    $newBook =  new Book();
-    $bookList = $newBook->trashed();
+    $newTrash =  new Picture();
+    $list = $newTrash->trashed();
     //Utility::d($_SESSION);
     
-    $tableColumn = array("SL","ID","Book Title","Action","","");
+    $tableColumn = array("SL","ID","User Name","Thumbnail","Action","","");
     
 ?>
     
@@ -22,7 +22,7 @@ use App\Bitm\SEIP133704\Profile\Uses;
             <div class="container-fluid" style="margin-top: 100px">
                 <h2>Trashed <?php Uses::siteKeyword() ?> List</h2>
                 <?php
-                    if(!empty($bookList)){
+                    if(!empty($list)){
                 ?>
                 <form action="recovermultiple.php" method="post" id="multiple">
                 <button type="submit"  class="btn btn-warning">Recover Selected</button>
@@ -36,22 +36,24 @@ use App\Bitm\SEIP133704\Profile\Uses;
                         <th><?php echo $tableColumn[1] ?></th>
                         <th><?php echo $tableColumn[2] ?></th>
                         <th><?php echo $tableColumn[3] ?></th>
+                        <th><?php echo $tableColumn[4] ?></th>
                     </tr>
                     </thead>
                     <tbody>
                     <?php
                     $sl = 0;
-                    foreach ($bookList as $books){
+                    foreach ($list as $item){
                         $sl++;
                         ?>
                         <tr>
-                            <td><input type="checkbox" name="mark[]" value="<?php echo $books->ID ?>"></td>
+                            <td><input type="checkbox" name="mark[]" value="<?php echo $item->id ?>"></td>
                             <td><?php echo $sl ;?></td>
-                            <td><?php echo $books->ID ;?></td>
-                            <td><?php echo $books->bookTitle ;?></td>
+                            <td><?php echo $item->id ;?></td>
+                            <td><?php echo $item->name ;?></td>
+                            <td><img src="../../../resource/images/<?php echo $item->images ;?>" height="200px" width="200px" </td>
                             <td>
-                                <a href="recover.php?id=<?php echo $books->ID ?>" ><button type="button" class="btn btn-warning">Recover</button>
-                                <a href="delete.php?id=<?php echo $books->ID ?>" ><button type="button" class="btn btn-danger" id="delete">Delete</button>
+                                <a href="recover.php?id=<?php echo $item->id ?>" ><button type="button" class="btn btn-warning">Recover</button>
+                                <a href="delete.php?id=<?php echo $item->id ?>" ><button type="button" class="btn btn-danger" id="delete">Delete</button>
                                     
                             </td>
                         </tr>

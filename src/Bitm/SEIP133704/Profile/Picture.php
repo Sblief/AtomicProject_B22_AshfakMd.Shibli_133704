@@ -19,6 +19,8 @@ class Picture
     public $tableColumn1 = "id";
     public $tableColumn2 = "name";
     public $tableColumn3 = "images";
+    public $tableColumn4 = "deleted_at";
+    public $tableColumn4Input = NULL;
     
     
 
@@ -69,6 +71,7 @@ class Picture
                           $this->tableColumn1 int(11) AUTO_INCREMENT,
                           $this->tableColumn2 varchar(255) ,
                           $this->tableColumn3 varchar(255) ,
+                          $this->tableColumn4 varchar(255) NULL,
                           PRIMARY KEY  ($this->tableColumn1)
                           )";
             $resultCreateTable = mysqli_query($this->conn, $queryCreateTable);
@@ -103,7 +106,7 @@ class Picture
     public function index()
     {
         $_list =  array();
-        $query = "SELECT * FROM $this->tableName";
+        $query = "SELECT * FROM $this->tableName WHERE `$this->tableColumn4` IS NULL  ";
         $result =  mysqli_query($this->conn,$query);
         while($row = mysqli_fetch_object($result)){
             $_list[]= $row;
@@ -186,8 +189,8 @@ class Picture
 
     public function trash()
     {
-        $this->tableColumn3Input = time();
-        $query="UPDATE `".$this->dbName."`.`".$this->tableName."` SET `".$this->tableColumn3."` = ".$this->tableColumn3Input." WHERE `".$this->tableName."`.`".$this->tableColumn1."` = ".$this->id;
+        $this->tableColumn4Input = time();
+        $query="UPDATE `".$this->dbName."`.`".$this->tableName."` SET `".$this->tableColumn4."` = ".$this->tableColumn4Input." WHERE `".$this->tableName."`.`".$this->tableColumn1."` = ".$this->id;
         echo $query;
 
         $result=mysqli_query($this->conn,$query);
@@ -215,7 +218,7 @@ class Picture
     public function trashed()
     {
         $_list =  array();
-        $query = "SELECT * FROM $this->tableName WHERE `$this->tableColumn3` IS NOT NULL ";
+        $query = "SELECT * FROM $this->tableName WHERE `$this->tableColumn4` IS NOT NULL ";
         $result =  mysqli_query($this->conn,$query);
         while($row = mysqli_fetch_object($result)){
             $_list[]= $row;
@@ -225,11 +228,11 @@ class Picture
     }
     public function recover()
     {
-        $query="UPDATE `".$this->dbName."`.`".$this->tableName."` SET `".$this->tableColumn3."` = NULL WHERE `".$this->tableName."`.`".$this->tableColumn1."` = ".$this->id;
+        $query="UPDATE `".$this->dbName."`.`".$this->tableName."` SET `".$this->tableColumn4."` = NULL WHERE `".$this->tableName."`.`".$this->tableColumn1."` = ".$this->id;
         $result=mysqli_query($this->conn,$query);
         if($result){
             Message::message("
-                        <div id=\"message\" class=\"alert alert-info\">
+                        <div id=\"message\" class=\"alert alert-warning\">
                                 <strong>Success!</strong> Data has been recovered  successfully.
                         </div>
                         <script>
@@ -253,7 +256,7 @@ class Picture
     {
         if (is_array($IDs) && count($IDs) > 0) {
             $ids = implode(",",$IDs);
-            $query = "UPDATE `" . $this->dbName . "`.`" . $this->tableName . "` SET `" . $this->tableColumn3 . "` = NULL WHERE `" . $this->tableName . "`.`" . $this->tableColumn1 . "` IN (" . $ids. ")";
+            $query = "UPDATE `" . $this->dbName . "`.`" . $this->tableName . "` SET `" . $this->tableColumn4 . "` = NULL WHERE `" . $this->tableName . "`.`" . $this->tableColumn1 . "` IN (" . $ids. ")";
             $result = mysqli_query($this->conn, $query);
             if ($result) {
                 Message::message("
@@ -285,22 +288,22 @@ class Picture
             $result = mysqli_query($this->conn, $query);
             if ($result) {
                 Message::message("
-                        <div id=\"message\" class=\"alert alert-info\">
+                        <div id=\"message\" class=\"alert alert-danger\">
                                 <strong>Success!</strong> Data has been deleted  successfully.
                         </div>
                         <script>
                             $('#message').show().delay(2000).fadeOut();
                         </script>");
-                Utility::redirect("index.php");
+                Utility::redirect("trashed.php");
             } else {
                 Message::message("
-                        <div id=\"message\" class=\"alert alert-danger\">
+                        <div id=\"message\" class=\"alert alert-info\">
                                 <strong>Failure!</strong> Data has not been deleted  successfully.
                         </div>
                         <script>
                             $('#message').show().delay(2000).fadeOut();
                         </script>");
-                Utility::redirect("index.php");
+                Utility::redirect("trashed.php");
             }
         }
     }
