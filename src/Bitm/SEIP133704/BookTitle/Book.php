@@ -296,9 +296,5 @@
                 }
             }
         } //Deleted data fully from database.
-
-
-
-
-
+        
     }
