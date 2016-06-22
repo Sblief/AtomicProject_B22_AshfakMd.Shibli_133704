@@ -9,11 +9,10 @@ use App\Bitm\SEIP133704\Profile\Uses;
     
 
 
-    $newBook =  new Book();
-    $bookList = $newBook->index();
-    //Utility::d($_SESSION);
+    $newProfile =  new Picture();
+    $profileList = $newProfile->index();
 
-    $tableColumn = array("SL","ID","Book Title","Action","","");
+    $tableColumn = array("SL","ID","User Name","Thumbnail","Action","","");
 
 ?>
 
@@ -32,23 +31,25 @@ use App\Bitm\SEIP133704\Profile\Uses;
             <th><?php echo $tableColumn[1] ?></th>
             <th><?php echo $tableColumn[2] ?></th>
             <th><?php echo $tableColumn[3] ?></th>
+            <th><?php echo $tableColumn[4] ?></th>
         </tr>
         </thead>
         <tbody>
         <?php
         $sl = 0;
-        foreach ($bookList as $books){
+        foreach ($profileList as $item){
             $sl++;
             ?>
         <tr>
             <td><?php echo $sl ;?></td>
-            <td><?php echo $books->ID ;?></td>
-            <td><?php echo $books->bookTitle ;?></td>
+            <td><?php echo $item->id ;?></td>
+            <td><?php echo $item->name ;?></td>
+            <td><img src="../../../resource/images/<?php echo $item->images ;?>" height="50px" width="50px"></td>
             <td>
-                <a href="view.php?id=<?php echo $books->ID ?>" ><button type="button" class="btn btn-info">View</button></a>
-                <a href="edit.php?id=<?php echo $books->ID ?>" ><button type="button" class="btn btn-info">Edit</button></a>
-                <a href="delete.php?id=<?php echo $books->ID ?>" ><button type="button" class="btn btn-danger" id="delete">Delete</button>
-                    <a href="trash.php?id=<?php echo $books->ID ?>" ><button type="button" class="btn btn-warning">Trash</button>
+                <a href="view.php?id=<?php echo $item->id ?>" ><button type="button" class="btn btn-info">View</button></a>
+                <a href="edit.php?id=<?php echo $item->id ?>" ><button type="button" class="btn btn-info">Edit</button></a>
+                <a href="delete.php?id=<?php echo $item->id ?>" ><button type="button" class="btn btn-danger" id="delete">Delete</button>
+                    <a href="trash.php?id=<?php echo $item->id ?>" ><button type="button" class="btn btn-warning">Trash</button>
             </td>
         </tr>
         <?php } ?>
