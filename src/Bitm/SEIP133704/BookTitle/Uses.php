@@ -1,23 +1,16 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Ashfak Md. Shibli
- * Date: 15-06-16
- * Time: PM 02.38
- */
-
-namespace App\Bitm\SEIP133704\BookTitle;
+namespace App\Bitm\SEIP133704\BookTitle; //Declared project namespace
 
 
 class Uses
 {
     public  static function siteName ()
     {
-        echo "Book Library";
+        echo "Book Library"; //Site name declared to use in other pages
     }
 
     public static function siteKeyword ()
     {
-        echo "Book Title";
+        echo "Book Title"; //Site keyword declared to use in other pages
     }
 }

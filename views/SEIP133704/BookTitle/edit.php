@@ -1,15 +1,16 @@
 <?php
-    include_once ("../../../vendor/autoload.php");
+    include_once ("../../../vendor/autoload.php"); //Autoload file included to recognize namespace
+    include "header.php" ;  // Made header as a separate file as it will be used in every page
     use App\Bitm\SEIP133704\BookTitle\Book;
-    use App\Bitm\SEIP133704\BookTitle\Uses;
+    use App\Bitm\SEIP133704\BookTitle\Uses;  //Called the class files used here.
 
-    $edit = new Book();
-    $edit->prepare($_GET);
-    $singleItem = $edit->view();
+    $edit = new Book();  // Made an object of class
+    $edit->prepare($_GET); // called prepare method of the class to prepare what in the argument
+    $singleItem = $edit->view(); // called view method of the class. Assigned the return value from the method in a variable to use later.
 ?>
-<?php include "header.php" ?>
+
 <title>
-    Book
+   <?php Uses::siteName() ?>
 </title>
 <div class="container">
     <div class="container-fluid" style="margin-bottom: 250px; margin-top: 100px">

@@ -1,18 +1,23 @@
 <?php
-    include_once ("../../../vendor/autoload.php");
+//This page is identical to index page.
+    include_once ("../../../vendor/autoload.php"); //Autoload file included to recognize namespace
     include "header.php";
     use App\Bitm\SEIP133704\BookTitle\Book;
     use App\Bitm\SEIP133704\GlobalClasses\Utility;
     use App\Bitm\SEIP133704\GlobalClasses\Message;
-    use App\Bitm\SEIP133704\BookTitle\Uses;
+    use App\Bitm\SEIP133704\BookTitle\Uses;  //Called the class files used here.
     
     
-    $newBook =  new Book();
-    $bookList = $newBook->trashed();
+    $newTrash =  new Book(); // Made an object of class
+    $list = $newTrash->trashed(); //receive trashed data and assign in the variable
     //Utility::d($_SESSION);
     
     $tableColumn = array("SL","ID","Book Title","Action","","");
     
+?>
+
+<?php
+if(!empty($list)){
 ?>
     
         <div class="container">
@@ -20,12 +25,11 @@
     
             <div class="container-fluid" style="margin-top: 100px">
                 <h2>Trashed <?php Uses::siteKeyword() ?> List</h2>
-                <?php
-                    if(!empty($bookList)){
-                ?>
-                <form action="recovermultiple.php" method="post" id="multiple">
+<!--                To recover multiple data sent through post method-->
+                <form action="recovermultiple.php" method="post" id="multiple"> 
                 <button type="submit"  class="btn btn-warning">Recover Selected</button>
-                <button type="button"  class="btn btn-danger" id="multiple_delete">Delete Selected</button>
+<!--                 To delete multiple id is used for jquery to send data to other page-->
+                <button type="button"  class="btn btn-danger" id="multiple_delete">Delete Selected</button> 
                 <table class="table table-bordered table-responsive">
     
                     <thead>
@@ -40,17 +44,17 @@
                     <tbody>
                     <?php
                     $sl = 0;
-                    foreach ($bookList as $books){
+                    foreach ($list as $item){
                         $sl++;
                         ?>
                         <tr>
-                            <td><input type="checkbox" name="mark[]" value="<?php echo $books->ID ?>"></td>
+                            <td><input type="checkbox" name="mark[]" value="<?php echo $item->ID ?>"></td>
                             <td><?php echo $sl ;?></td>
-                            <td><?php echo $books->ID ;?></td>
-                            <td><?php echo $books->bookTitle ;?></td>
+                            <td><?php echo $item->ID ;?></td>
+                            <td><?php echo $item->bookTitle ;?></td>
                             <td>
-                                <a href="recover.php?id=<?php echo $books->ID ?>" ><button type="button" class="btn btn-warning">Recover</button>
-                                <a href="delete.php?id=<?php echo $books->ID ?>" ><button type="button" class="btn btn-danger" id="delete">Delete</button>
+                                <a href="recover.php?id=<?php echo $item->ID ?>" ><button type="button" class="btn btn-warning">Recover</button>
+                                <a href="delete.php?id=<?php echo $item->ID ?>" ><button type="button" class="btn btn-danger" id="delete">Delete</button>
                                     
                             </td>
                         </tr>
@@ -74,10 +78,13 @@
         </div>
 
 <?php }
-    else{
-        echo "<br><h1>Empty Trash Box</h1>";
-      
-    }
+else{
+    echo "<div class='container' style='margin-top: 100px; margin-bottom: 350px'>
+            <h1>Empty Trash Box</h1>
+            <h3>When you trash something from list that will show up here</h3>
+           </div>";
+
+}
 ?>
 
 <script>
@@ -87,3 +94,4 @@
 
     })
 </script>
+<?php include ('footer.php');?>

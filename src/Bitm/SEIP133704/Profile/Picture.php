@@ -1,5 +1,5 @@
 <?php
-namespace App\Bitm\SEIP133704\Profile;
+namespace App\Bitm\SEIP133704\Profile; //Declared project namespace
 use App\Bitm\SEIP133704\GlobalClasses\Utility;
 use App\Bitm\SEIP133704\GlobalClasses\Message;
 use App\Bitm\SEIP133704\Profile\Uses;
@@ -43,7 +43,7 @@ class Picture
         }
         $this->conn = mysqli_connect($this->host,$this->user,$this->password,$this->dbName) or die("Database connection failed");
 
-    }
+    } //Runs this magic method every time class is used. Database linked, Created if there is no database. Connect to database.
 
     public function prepare ($data="")
     {
@@ -60,7 +60,7 @@ class Picture
         return  $this;
 
 
-    }
+    } //Prepare data arived as array. Matched the index and assigned in variables to use in sql.
     public function store()
     {
         $querySelectTable = "SELECT $this->tableColumn1 FROM $this->tableName";
@@ -101,7 +101,7 @@ class Picture
         }
 
 
-    }
+    } //Creates a table if there is no table. Then stored data in the table.
 
     public function index()
     {
@@ -113,7 +113,7 @@ class Picture
         }
         return $_list;
 
-    }
+    } //Returns array of data from database.
 
 
     public function view(){
@@ -121,7 +121,8 @@ class Picture
         $result= mysqli_query($this->conn,$query);
         $row= mysqli_fetch_object($result);
         return $row;
-    }
+    } //Return data array of selected id.
+    
     public function update()
     {
         if(!empty($this->image_name)){
@@ -154,7 +155,8 @@ class Picture
                         </script>");
             Utility::redirect("index.php");
         }
-    }
+    } //Update data in the database.
+    
     public function delete()
     {
 
@@ -185,7 +187,7 @@ class Picture
 
 
 
-    }
+    } //Delete data from the database.
 
     public function trash()
     {
@@ -214,7 +216,8 @@ class Picture
                         </script>");
             Utility::redirect("index.php");
         }
-    }
+    } //Trash data by setting deleted_at field some value.
+    
     public function trashed()
     {
         $_list =  array();
@@ -225,7 +228,8 @@ class Picture
         }
         return $_list;
 
-    }
+    }//Returns data array which deleted_at field have some value. i.e. Trashed data.
+    
     public function recover()
     {
         $query="UPDATE `".$this->dbName."`.`".$this->tableName."` SET `".$this->tableColumn4."` = NULL WHERE `".$this->tableName."`.`".$this->tableColumn1."` = ".$this->id;
@@ -250,7 +254,7 @@ class Picture
                         </script>");
             Utility::redirect("index.php");
         }
-    }
+    } //Recover data means making the deleted_at field updated null.
 
     public function recoverSelected($IDs= Array() )
     {
@@ -278,7 +282,7 @@ class Picture
                 Utility::redirect("index.php");
             }
         }
-    }
+    } //Multiple ID proceesed and updated deleted_at field set NULL.
 
     public function deleteSelected($IDs= Array() )
     {
@@ -306,7 +310,7 @@ class Picture
                 Utility::redirect("trashed.php");
             }
         }
-    }
+    } //Deleted data fully from database.
 
 
 

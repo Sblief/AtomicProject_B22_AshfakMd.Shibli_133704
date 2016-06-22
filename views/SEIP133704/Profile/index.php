@@ -15,6 +15,9 @@ use App\Bitm\SEIP133704\Profile\Uses;
     $tableColumn = array("SL","ID","User Name","Thumbnail","Action","","");
 
 ?>
+<?php
+if(!empty($profileList)){
+    ?>
 
 <div class="container">
 
@@ -69,6 +72,20 @@ use App\Bitm\SEIP133704\Profile\Uses;
     </ul>
 </div>
 </div>
+
+<?php }
+else{
+    echo "<div class='container' style='margin-top: 100px; margin-bottom: 350px'>
+            <h1>Empty Index</h1>
+            <h3>Please add profile clicking ADD</h3>
+           </div>";
+
+}
+?>
+
+
+
+
     <script>
         $(document).ready(function(){
             $("#delete").click(function(){

@@ -1,11 +1,14 @@
 <?php
-    include "header.php";
-    use App\Bitm\SEIP133704\BookTitle\Uses;
+    include_once ('../../../vendor/autoload.php');   //Autoload file included to recognize namespace
+    include "header.php";          // Made header as a separate file as it will be used in every page
+    use App\Bitm\SEIP133704\BookTitle\Uses; //Called the class files used here.
 
 
 ?>
 <title>
-    <?php echo Uses::siteKeyword()  ?>
+    <!--    Site's Keyword was fetched from Uses Class for changing site name will be easy-->
+    <?php echo Uses::siteKeyword()  ?>  
+
 </title>
 <div class="container">
     <div class="container-fluid" style="margin-bottom: 250px; margin-top: 100px">
@@ -18,6 +21,7 @@
             <div class="form-group">
                 <label class="control-label col-sm-2"><?php echo Uses::siteKeyword()  ?></label>
                 <div class="col-sm-6">
+<!--                    Mind it! name field goes in $_POST. We will use it on other pages-->
                     <input type="text" class="form-control" id="title" name="title" placeholder="Enter Your <?php echo Uses::siteKeyword()  ?>">
                 </div>
             </div>
@@ -30,5 +34,5 @@
         </form>
     </div>
 </div>
-<?php include "footer.php"?>
+<?php include "footer.php";  // Made footer as a separate file as it will be used in every page?> 
 

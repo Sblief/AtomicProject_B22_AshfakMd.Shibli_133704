@@ -1,16 +1,20 @@
 <?php
-    include_once ("../../../vendor/autoload.php");
+    include_once ("../../../vendor/autoload.php"); //Autoload file included to recognize namespace
     include "header.php";
     use App\Bitm\SEIP133704\BookTitle\Book;
     use App\Bitm\SEIP133704\GlobalClasses\Utility;
-    use App\Bitm\SEIP133704\BookTitle\Uses;
+    use App\Bitm\SEIP133704\BookTitle\Uses; //Called the class files used here.
 
-
-    $viewBook= new Book();
-    $viewBook->prepare($_GET);
-    $singleItem = $viewBook->view();
+ 
+    $view= new Book();  // Made an object of class
+    $view->prepare($_GET); // called prepare method of the class to prepare what in the argument
+    $singleItem = $view->view(); //an array object is fetched and assigned in variable.
     //Utility::dd($singleItem);
 ?>
+
+
+
+
 <div class="container" style="margin-bottom: 100px">
     <div class="panel panel-default">
         <div class="panel-body" align="center"></div>

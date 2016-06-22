@@ -1,10 +1,10 @@
 <?php
-    include ('../../../vendor/autoload.php');
+    include ('../../../vendor/autoload.php'); //Autoload file included to recognize namespace
     
-    use App\Bitm\SEIP133704\BookTitle\Book;
+    use App\Bitm\SEIP133704\BookTitle\Book; //Called the class files used here.
   
 
-    $trashBook =  new Book();
-    $trashBook->prepare($_GET);
-    $trashBook->trash();
+    $trash =  new Book(); // Made an object of class
+    $trash->prepare($_GET); // called prepare method of the class to prepare what in the argument
+    $trash->trash(); //Data trashed in database
     

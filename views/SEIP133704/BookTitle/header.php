@@ -1,6 +1,6 @@
 <?php
-    include_once ('../../../vendor/autoload.php');
-    use App\Bitm\SEIP133704\BookTitle\Uses;
+    include_once ('../../../vendor/autoload.php'); //Autoload file included to recognize namespace
+    use App\Bitm\SEIP133704\BookTitle\Uses;  //Called the class files used here.
 ?>
 
 <!DOCTYPE html>

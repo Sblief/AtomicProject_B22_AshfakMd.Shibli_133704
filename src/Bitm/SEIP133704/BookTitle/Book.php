@@ -1,5 +1,5 @@
 <?php
-    namespace App\Bitm\SEIP133704\BookTitle;
+    namespace App\Bitm\SEIP133704\BookTitle; //Declared project namespace
     use App\Bitm\SEIP133704\GlobalClasses\Message;
     use App\Bitm\SEIP133704\GlobalClasses\Utility;
 
@@ -38,7 +38,7 @@
             }
             $this->conn = mysqli_connect($this->host,$this->user,$this->password,$this->dbName) or die("Database connection failed");
             
-        }
+        }//Runs this magic method every time class is used. Database linked, Created if there is no database. Connect to database.
         
         public function prepare ($data="")
         {
@@ -52,7 +52,7 @@
             }
 
 
-        }
+        }//Prepare data arived as array. Matched the index and assigned in variables to use in sql.
         public function store()
         {
             $querySelectTable = "SELECT $this->tableColumn1 FROM $this->tableName";
@@ -92,7 +92,7 @@
             }
             
             
-        }
+        }//Creates a table if there is no table. Then stored data in the table.
 
         public function index()
         {
@@ -104,7 +104,7 @@
             }
             return $_list;
 
-        }
+        }//Returns array of data from database.
 
 
         public function view(){
@@ -112,7 +112,8 @@
             $result= mysqli_query($this->conn,$query);
             $row= mysqli_fetch_object($result);
             return $row;
-        }
+        }//Return data array of selected id.
+
         public function update()
         {
             $query="UPDATE `".$this->dbName."`.`".$this->tableName."` SET `".$this->tableColumn2."` = '".$this->title."' WHERE `".$this->tableName."`.`".$this->tableColumn1."` = ".$this->id;
@@ -139,12 +140,12 @@
                         </script>");
                 Utility::redirect("index.php");
             }
-        }
+        } //Update data in the database.
+
         public function delete()
         {
 
             $query="DELETE FROM `".$this->dbName."`.`".$this->tableName."` WHERE `".$this->tableName."`.`".$this->tableColumn1."` = ".$this->id;
-            //echo $query;
 
             $result=mysqli_query($this->conn,$query);
             if($result){
@@ -170,7 +171,7 @@
 
 
 
-        }
+        }//Delete data from the database.
 
         public function trash()
         {
@@ -199,7 +200,9 @@
                         </script>");
                 Utility::redirect("index.php");
             }
-        }
+        }//Trash data by setting deleted_at field some value.
+
+
         public function trashed()
         {
             $_list =  array();
@@ -210,7 +213,8 @@
             }
             return $_list;
 
-        }
+        }//Returns data array which deleted_at field have some value. i.e. Trashed data.
+
         public function recover()
         {
             $query="UPDATE `".$this->dbName."`.`".$this->tableName."` SET `".$this->tableColumn3."` = NULL WHERE `".$this->tableName."`.`".$this->tableColumn1."` = ".$this->id;
@@ -235,7 +239,7 @@
                         </script>");
                 Utility::redirect("index.php");
             }
-        }
+        } //Recover data means making the deleted_at field updated null.
 
         public function recoverSelected($IDs= Array() )
         {
@@ -263,7 +267,7 @@
                     Utility::redirect("index.php");
                 }
             }
-        }
+        } //Multiple ID proceesed and updated deleted_at field set NULL.
 
         public function deleteSelected($IDs= Array() )
         {
@@ -291,7 +295,7 @@
                     Utility::redirect("trashed.php");
                 }
             }
-        }
+        } //Deleted data fully from database.
 
 
 

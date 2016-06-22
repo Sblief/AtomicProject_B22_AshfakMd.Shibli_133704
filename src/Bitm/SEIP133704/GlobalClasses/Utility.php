@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Bitm\SEIP133704\GlobalClasses;
+namespace App\Bitm\SEIP133704\GlobalClasses; //Declared project namespace
 
 
 class Utility

@@ -1,5 +1,5 @@
 <?php
-namespace App\Bitm\SEIP133704\Hobby;
+namespace App\Bitm\SEIP133704\Hobby; //Declared project namespace
 use App\Bitm\SEIP133704\GlobalClasses\Utility;
 use App\Bitm\SEIP133704\GlobalClasses\Message;
 
@@ -38,7 +38,7 @@ class Hobby
         }
         $this->conn = mysqli_connect($this->host,$this->user,$this->password,$this->dbName) or die("Database connection failed");
 
-    }
+    } //Runs this magic method every time class is used. Database linked, Created if there is no database. Connect to database.
 
     public function prepare ($data="")
     {
@@ -56,7 +56,7 @@ class Hobby
         }
 
 
-    }
+    } //Prepare data arived as array. Matched the index and assigned in variables to use in sql.
     public function store()
     {
         $querySelectTable = "SELECT $this->tableColumn1 FROM $this->tableName";
@@ -97,7 +97,7 @@ class Hobby
         }
 
 
-    }
+    } //Creates a table if there is no table. Then stored data in the table.
 
     public function index()
     {
@@ -109,7 +109,7 @@ class Hobby
         }
         return $_list;
 
-    }
+    } //Returns array of data from database.
 
 
     public function view(){
@@ -117,7 +117,7 @@ class Hobby
         $result= mysqli_query($this->conn,$query);
         $row= mysqli_fetch_assoc($result);
         return $row;
-    }
+    } //Return data array of selected id.
     public function update()
     {
         $query="UPDATE `".$this->dbName."`.`".$this->tableName."` SET `".$this->tableColumn2."` = '".$this->title."' WHERE `".$this->tableName."`.`".$this->tableColumn1."` = ".$this->id;
@@ -143,7 +143,7 @@ class Hobby
                         </script>");
             Utility::redirect("index.php");
         }
-    }
+    } //Update data in the database.
     public function delete()
     {
 
@@ -174,7 +174,7 @@ class Hobby
 
 
 
-    }
+    } //Delete data from the database.
 
     public function trash()
     {
@@ -203,7 +203,8 @@ class Hobby
                         </script>");
             Utility::redirect("index.php");
         }
-    }
+    } //Trash data by setting deleted_at field some value.
+    
     public function trashed()
     {
         $_list =  array();
@@ -214,7 +215,8 @@ class Hobby
         }
         return $_list;
 
-    }
+    } //Returns data array which deleted_at field have some value. i.e. Trashed data.
+    
     public function recover()
     {
         $query="UPDATE `".$this->dbName."`.`".$this->tableName."` SET `".$this->tableColumn3."` = NULL WHERE `".$this->tableName."`.`".$this->tableColumn1."` = ".$this->id;
@@ -239,7 +241,7 @@ class Hobby
                         </script>");
             Utility::redirect("index.php");
         }
-    }
+    } //Recover data means making the deleted_at field updated null.
 
     public function recoverSelected($IDs= Array() )
     {
@@ -267,7 +269,7 @@ class Hobby
                 Utility::redirect("index.php");
             }
         }
-    }
+    } //Multiple ID proceesed and updated deleted_at field set NULL.
 
     public function deleteSelected($IDs= Array() )
     {
@@ -295,7 +297,7 @@ class Hobby
                 Utility::redirect("index.php");
             }
         }
-    }
+    } //Deleted data fully from database.
 
     public static function checked ($data = "", $array = Array()){
         
@@ -306,7 +308,7 @@ class Hobby
         else echo "";
 
 
-    }
+    } //Static function returns 'checked' when checked in trashed page.
 
 
 

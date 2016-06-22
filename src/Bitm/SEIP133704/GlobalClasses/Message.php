@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Bitm\SEIP133704\GlobalClasses;
+namespace App\Bitm\SEIP133704\GlobalClasses; //Declared project namespace
 
 if (!isset($_SESSION['message'])){
     session_start();

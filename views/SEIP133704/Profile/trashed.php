@@ -15,15 +15,17 @@ use App\Bitm\SEIP133704\Profile\Uses;
     $tableColumn = array("SL","ID","User Name","Thumbnail","Action","","");
     
 ?>
+<?php
+if(!empty($list)){
+    ?>
     
         <div class="container">
 
+            <h2>Trashed <?php Uses::siteKeyword() ?> List</h2>
+
     
             <div class="container-fluid" style="margin-top: 100px">
-                <h2>Trashed <?php Uses::siteKeyword() ?> List</h2>
-                <?php
-                    if(!empty($list)){
-                ?>
+
                 <form action="recovermultiple.php" method="post" id="multiple">
                 <button type="submit"  class="btn btn-warning">Recover Selected</button>
                 <button type="button"  class="btn btn-danger" id="multiple_delete">Delete Selected</button>
@@ -77,11 +79,15 @@ use App\Bitm\SEIP133704\Profile\Uses;
         </div>
 
 <?php }
-    else{
-        echo "<br><h1>Empty Trash Box</h1>";
-      
-    }
+else{
+    echo "<div class='container' style='margin-top: 100px; margin-bottom: 350px'>
+            <h1>Empty Trash Box</h1>
+            <h3>When you trash something from list that will show up here</h3>
+           </div>";
+
+}
 ?>
+
 
 <script>
     $('#multiple_delete').on('click',function () {
@@ -90,3 +96,4 @@ use App\Bitm\SEIP133704\Profile\Uses;
 
     })
 </script>
+<?php include ('footer.php');?>
