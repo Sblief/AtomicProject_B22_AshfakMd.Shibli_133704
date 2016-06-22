@@ -14,7 +14,7 @@ $singleInfo=$profilePicture->prepare($_GET)->view();
 <div class="container">
     <div class="container-fluid" style="margin-bottom: 250px; margin-top: 100px">
 
-        <form class="form-horizontal" role="form" method="post" style="margin-top: 100px" action="update.php">
+        <form class="form-horizontal" role="form" method="post" style="margin-top: 100px" action="update.php" enctype="multipart/form-data">
             <h2 style="padding-left: 80px; margin-bottom: 20px">
                 Edit Your <?php Uses::siteKeyword() ?>
             </h2>
