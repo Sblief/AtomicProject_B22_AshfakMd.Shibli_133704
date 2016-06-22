@@ -11,10 +11,10 @@
     $singleInfo = $profilePicture->prepare($_POST)->view();
 
     if(isset($_FILES['image']) && !empty($_FILES['image']['name'])){
-        $imageName = $_FILES['image']['name'];
+        $imageName = time().$_FILES['image']['name'];
         $temporaryFileName = $_FILES['image']['tmp_name'];
-        unlink($_SERVER['DOCUMENT_ROOT'],'AtomicProjectB22_AshfakMd.Shibli_133704/resource/images/'.$singleInfo->images);
-        move_uploaded_file($temporaryFileName, '../../../resource/images'.$imageName);
+        unlink($_SERVER['DOCUMENT_ROOT'].'/AtomicProjectB22_AshfakMd.Shibli_133704/resource/images/'.$singleInfo->images);
+        move_uploaded_file($temporaryFileName, '../../../resource/images/'.$imageName);
         $_POST['image'] = $imageName;
 
     }

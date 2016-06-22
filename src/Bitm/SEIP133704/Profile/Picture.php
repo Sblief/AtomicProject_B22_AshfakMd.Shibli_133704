@@ -121,8 +121,14 @@ class Picture
     }
     public function update()
     {
-        $query="UPDATE `".$this->dbName."`.`".$this->tableName."` SET `".$this->tableColumn2."` = '".$this->title."' WHERE `".$this->tableName."`.`".$this->tableColumn1."` = ".$this->id;
-        echo $query;
+        if(!empty($this->image_name)){
+            $query="UPDATE `".$this->dbName."`.`".$this->tableName."` SET `".$this->tableColumn2."` = '".$this->name."',`".$this->tableColumn3."` = '".$this->image_name."' WHERE `".$this->tableName."`.`".$this->tableColumn1."` = ".$this->id;
+
+        }
+        else{
+            $query="UPDATE `".$this->dbName."`.`".$this->tableName."` SET `".$this->tableColumn2."` = '".$this->name."' WHERE `".$this->tableName."`.`".$this->tableColumn1."` = ".$this->id;
+
+        }
 
         $result=mysqli_query($this->conn,$query);
         if($result){
