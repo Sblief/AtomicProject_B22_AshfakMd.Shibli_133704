@@ -17,6 +17,9 @@ $list = $newHobby->index();
 $tableColumn = array("SL","ID","User Name","Hobbies","Action","","");
 
 ?>
+<?php
+if(!empty($list)){    //if the list of items is not empty the table will be shown, else a message that it is empty here.
+    ?>
 
     <div class="container">
 
@@ -71,6 +74,17 @@ $tableColumn = array("SL","ID","User Name","Hobbies","Action","","");
             </ul>
         </div>
     </div>
+<?php }
+else{
+    echo "<div class='container' style='margin-top: 100px; margin-bottom: 350px'>
+            <h1>Empty Index</h1>
+            <h3>Please add Hobby clicking ADD</h3>
+           </div>";
+
+}//end of if..else
+?>
+
+
     <script>
         $(document).ready(function(){
             $("#delete").click(function(){

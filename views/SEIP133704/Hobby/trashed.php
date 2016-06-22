@@ -2,15 +2,15 @@
 //This page is identical to index page.
     include_once ("../../../vendor/autoload.php"); //Autoload file included to recognize namespace
     include "header.php";
-    use App\Bitm\SEIP133704\BookTitle\Book;
+    use App\Bitm\SEIP133704\Hobby\Hobby;
     use App\Bitm\SEIP133704\GlobalClasses\Utility;
     use App\Bitm\SEIP133704\GlobalClasses\Message;
-    use App\Bitm\SEIP133704\BookTitle\Uses;  //Called the class files used here.
+    use App\Bitm\SEIP133704\Hobby\Uses;  //Called the class files used here.
     
     
-    $newTrash =  new Book(); // Made an object of class
+    $newTrash =  new Hobby(); // Made an object of class
     $list = $newTrash->trashed(); //receive trashed data and assign in the variable
-    //Utility::d($_SESSION);
+    //Utility::dd($list);
     
     $tableColumn = array("SL","ID","User name","Hobbies","Action","","");
     
@@ -29,7 +29,8 @@ if(!empty($list)){
                 <form action="recovermultiple.php" method="post" id="multiple"> 
                 <button type="submit"  class="btn btn-warning">Recover Selected</button>
 <!--                 To delete multiple id is used for jquery to send data to other page-->
-                <button type="button"  class="btn btn-danger" id="multiple_delete">Delete Selected</button> 
+                <button type="button"  class="btn btn-danger" id="multiple_delete">Delete Selected</button>
+                    <h2><?php echo Message::message(); ?></h2>
                 <table class="table table-bordered table-responsive">
     
                     <thead>

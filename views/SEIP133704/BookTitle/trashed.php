@@ -29,7 +29,8 @@ if(!empty($list)){
                 <form action="recovermultiple.php" method="post" id="multiple"> 
                 <button type="submit"  class="btn btn-warning">Recover Selected</button>
 <!--                 To delete multiple id is used for jquery to send data to other page-->
-                <button type="button"  class="btn btn-danger" id="multiple_delete">Delete Selected</button> 
+                <button type="button"  class="btn btn-danger" id="multiple_delete">Delete Selected</button>
+                    <h2><?php echo Message::message(); ?></h2>
                 <table class="table table-bordered table-responsive">
     
                     <thead>

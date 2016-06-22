@@ -4,20 +4,15 @@ include "header.php";
 use App\Bitm\SEIP133704\Hobby\Uses;
 use App\Bitm\SEIP133704\Hobby\Hobby;
 
-//$create = new Hobby();
-//echo $create->create();
 
     $hobby =  new Hobby();
     $hobby->prepare($_GET);
     $dataArrayFromDB =  $hobby->view();
-    //var_dump($dataArray);
     $dataArray = explode(",",$dataArrayFromDB['hobby_list']);
-    echo $dataArray;
-
 ?>
 
 
-    <div class="container" style="margin-top: 100px">
+    <div class="container" style="margin-top: 100px ;margin-bottom: 150px">
         <h2>Edit  your hobby</h2>
 
         <form role="form" method="post" action="update.php?id=<?php echo $_GET['id'] ?>">
@@ -40,7 +35,7 @@ use App\Bitm\SEIP133704\Hobby\Hobby;
             <div class="checkbox">
                 <label><input type="checkbox" name=hobby[] value="Swimming" <?php Hobby::checked("Swimming", $dataArray)  ?>>Swimming</label>
             </div>
-            <input type="submit" value="Submit">
+            <button class="btn btn-success">Submit</button>
         </form>
     </div>
 

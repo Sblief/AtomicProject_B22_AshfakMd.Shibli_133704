@@ -1,4 +1,5 @@
 <?php
+session_start();
     include_once ("../../../vendor/autoload.php");
     include "header.php";
 use App\Bitm\SEIP133704\Profile\Picture;
@@ -29,6 +30,7 @@ if(!empty($list)){
                 <form action="recovermultiple.php" method="post" id="multiple">
                 <button type="submit"  class="btn btn-warning">Recover Selected</button>
                 <button type="button"  class="btn btn-danger" id="multiple_delete">Delete Selected</button>
+                    <h2><?php echo Message::message(); ?></h2>
                 <table class="table table-bordered table-responsive">
     
                     <thead>
