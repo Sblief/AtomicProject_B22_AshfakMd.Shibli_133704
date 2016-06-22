@@ -6,7 +6,8 @@ use App\Bitm\SEIP133704\GlobalClasses\Message;
 class Hobby
 {
     public $id  = "";
-    public $title = "";
+    public $hobby = "";
+    public $name = "";
 
     public $conn;
     public $dbName = "atomicprojectb22_133704";
@@ -15,9 +16,10 @@ class Hobby
     public $password = "";
     public $tableName = "hobbies"; //Don't Change this. It will make data missing.
     public $tableColumn1 = "ID";
-    public $tableColumn2 = "hobby_list";
-    public $tableColumn3 = "deleted_at";
-    public $tableColumn3Input = NULL;
+    public $tableColumn2 = "name";
+    public $tableColumn3 = "hobby_list";
+    public $tableColumn4 = "deleted_at";
+    public $tableColumn4Input = NULL;
 
     public $created = "";
     public $created_by = "";
@@ -43,9 +45,14 @@ class Hobby
     public function prepare ($data="")
     {
 
+        if(array_key_exists("name",$data)){
+            $this->name = $data['name'];
 
+
+
+        }
         if(array_key_exists("hobby",$data)){
-            $this->title = $data['hobby'];
+            $this->hobby = $data['hobby'];
 
             
 
@@ -66,12 +73,13 @@ class Hobby
             $queryCreateTable = "CREATE TABLE $this->tableName (
                           $this->tableColumn1 int(11) AUTO_INCREMENT,
                           $this->tableColumn2 varchar(255),
-                          $this->tableColumn3 varchar(255) NULL,
+                          $this->tableColumn3 varchar(255) ,
+                          $this->tableColumn4 varchar(255) NULL,
                           PRIMARY KEY  ($this->tableColumn1)
                           )";
             $resultCreateTable = mysqli_query($this->conn, $queryCreateTable);
         }
-        $queryInsert = "INSERT INTO `".$this->dbName."`.`".$this->tableName."` ( `".$this->tableColumn2."`) VALUES ( '".$this->title."')";
+        $queryInsert = "INSERT INTO `".$this->dbName."`.`".$this->tableName."` ( `".$this->tableColumn2."`, `".$this->tableColumn3."`) VALUES ( '".$this->name."', '".$this->hobby."')";
 //        echo $queryInsert;
 //        die();
         $resultInsert=mysqli_query($this->conn,$queryInsert);
@@ -102,7 +110,7 @@ class Hobby
     public function index()
     {
         $_list =  array();
-        $query = "SELECT * FROM $this->tableName WHERE `$this->tableColumn3` IS NULL ";
+        $query = "SELECT * FROM $this->tableName WHERE `$this->tableColumn4` IS NULL ";
         $result =  mysqli_query($this->conn,$query);
         while($row = mysqli_fetch_object($result)){
             $_list[]= $row;
@@ -120,7 +128,7 @@ class Hobby
     } //Return data array of selected id.
     public function update()
     {
-        $query="UPDATE `".$this->dbName."`.`".$this->tableName."` SET `".$this->tableColumn2."` = '".$this->title."' WHERE `".$this->tableName."`.`".$this->tableColumn1."` = ".$this->id;
+        $query="UPDATE `".$this->dbName."`.`".$this->tableName."` SET `".$this->tableColumn2."` = '".$this->name."',`".$this->tableColumn3."` = '".$this->hobby."' WHERE `".$this->tableName."`.`".$this->tableColumn1."` = ".$this->id;
         
         $result=mysqli_query($this->conn,$query);
         if($result){
@@ -179,7 +187,7 @@ class Hobby
     public function trash()
     {
         $this->tableColumn3Input = time();
-        $query="UPDATE `".$this->dbName."`.`".$this->tableName."` SET `".$this->tableColumn3."` = ".$this->tableColumn3Input." WHERE `".$this->tableName."`.`".$this->tableColumn1."` = ".$this->id;
+        $query="UPDATE `".$this->dbName."`.`".$this->tableName."` SET `".$this->tableColumn4."` = ".$this->tableColumn4Input." WHERE `".$this->tableName."`.`".$this->tableColumn1."` = ".$this->id;
         echo $query;
 
         $result=mysqli_query($this->conn,$query);
@@ -208,7 +216,7 @@ class Hobby
     public function trashed()
     {
         $_list =  array();
-        $query = "SELECT * FROM $this->tableName WHERE `$this->tableColumn3` IS NOT NULL ";
+        $query = "SELECT * FROM $this->tableName WHERE `$this->tableColumn4` IS NOT NULL ";
         $result =  mysqli_query($this->conn,$query);
         while($row = mysqli_fetch_object($result)){
             $_list[]= $row;
@@ -219,7 +227,7 @@ class Hobby
     
     public function recover()
     {
-        $query="UPDATE `".$this->dbName."`.`".$this->tableName."` SET `".$this->tableColumn3."` = NULL WHERE `".$this->tableName."`.`".$this->tableColumn1."` = ".$this->id;
+        $query="UPDATE `".$this->dbName."`.`".$this->tableName."` SET `".$this->tableColumn4."` = NULL WHERE `".$this->tableName."`.`".$this->tableColumn1."` = ".$this->id;
         $result=mysqli_query($this->conn,$query);
         if($result){
             Message::message("
@@ -247,7 +255,7 @@ class Hobby
     {
         if (is_array($IDs) && count($IDs) > 0) {
             $ids = implode(",",$IDs);
-            $query = "UPDATE `" . $this->dbName . "`.`" . $this->tableName . "` SET `" . $this->tableColumn3 . "` = NULL WHERE `" . $this->tableName . "`.`" . $this->tableColumn1 . "` IN (" . $ids. ")";
+            $query = "UPDATE `" . $this->dbName . "`.`" . $this->tableName . "` SET `" . $this->tableColumn4. "` = NULL WHERE `" . $this->tableName . "`.`" . $this->tableColumn1 . "` IN (" . $ids. ")";
             $result = mysqli_query($this->conn, $query);
             if ($result) {
                 Message::message("

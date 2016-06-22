@@ -9,9 +9,9 @@ use App\Bitm\SEIP133704\Hobby\Hobby;
 
     $hobby =  new Hobby();
     $hobby->prepare($_GET);
-    $dataArray =  $hobby->view();
+    $dataArrayFromDB =  $hobby->view();
     //var_dump($dataArray);
-    $dataArray = explode(",",$dataArray['hobby_list']);
+    $dataArray = explode(",",$dataArrayFromDB['hobby_list']);
     echo $dataArray;
 
 ?>
@@ -21,6 +21,10 @@ use App\Bitm\SEIP133704\Hobby\Hobby;
         <h2>Edit  your hobby</h2>
 
         <form role="form" method="post" action="update.php?id=<?php echo $_GET['id'] ?>">
+            <div>
+                <label for="user">User Name</label>
+                <input type="text" name="name" placeholder="Enter your name" value="<?php echo $dataArrayFromDB['name']  ?>">
+            </div>
             <div class="checkbox">
                 <label><input type="checkbox" name=hobby[] value="Cricket" <?php Hobby::checked("Cricket", $dataArray)  ?>>Playing Cricket</label>
             </div>

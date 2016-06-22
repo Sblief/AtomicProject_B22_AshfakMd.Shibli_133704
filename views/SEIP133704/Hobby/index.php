@@ -14,7 +14,7 @@ $newHobby =  new Hobby();
 $list = $newHobby->index();
 //Utility::d($_SESSION);
 
-$tableColumn = array("SL","ID","Hobbies","Action","","");
+$tableColumn = array("SL","ID","User Name","Hobbies","Action","","");
 
 ?>
 
@@ -33,6 +33,7 @@ $tableColumn = array("SL","ID","Hobbies","Action","","");
                     <th><?php echo $tableColumn[1] ?></th>
                     <th><?php echo $tableColumn[2] ?></th>
                     <th><?php echo $tableColumn[3] ?></th>
+                    <th><?php echo $tableColumn[4] ?></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -44,6 +45,7 @@ $tableColumn = array("SL","ID","Hobbies","Action","","");
                     <tr>
                         <td><?php echo $sl ;?></td>
                         <td><?php echo $hobbies->ID ;?></td>
+                        <td><?php echo $hobbies->name ;?></td>
                         <td><?php echo $hobbies->hobby_list ;?></td>
                         <td>
                             <a href="view.php?id=<?php echo $hobbies->ID ?>" ><button type="button" class="btn btn-info">View</button></a>

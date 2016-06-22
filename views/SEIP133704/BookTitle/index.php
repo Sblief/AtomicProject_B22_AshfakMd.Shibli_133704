@@ -26,7 +26,7 @@ if(!empty($list)){    //if the list of items is not empty the table will be show
     <h2><?php Uses::siteKeyword() ?> List</h2>
 
     <?php if(array_key_exists('message',$_SESSION) && (!empty($_SESSION['message'])))
-        echo Message::message() ;?>  // if the session variable is not empty then it contains a message. so,the message is echoed.
+        echo Message::message() ;  // if the session variable is not empty then it contains a message. so,the message is echoed.?>
     <table class="table table-bordered table-responsive">
 
         <thead>

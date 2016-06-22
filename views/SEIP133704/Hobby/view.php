@@ -22,11 +22,15 @@ use App\Bitm\SEIP133704\GlobalClasses\Message;
     </caption>
     <tr>
         <th>SL</th>
+        <th>User Name</th>
         <th>Hobby List</th>
     </tr>
     <tr>
         <td>
             <?php echo $singleItem['ID'] ?>
+        </td>
+        <td>
+            <?php echo $singleItem['name'] ?>
         </td>
         <td>
             <?php echo $singleItem['hobby_list'] ?>

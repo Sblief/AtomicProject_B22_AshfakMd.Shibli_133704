@@ -10,10 +10,16 @@
 ?>
 
 
-<div class="container" style="margin-top: 100px">
+<div class="container" style="margin-top: 100px; margin-bottom: 100px">
     <h2>Select your hobby</h2>
 
     <form role="form" method="post" action="store.php">
+        <div>
+            <label for="user">User Name</label>
+            <input type="text" name="name" placeholder="Enter your name">
+        </div>
+        <div class="container-fluid">
+       <label>Tick on your hobbies</label>
         <div class="checkbox">
             <label><input type="checkbox" name=hobby[] value="Cricket">Playing Cricket</label>
         </div>
@@ -29,7 +35,8 @@
         <div class="checkbox">
             <label><input type="checkbox" name=hobby[] value="Swimming">Swimming</label>
         </div>
-        <input type="submit" value="Submit">
+        <button class="btn btn-success">Submit</button>
+        </div>
     </form>
 </div>
 
