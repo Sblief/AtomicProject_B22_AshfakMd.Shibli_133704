@@ -186,7 +186,7 @@ class Hobby
 
     public function trash()
     {
-        $this->tableColumn3Input = time();
+        $this->tableColumn4Input = time();
         $query="UPDATE `".$this->dbName."`.`".$this->tableName."` SET `".$this->tableColumn4."` = ".$this->tableColumn4Input." WHERE `".$this->tableName."`.`".$this->tableColumn1."` = ".$this->id;
         echo $query;
 
