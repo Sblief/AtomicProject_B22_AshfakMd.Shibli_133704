@@ -18,7 +18,7 @@ use App\Bitm\SEIP133704\Hobby\Hobby;
         <form role="form" method="post" action="update.php?id=<?php echo $_GET['id'] ?>">
             <div>
                 <label for="user">User Name</label>
-                <input type="text" name="name" placeholder="Enter your name" value="<?php echo $dataArrayFromDB['name']  ?>">
+                <input type="text" name="name" placeholder="Enter your name" value="<?php echo $dataArrayFromDB['name']  ?>" required>
             </div>
             <div class="checkbox">
                 <label><input type="checkbox" name=hobby[] value="Cricket" <?php Hobby::checked("Cricket", $dataArray)  ?>>Playing Cricket</label>

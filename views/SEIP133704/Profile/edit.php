@@ -21,18 +21,18 @@ $singleInfo=$profilePicture->prepare($_GET)->view();
             <input type="hidden" name="id" value="<?php echo $singleInfo->id?>">
             <div class="form-group">
                 <label>Name:</label>
-                <input type="text" class="form-control" name="name" value="<?php echo $singleInfo->name?>" >
+                <input type="text" class="form-control" name="name" value="<?php echo $singleInfo->name?>"  required>
             </div>
             <div class="form-group">
                 <label for="pwd">Upload your profile picture:</label>
-                <input type="file" name="image" class="form-control">
+                <input type="file" name="image" class="form-control" >
                 <div class="container-fluid">
                     <button type="submit" class="btn btn-success">Submit</button>
                 </div>
 
                 <div class="container">
                     <label>Old Image</label>
-                    <img src="../../../resource/images/<?php echo $singleInfo->images?>" >
+                    <img src="../../../resource/images/<?php echo $singleInfo->images?>"  >
                 </div>
 
             </div>

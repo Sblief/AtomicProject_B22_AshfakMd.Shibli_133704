@@ -49,7 +49,10 @@ if(!empty($list)){    //if the list of items is not empty the table will be show
                         <td><?php echo $sl ;?></td>
                         <td><?php echo $hobbies->ID ;?></td>
                         <td><?php echo $hobbies->name ;?></td>
-                        <td><?php echo $hobbies->hobby_list ;?></td>
+                        <td><?php
+                            if(!empty($hobbies->hobby_list))
+                                echo $hobbies->hobby_list ;
+                            else echo "<h5 class='alert-danger'>Not Selected any hobby. Please Edit.</h5>"?></td>
                         <td>
                             <a href="view.php?id=<?php echo $hobbies->ID ?>" ><button type="button" class="btn btn-info">View</button></a>
                             <a href="edit.php?id=<?php echo $hobbies->ID ?>" ><button type="button" class="btn btn-info">Edit</button></a>

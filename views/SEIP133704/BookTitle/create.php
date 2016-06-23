@@ -22,7 +22,7 @@
                 <label class="control-label col-sm-2"><?php echo Uses::siteKeyword()  ?></label>
                 <div class="col-sm-6">
 <!--                    Mind it! name field goes in $_POST. We will use it on other pages-->
-                    <input type="text" class="form-control" id="title" name="title" placeholder="Enter Your <?php echo Uses::siteKeyword()  ?>">
+                    <input type="text" class="form-control" id="title" name="title" placeholder="Enter Your <?php echo Uses::siteKeyword()  ?>" required>
                 </div>
             </div>
             <div class="form-group">

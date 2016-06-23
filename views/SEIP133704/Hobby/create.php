@@ -16,7 +16,7 @@
     <form role="form" method="post" action="store.php">
         <div>
             <label for="user">User Name</label>
-            <input type="text" name="name" placeholder="Enter your name">
+            <input type="text" name="name" placeholder="Enter your name" required>
         </div>
         <div class="container-fluid">
        <label>Tick on your hobbies</label>

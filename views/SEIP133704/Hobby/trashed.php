@@ -54,7 +54,9 @@ if(!empty($list)){
                             <td><?php echo $sl ;?></td>
                             <td><?php echo $item->ID ;?></td>
                             <td><?php echo $item->name ;?></td>
-                            <td><?php echo $item->hobby_list ;?></td>
+                            <td> <?php if(!empty($item->hobby_list))
+                                echo $item->hobby_list ;
+                                else echo "<h5 class='alert-danger'>Not Selected any hobby. Please Edit Going Back HOME.</h5>"?></td>
                             <td>
                                 <a href="recover.php?id=<?php echo $item->ID ?>" ><button type="button" class="btn btn-warning">Recover</button>
                                 <a href="delete.php?id=<?php echo $item->ID ?>" ><button type="button" class="btn btn-danger" id="delete">Delete</button>

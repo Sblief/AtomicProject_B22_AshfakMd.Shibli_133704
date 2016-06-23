@@ -19,9 +19,9 @@
 
                 <div class="container-fluid col-sm-6">
                     <label class="control-label">Enter your name</label>
-                    <input type="text" class="form-control" id="title" name="name" placeholder="Enter Your Name">
+                    <input type="text" class="form-control" id="title" name="name" placeholder="Enter Your Name" required>
                     <label class="control-label"><?php echo Uses::siteKeyword() ?></label>
-                    <input type="email" class="form-control" id="title" name="email" placeholder="Enter Your <?php echo Uses::siteKeyword()  ?>">
+                    <input type="email" class="form-control" id="title" name="email" placeholder="Enter Your <?php echo Uses::siteKeyword()  ?>" required>
                     <button type="submit" class="btn btn-success">Submit</button>
                 </div>
                 

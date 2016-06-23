@@ -19,9 +19,9 @@
             <div class="form-group">
                 <div class="col-sm-6">
                     <label for="user">User Name</label>
-                    <input type="text" class="form-control" id="name" name="name">
+                    <input type="text" class="form-control" id="name" name="name" required>
                     <label for="pwd">Upload Your <?php echo Uses::siteKeyword()  ?></label>
-                    <input type="file" class="form-control" id="title" name="image">
+                    <input type="file" class="form-control" id="title" name="image" required>
                 </div>
             </div>
             <div class="form-group">
