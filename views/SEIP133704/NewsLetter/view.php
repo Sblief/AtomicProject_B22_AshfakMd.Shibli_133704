@@ -25,6 +25,8 @@
         <div class="panel-body" style="margin-bottom: 88px">
             <ul class="list-group">
                 <li class="list-group-item">ID:   <?php echo $singleItem->ID?></li>
+                <li class="list-group-item">Name:   <?php echo $singleItem->name?></li>
+
                 <li class="list-group-item"><?php Uses::siteKeyword() ?>:   <?php echo $singleItem->email_address?></li>
                 <li class="list-group-item"> </li>
                 <li class="list-group-item"> </li>

@@ -9,12 +9,16 @@
 
 
     $newEmail =  new Email();
-    $emailList = $newEmail->index();
+    $list = $newEmail->index();
     //Utility::d($_SESSION);
 
-    $tableColumn = array("SL","ID","Email Addresses","Action","","");
+    $tableColumn = array("SL","ID","Name","Email Addresses","Action","","");
 
 ?>
+<?php
+if(!empty($list)){    //if the list of items is not empty the table will be shown, else a message that it is empty here.
+    ?>
+
 
 <div class="container">
 
@@ -31,17 +35,19 @@
             <th><?php echo $tableColumn[1] ?></th>
             <th><?php echo $tableColumn[2] ?></th>
             <th><?php echo $tableColumn[3] ?></th>
+            <th><?php echo $tableColumn[4] ?></th>
         </tr>
         </thead>
         <tbody>
         <?php
         $sl = 0;
-        foreach ($emailList as $emails){
+        foreach ($list as $emails){
             $sl++;
             ?>
         <tr>
             <td><?php echo $sl ;?></td>
             <td><?php echo $emails->ID ;?></td>
+            <td><?php echo $emails->name ;?></td>
             <td><?php echo $emails->email_address ;?></td>
             <td>
                 <a href="view.php?id=<?php echo $emails->ID ?>" ><button type="button" class="btn btn-info">View</button></a>
@@ -67,6 +73,15 @@
     </ul>
 </div>
 </div>
+<?php }
+else{
+    echo "<div class='container' style='margin-top: 100px; margin-bottom: 350px'>
+            <h1>Empty Index</h1>
+            <h3>Please add emails clicking ADD</h3>
+           </div>";
+
+}//end of if..else
+?>
     <script>
         $(document).ready(function(){
             $("#delete").click(function(){

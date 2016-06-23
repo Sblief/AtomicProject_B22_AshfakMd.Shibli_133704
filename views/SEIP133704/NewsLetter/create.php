@@ -15,18 +15,17 @@
                 Enter <?php echo Uses::siteKeyword()  ?>
 
             </h2>
-            <div class="form-group">
-                <label class="control-label col-sm-2"><?php echo Uses::siteKeyword() ?></label>
-                <div class="col-sm-6">
-                    <input type="email" class="form-control" id="title" name="title" placeholder="Enter Your <?php echo Uses::siteKeyword()  ?>">
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-10">
+            <div class="container-fluid">
+
+                <div class="container-fluid col-sm-6">
+                    <label class="control-label">Enter your name</label>
+                    <input type="text" class="form-control" id="title" name="name" placeholder="Enter Your Name">
+                    <label class="control-label"><?php echo Uses::siteKeyword() ?></label>
+                    <input type="email" class="form-control" id="title" name="email" placeholder="Enter Your <?php echo Uses::siteKeyword()  ?>">
                     <button type="submit" class="btn btn-success">Submit</button>
                 </div>
+                
             </div>
-
         </form>
     </div>
 </div>
