@@ -107,9 +107,12 @@ class Birthday
         $_list =  array();
         $query = "SELECT * FROM $this->tableName WHERE `$this->tableColumn4` IS NULL ";
         $result =  mysqli_query($this->conn,$query);
-        while($row = mysqli_fetch_object($result)){
-            $_list[]= $row;
+        if($result){
+            while($row = mysqli_fetch_object($result)){
+                $_list[]= $row;
+            }
         }
+       
         return $_list;
 
     }
@@ -211,8 +214,10 @@ class Birthday
         $_list =  array();
         $query = "SELECT * FROM $this->tableName WHERE `$this->tableColumn4` IS NOT NULL ";
         $result =  mysqli_query($this->conn,$query);
-        while($row = mysqli_fetch_object($result)){
-            $_list[]= $row;
+        if($result){
+            while($row = mysqli_fetch_object($result)){
+                $_list[]= $row;
+            }
         }
         return $_list;
 
