@@ -1,12 +1,12 @@
 <?php
     include_once ("../../../vendor/autoload.php");
     include "header.php";
-use App\Bitm\SEIP133704\DateOfBirth\Birthday;
-use App\Bitm\SEIP133704\DateOfBirth\Uses;
-use App\Bitm\SEIP133704\GlobalClasses\Message;
+use App\Bitm\SEIP133704\OrganizationSummary\Summary;
+use App\Bitm\SEIP133704\OrganizationSummary\Uses;
 use App\Bitm\SEIP133704\GlobalClasses\Utility;
+use App\Bitm\SEIP133704\GlobalClasses\Message;
     
-    $newTrash =  new Birthday();
+    $newTrash =  new Summary();
     $list = $newTrash->trashed();
     //Utility::d($_SESSION);
     

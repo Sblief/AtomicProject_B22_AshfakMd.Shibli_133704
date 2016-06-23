@@ -4,6 +4,6 @@
     use App\Bitm\SEIP133704\NewsLetter\Email;
    
 
-    $recoverEmail = new Email();
-    $recoverEmail->prepare($_GET);
-    $recoverEmail->recover();
+    $recover = new Email();
+    $recover->prepare($_GET);
+    $recover->recover();

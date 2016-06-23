@@ -1,6 +1,9 @@
 <?php
 namespace App\Bitm\SEIP133704\OrganizationSummary;
 
+use App\Bitm\SEIP133704\GlobalClasses\Message;
+use App\Bitm\SEIP133704\GlobalClasses\Utility;
+
 class Summary
 {
     public $id  = "";

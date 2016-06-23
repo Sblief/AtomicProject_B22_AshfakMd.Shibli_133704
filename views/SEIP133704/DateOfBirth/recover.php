@@ -7,6 +7,6 @@ use App\Bitm\SEIP133704\GlobalClasses\Message;
 use App\Bitm\SEIP133704\GlobalClasses\Utility;
    
 
-    $recoverEmail = new Birthday();
-    $recoverEmail->prepare($_GET);
-    $recoverEmail->recover();
+    $recover = new Birthday();
+    $recover->prepare($_GET);
+    $recover->recover();

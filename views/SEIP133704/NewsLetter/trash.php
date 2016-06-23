@@ -4,7 +4,7 @@
     use App\Bitm\SEIP133704\NewsLetter\Email;
   
 
-    $trashEmail =  new Email();
-    $trashEmail->prepare($_GET);
-    $trashEmail->trash();
+    $trash =  new Email();
+    $trash->prepare($_GET);
+    $trash->trash();
     

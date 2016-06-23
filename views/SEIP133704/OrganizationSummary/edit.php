@@ -1,11 +1,11 @@
 <?php
     include_once ("../../../vendor/autoload.php");
-use App\Bitm\SEIP133704\DateOfBirth\Birthday;
-use App\Bitm\SEIP133704\DateOfBirth\Uses;
-use App\Bitm\SEIP133704\GlobalClasses\Message;
+use App\Bitm\SEIP133704\OrganizationSummary\Summary;
+use App\Bitm\SEIP133704\OrganizationSummary\Uses;
 use App\Bitm\SEIP133704\GlobalClasses\Utility;
+use App\Bitm\SEIP133704\GlobalClasses\Message;
 
-    $edit = new Birthday();
+    $edit = new Summary();
     $edit->prepare($_GET);
     $singleItem = $edit->view();
 ?>
@@ -24,9 +24,9 @@ use App\Bitm\SEIP133704\GlobalClasses\Utility;
                 <div class="col-sm-6">
                     <label class="control-label">Enter Name</label>
                     <input type="hidden" name="id" id="title" value="<?php echo $singleItem->ID ?>">
-                    <input type="text" class="form-control" id="email" name="name" placeholder="Enter Your Name" value="<?php echo $singleItem->name ?>" required>
+                    <input type="text" class="form-control" id="org" name="name" placeholder="Enter Your Name" value="<?php echo $singleItem->name ?>" required>
                     <label class="control-label"><?php Uses::siteKeyword() ?></label>
-                    <input type="date" class="form-control" id="birthday" name="birthday" placeholder="Enter <?php Uses::siteKeyword() ?>" value="<?php echo $singleItem->email_address ?>" required>
+                    <textarea  class="form-control" id="summary" name="summary" placeholder="Enter Your <?php echo Uses::siteKeyword()  ?>" value="<?php echo $singleItem->email_address ?>" required> </textarea>
                 </div>
             </div>
             <div class="form-group">

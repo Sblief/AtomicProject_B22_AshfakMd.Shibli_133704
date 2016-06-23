@@ -1,9 +1,9 @@
 <?php
     include "header.php";
-    use App\Bitm\SEIP133704\DateOfBirth\Birthday;
-    use App\Bitm\SEIP133704\DateOfBirth\Uses;
-    use App\Bitm\SEIP133704\GlobalClasses\Message;
+    use App\Bitm\SEIP133704\OrganizationSummary\Summary;
+    use App\Bitm\SEIP133704\OrganizationSummary\Uses;
     use App\Bitm\SEIP133704\GlobalClasses\Utility;
+    use App\Bitm\SEIP133704\GlobalClasses\Message;
 
 
 ?>
@@ -21,10 +21,10 @@
             <div class="container-fluid">
 
                 <div class="container-fluid col-sm-6">
-                    <label class="control-label">Enter your name</label>
-                    <input type="text" class="form-control" id="title" name="name" placeholder="Enter Your Name" required>
+                    <label class="control-label"> Organization name</label>
+                    <input type="text" class="form-control" id="title" name="name" placeholder="Enter Your Organization Name" required>
                     <label class="control-label"><?php echo Uses::siteKeyword() ?></label>
-                    <input type="date" class="form-control" id="birthday" name="birthday" placeholder="Enter Your <?php echo Uses::siteKeyword()  ?>" required>
+                    <textarea  class="form-control" id="summary" name="summary" placeholder="Enter Your <?php echo Uses::siteKeyword()  ?>" required> </textarea>
                     <button type="submit" class="btn btn-success">Submit</button>
                 </div>
                 

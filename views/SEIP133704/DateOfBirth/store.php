@@ -6,9 +6,9 @@ use App\Bitm\SEIP133704\GlobalClasses\Message;
 use App\Bitm\SEIP133704\GlobalClasses\Utility;
 
 
-$email = new Birthday();
-$email->prepare($_POST);
-$email->store();
+$store = new Birthday();
+$store->prepare($_POST);
+$store->store();
 
 
 ?>

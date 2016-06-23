@@ -8,8 +8,8 @@
     use App\Bitm\SEIP133704\NewsLetter\Uses;
 
 
-    $newEmail =  new Email();
-    $list = $newEmail->index();
+    $newIndex =  new Email();
+    $list = $newIndex->index();
     //Utility::d($_SESSION);
 
     $tableColumn = array("SL","ID","Name","Email Addresses","Action","","");

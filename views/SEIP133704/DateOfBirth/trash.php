@@ -7,7 +7,7 @@ use App\Bitm\SEIP133704\GlobalClasses\Message;
 use App\Bitm\SEIP133704\GlobalClasses\Utility;
   
 
-    $trashEmail =  new Birthday();
-    $trashEmail->prepare($_GET);
-    $trashEmail->trash();
+    $trash =  new Birthday();
+    $trash->prepare($_GET);
+    $trash->trash();
     

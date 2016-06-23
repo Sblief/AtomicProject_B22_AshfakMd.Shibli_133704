@@ -7,8 +7,8 @@
     use App\Bitm\SEIP133704\NewsLetter\Uses;
     
     
-    $newEmail =  new Email();
-    $list = $newEmail->trashed();
+    $newTrashed =  new Email();
+    $list = $newTrashed->trashed();
     //Utility::d($_SESSION);
     
     $tableColumn = array("SL","ID","Name","Email Addresses","Action","","");
