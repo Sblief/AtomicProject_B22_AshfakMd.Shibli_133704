@@ -76,7 +76,6 @@ class Summary
             $resultCreateTable = mysqli_query($this->conn, $queryCreateTable);
         }
         $queryInsert = "INSERT INTO `".$this->dbName."`.`".$this->tableName."` ( `".$this->tableColumn2."`,`".$this->tableColumn3."`) VALUES ( '".$this->name."','".$this->summary."')";
-
         $resultInsert=mysqli_query($this->conn,$queryInsert);
         if($resultInsert){
             Message::message("

@@ -48,7 +48,7 @@ if(!empty($list)){    //if the list of items is not empty the table will be show
             <td><?php echo $sl ;?></td>
             <td><?php echo $item->id ;?></td>
             <td><?php echo $item->name ;?></td>
-            <td><?php echo $item->date_of_birth ;?></td>
+            <td><?php echo $item->summary ;?></td>
             <td>
                 <a href="view.php?id=<?php echo $item->id ?>" ><button type="button" class="btn btn-info">View</button></a>
                 <a href="edit.php?id=<?php echo $item->id ?>" ><button type="button" class="btn btn-info">Edit</button></a>
@@ -77,7 +77,7 @@ if(!empty($list)){    //if the list of items is not empty the table will be show
 else{
     echo "<div class='container' style='margin-top: 100px; margin-bottom: 350px'>
             <h1>Empty Index</h1>
-            <h3>Please add Birthday clicking ADD</h3>
+            <h3>Please add summary clicking ADD</h3>
            </div>";
 
 }//end of if..else

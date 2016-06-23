@@ -26,7 +26,7 @@ use App\Bitm\SEIP133704\GlobalClasses\Message;
                     <input type="hidden" name="id" id="title" value="<?php echo $singleItem->ID ?>">
                     <input type="text" class="form-control" id="org" name="name" placeholder="Enter Your Name" value="<?php echo $singleItem->name ?>" required>
                     <label class="control-label"><?php Uses::siteKeyword() ?></label>
-                    <textarea  class="form-control" id="summary" name="summary" placeholder="Enter Your <?php echo Uses::siteKeyword()  ?>" value="<?php echo $singleItem->email_address ?>" required> </textarea>
+                    <textarea  class="form-control" id="summary" name="summary" required> <?php echo $singleItem->summary ?> </textarea>
                 </div>
             </div>
             <div class="form-group">

@@ -48,7 +48,7 @@ if(!empty($list)){
                             <td><?php echo $sl ;?></td>
                             <td><?php echo $items->id ;?></td>
                             <td><?php echo $items->name ;?></td>
-                            <td><?php echo $items->date_of_birth ;?></td>
+                            <td><?php echo $items->summary ;?></td>
                             <td>
                                 <a href="recover.php?id=<?php echo $items->id ?>" ><button type="button" class="btn btn-warning">Recover</button>
                                 <a href="delete.php?id=<?php echo $items->ID ?>" ><button type="button" class="btn btn-danger" id="delete">Delete</button>
