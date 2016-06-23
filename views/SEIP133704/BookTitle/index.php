@@ -78,7 +78,7 @@ if(!empty($list)){    //if the list of items is not empty the table will be show
 else{
     echo "<div class='container' style='margin-top: 100px; margin-bottom: 350px'>
             <h1>Empty Index</h1>
-            <h3>Please add profile clicking ADD</h3>
+            <h3>Please add books clicking ADD</h3>
            </div>";
 
 }//end of if..else

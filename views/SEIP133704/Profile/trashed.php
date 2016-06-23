@@ -2,8 +2,8 @@
 session_start();
     include_once ("../../../vendor/autoload.php");
     include "header.php";
-use App\Bitm\SEIP133704\Profile\Picture;
-use App\Bitm\SEIP133704\Profile\Uses;
+    use App\Bitm\SEIP133704\Profile\Picture;
+    use App\Bitm\SEIP133704\Profile\Uses;
     use App\Bitm\SEIP133704\GlobalClasses\Utility;
     use App\Bitm\SEIP133704\GlobalClasses\Message;
 
@@ -22,10 +22,11 @@ if(!empty($list)){
     
         <div class="container">
 
-            <h2>Trashed <?php Uses::siteKeyword() ?> List</h2>
+
 
     
             <div class="container-fluid" style="margin-top: 100px">
+                <h2>Trashed <?php Uses::siteKeyword() ?> List</h2>
 
                 <form action="recovermultiple.php" method="post" id="multiple">
                 <button type="submit"  class="btn btn-warning">Recover Selected</button>
