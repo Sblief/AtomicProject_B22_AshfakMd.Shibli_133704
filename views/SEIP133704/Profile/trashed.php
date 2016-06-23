@@ -14,7 +14,7 @@ session_start();
     //Utility::d($_SESSION);
     
     $tableColumn = array("SL","ID","User Name","Thumbnail","Action","","");
-    
+
 ?>
 <?php
 if(!empty($list)){
