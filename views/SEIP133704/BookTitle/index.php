@@ -42,7 +42,7 @@
 
 ?>
 
-<div class="container">
+<div class="container" >
 
 <div class="container-fluid form-inline"  style="margin-top: 100px">
     <h2><?php Uses::siteKeyword() ?> List</h2>
@@ -73,7 +73,7 @@
     <!--    Show item per page end-->
 
            <!--    Table Start-->
-    <table class="table table-bordered table-responsive">
+    <table class="table table-bordered table-responsive" style="background-color: #f3f6f6">
 
         <thead>
         <tr>
@@ -112,8 +112,8 @@
 
 <!--    Pagination Start              -->
 <div class="container"  style="margin-bottom: 100px">
-    <div class="col-sm-6" align="left">
-        <label>
+    <div class="col-sm-6" align="left" >
+        <label style="background-color: #f3f6f6">
             <?php
             $start = $pageStartFrom+1;
             $end = $sl1;
@@ -123,7 +123,7 @@
             ?>
         </label>
     </div>
-    <div class="col-sm-6" align="right">
+    <div class="col-sm-6" align="right" >
     <?php if($totalPage>1){
     ?>
     <ul class="pagination"  >
