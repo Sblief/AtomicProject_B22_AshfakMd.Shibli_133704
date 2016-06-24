@@ -15,8 +15,30 @@ session_start();
     
     $tableColumn = array("SL","ID","User Name","Thumbnail","Action","","");
 
-?>
-<?php
+if(array_key_exists('itemPerTrashPage',$_SESSION)) {
+    if(array_key_exists('itemPerTrashPage',$_GET))
+        $_SESSION['itemPerTrashPage'] = $_GET['itemPerTrashPage'];
+}
+else $_SESSION['itemPerTrashPage'] = 5;
+
+$itemPerPage = $_SESSION['itemPerTrashPage'];
+$totalItem = $newTrash->countTrash();
+
+$totalPage = ceil($totalItem/$itemPerPage);
+$pagination = "";
+if(array_key_exists('trashPageNumber',$_GET)){
+    $pageNumber = $_GET['trashPageNumber'];
+}
+else $pageNumber = 1;
+
+for($i=1;$i<=$totalPage;$i++){
+    $active = ($pageNumber==$i)? "active":"";
+    $pagination.="<li class='$active'><a href='trashed.php?trashPageNumber=$i'>$i</a></li>";
+}
+
+$pageStartFrom = $itemPerPage*($pageNumber-1);
+$list = $newTrash->paginatorTrash($pageStartFrom,$itemPerPage);
+
 if(!empty($list)){
     ?>
     
@@ -25,13 +47,34 @@ if(!empty($list)){
 
 
     
-            <div class="container-fluid" style="margin-top: 100px">
+            <div class="container-fluid form-inline" style="margin-top: 100px">
                 <h2>Trashed <?php Uses::siteKeyword() ?> List</h2>
+
+                <!--    Show item per page Start-->
+                <form role="form">
+                    <div class="form-group">
+                        <label for="slct">Show
+                            <select id="slct" class="form-control" name="itemPerTrashPage">
+                                <?php for($i=1;$i<26;$i++){
+                                    if($i==$itemPerPage)
+                                        echo "<option selected >$i</option>";
+                                    else echo "<option >$i</option>";
+                                }
+                                ?>
+
+                            </select>
+                            items per page</label>
+                        <button class="btn btn-success" type="submit">GO!</button>
+
+
+                    </div>
+                </form>
+                <!--    Show item per page end-->
 
                 <form action="recovermultiple.php" method="post" id="multiple">
                 <button type="submit"  class="btn btn-warning">Recover Selected</button>
                 <button type="button"  class="btn btn-danger" id="multiple_delete">Delete Selected</button>
-                    <h2><?php echo Message::message(); ?></h2>
+                    <h4><?php echo Message::message(); ?></h4>
                 <table class="table table-bordered table-responsive">
     
                     <thead>
@@ -52,7 +95,7 @@ if(!empty($list)){
                         ?>
                         <tr>
                             <td><input type="checkbox" name="mark[]" value="<?php echo $item->id ?>"></td>
-                            <td><?php echo $sl ;?></td>
+                            <td><?php echo $sl1 = $sl+$pageStartFrom ;?></td>
                             <td><?php echo $item->id ;?></td>
                             <td><?php echo $item->name ;?></td>
                             <td><img src="../../../resource/images/<?php echo $item->images ;?>" height="200px" width="200px" </td>
@@ -68,17 +111,44 @@ if(!empty($list)){
                 </table>
                 </form>
             </div>
-            <div class="container" align="right" style="margin-bottom: 100px">
-                <ul class="pagination"  >
-                    <li><a href="#"><</a></li>
-                    <li><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                    <li><a href="#">></a></li>
-                </ul>
+            <!--    Pagination Start              -->
+            <div class="container"  style="margin-bottom: 100px">
+                <div class="col-sm-6" align="left">
+                    <label>
+                        <?php
+                        $start = $pageStartFrom+1;
+                        $end = $sl1;
+                        $total = $totalItem;
+                        if($start==$end)  echo "Showing $start of total $total items ";
+                        else echo "Showing $start-$end of total $total items ";
+                        ?>
+                    </label>
+                </div>
+                <div class="col-sm-6" align="right">
+                    <?php if($totalPage>1){
+                        ?>
+                        <ul class="pagination"  >
+                            <?php
+                            if($pageNumber>1) {
+                                $p = $pageNumber -1;
+                                echo "<li><a href='trashed.php?trashPageNumber=$p'>Prev</a></li>";
+                            }
+                            else echo "<li class='disabled'><a href=#>Prev</a></li>";
+                            ?>
+
+                            <?php echo $pagination ?>
+                            <?php
+                            if($pageNumber<$totalPage) {
+                                $p = $pageNumber +1;
+                                echo "<li><a href='trashed.php?trashPageNumber=$p'>Next</a></li>";
+                            }
+                            else echo "<li class='disabled'><a href=#>Next</a></li>";
+                            ?>
+                        </ul>
+                    <?php } ?>
+                </div>
             </div>
+            <!--    Pagination End              -->
         </div>
 
 <?php }
@@ -94,7 +164,7 @@ else{
 
 <script>
     $('#multiple_delete').on('click',function () {
-        document.forms[0].action= "deletemultiple.php";
+        document.forms[1].action= "deletemultiple.php";
         $('#multiple').submit();
 
     })

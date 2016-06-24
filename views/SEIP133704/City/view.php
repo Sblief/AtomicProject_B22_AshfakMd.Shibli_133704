@@ -1,16 +1,15 @@
 <?php
     include_once ("../../../vendor/autoload.php");
     include "header.php";
-use App\Bitm\SEIP133704\City\City;
-use App\Bitm\SEIP133704\City\Uses;
-use App\Bitm\SEIP133704\GlobalClasses\Message;
-use App\Bitm\SEIP133704\GlobalClasses\Utility;
+    use App\Bitm\SEIP133704\City\City;
+    use App\Bitm\SEIP133704\City\Uses;
+    use App\Bitm\SEIP133704\GlobalClasses\Message;
+    use App\Bitm\SEIP133704\GlobalClasses\Utility;
 
 
     $view= new City();
     $view->prepare($_GET);
     $singleItem = $view->view();
-    //Utility::dd($singleItem);
 ?>
 <div class="container" style="margin-bottom: 100px">
     <div class="panel panel-default">
@@ -34,8 +33,6 @@ use App\Bitm\SEIP133704\GlobalClasses\Utility;
                 <li class="list-group-item"> </li>
             </ul>
         </div>
-
-
     </div>
 </div>
 <?php include "footer.php"?>

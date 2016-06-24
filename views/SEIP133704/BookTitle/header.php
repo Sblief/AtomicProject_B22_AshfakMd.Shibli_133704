@@ -9,57 +9,14 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="../../../resource/bootstrap-3.3.6/css/bootstrap.min.css">
+        <link rel="stylesheet" href="../../../resource/Custom%20Design/css/style.css">
         <script src="../../../resource/bootstrap-3.3.6/js/bootstrap.min.js"></script>
         <script src="../../../resource/jquery/jquery-3.0.0.min.js"></script>
     <title><?php Uses::siteName() ?></title>
-    <style>
-        body {
-            font: 400 15px Parisienne, cursive;
-            line-height: 1.8;
-            color: #818181;
-        }
-        h2 {
-            font-size: 24px;
-            text-transform: uppercase;
-            color: #303030;
-            font-weight: 600;
-            margin-bottom: 30px;
-        }
-        h4 {
-            font-size: 19px;
-            line-height: 1.375em;
-            color: #303030;
-            font-weight: 400;
-            margin-bottom: 30px;
-        }
-        .navbar {
-            margin-bottom: 0;
-            background-color: #39554d;
-            z-index: 9999;
-            border: 0;
-            font-size: 12px !important;
-            line-height: 1.42857143 !important;
-            letter-spacing: 2px;
-            border-radius: 0;
-            font-family: Montserrat, sans-serif;
-        }
-        .navbar li a, .navbar .navbar-brand {
-            color: #fff !important;
-        }
-        .navbar-nav li a:hover, .navbar-nav li.active a {
-            color: #a660ff !important;
-            background-color: #fff !important;
-        }
-        .navbar-default .navbar-toggle {
-            border-color: transparent;
-            color: #fff !important;
-        }
-
-
-    </style>
+    
 </head>
 
-<body background="../../../resource/design/bg1.png">
+<body background="../../../resource/Custom%20Design/bg1.png">
     <!--Navigation Bar start-->
     <nav role="navigation" class="navbar navbar-default navbar-fixed-top">
         <div class="container" >

@@ -47,7 +47,7 @@ if(!empty($list)){
     
             <div class="container-fluid form-inline" style="margin-top: 100px">
                 <h2>Trashed <?php Uses::siteKeyword() ?> List</h2>
-<!--                To recover multiple data sent through post method-->
+
                 <!--    Show item per page Start-->
                 <form role="form">
                     <div class="form-group">
@@ -68,6 +68,8 @@ if(!empty($list)){
                     </div>
                 </form>
                 <!--    Show item per page end-->
+                
+                <!--                To recover multiple data sent through post method-->
                 <form action="recovermultiple.php" method="post" id="multiple"> 
                 <button type="submit"  class="btn btn-warning">Recover Selected</button>
 <!--                 To delete multiple id is used for jquery to send data to other page-->
@@ -75,7 +77,7 @@ if(!empty($list)){
                     <h4><?php echo Message::message(); ?></h4>
 
                     
-                <table class="table table-bordered table-responsive" style="background-color: #f3f6f6">
+                <table class="table table-bordered table-responsive" >
     
                     <thead>
                     <tr>
@@ -112,7 +114,7 @@ if(!empty($list)){
         <!--    Pagination Start              -->
         <div class="container"  style="margin-bottom: 100px">
             <div class="col-sm-6" align="left">
-                <label style="background-color: #f3f6f6">
+                <label>
                     <?php
                     $start = $pageStartFrom+1;
                     $end = $sl1;
@@ -161,7 +163,7 @@ else{
 
 <script>
     $('#multiple_delete').on('click',function () {
-        document.forms[0].action= "deletemultiple.php";
+        document.forms[1].action= "deletemultiple.php";
         $('#multiple').submit();
 
     })

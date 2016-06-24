@@ -22,12 +22,15 @@ use App\Bitm\SEIP133704\GlobalClasses\Utility;
                 Edit Your <?php Uses::siteKeyword() ?>
             </h2>
             <label for="name">Name</label>
-            <input id="name" type="text" name="name" placeholder="Your Name">
+            <input id="name" type="text" name="name" placeholder="Your Name" value="<?php echo $singleItem->name ?>">
             <select name="city" id="city">
                 <option value="Dhaka" <?php City::checked("Dhaka", $singleItem->city )  ?> >Dhaka</option>
-                <option value="CTG" <?php City::checked("CTG", $singleItem->city )  ?>>CTG</option>
+                <option value="Chittagong" <?php City::checked("Chittagong", $singleItem->city )  ?>>Chittagong</option>
                 <option value="Barishal" <?php City::checked("Barishal", $singleItem->city )  ?>>Barishal</option>
                 <option value="Rajshahi" <?php City::checked("Rajshahi", $singleItem->city )  ?> >Rajshahi</option>
+                <option value="Khulna" <?php City::checked("Khulna", $singleItem->city )  ?> >Khulna</option>
+                <option value="Rangpur" <?php City::checked("Rangpur", $singleItem->city )  ?> >Rangpur</option>
+                <option value="Sylhet" <?php City::checked("Sylhet", $singleItem->city )  ?> >Sylhet</option>
             </select>
             <button type="submit" class="btn btn-success">SUBMIT</button>
 

@@ -73,7 +73,7 @@
     <!--    Show item per page end-->
 
            <!--    Table Start-->
-    <table class="table table-bordered table-responsive" style="background-color: #f3f6f6">
+    <table class="table table-bordered table-responsive" >
 
         <thead>
         <tr>
@@ -111,42 +111,42 @@
 </div>
 
 <!--    Pagination Start              -->
-<div class="container"  style="margin-bottom: 100px">
-    <div class="col-sm-6" align="left" >
-        <label style="background-color: #f3f6f6">
-            <?php
-            $start = $pageStartFrom+1;
-            $end = $sl1;
-            $total = $totalItem;
-            if($start==$end)  echo "Showing $start of total $total items ";
-            else echo "Showing $start-$end of total $total items ";
-            ?>
-        </label>
-    </div>
-    <div class="col-sm-6" align="right" >
-    <?php if($totalPage>1){
-    ?>
-    <ul class="pagination"  >
-        <?php
-        if($pageNumber>1) {
-            $p = $pageNumber -1;
-            echo "<li><a href='index.php?pageNumber=$p'>Prev</a></li>";
-        }
-        else echo "<li class='disabled'><a href=#>Prev</a></li>";
-        ?>
+    <div class="container"  style="margin-bottom: 100px">
+        <div class="col-sm-6" align="left" >
+            <label>
+                <?php
+                $start = $pageStartFrom+1;
+                $end = $sl1;
+                $total = $totalItem;
+                if($start==$end)  echo "Showing $start of total $total items ";
+                else echo "Showing $start-$end of total $total items ";
+                ?>
+            </label>
+        </div>
+        <div class="col-sm-6" align="right" >
+            <?php if($totalPage>1){
+                ?>
+                <ul class="pagination"  >
+                    <?php
+                    if($pageNumber>1) {
+                        $p = $pageNumber -1;
+                        echo "<li><a href='index.php?pageNumber=$p'>Prev</a></li>";
+                    }
+                    else echo "<li class='disabled'><a href=#>Prev</a></li>";
+                    ?>
 
-        <?php echo $pagination ?>
-        <?php
-        if($pageNumber<$totalPage) {
-            $p = $pageNumber +1;
-            echo "<li><a href='index.php?pageNumber=$p'>Next</a></li>";
-        }
-        else echo "<li class='disabled'><a href=#>Next</a></li>";
-        ?>
-    </ul>
-    <?php } ?>
+                    <?php echo $pagination ?>
+                    <?php
+                    if($pageNumber<$totalPage) {
+                        $p = $pageNumber +1;
+                        echo "<li><a href='index.php?pageNumber=$p'>Next</a></li>";
+                    }
+                    else echo "<li class='disabled'><a href=#>Next</a></li>";
+                    ?>
+                </ul>
+            <?php } ?>
+        </div>
     </div>
-</div>
     <!--    Pagination End              -->
 </div>
 <?php }
