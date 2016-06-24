@@ -9,7 +9,7 @@ body {
     font: 400 15px Parisienne, cursive;
     line-height: 1.8;
     color: #818181;
-    background-image: url("../../../resource/Custom Design/bg1.png");
+    background-image: url("../image/bg1.png");
 }
 h2 {
     font-size: 24px;
@@ -36,12 +36,16 @@ h4 {
     border-radius: 0;
     font-family: Montserrat, sans-serif;
 }
+.navbar-nav{
+    background-color: rgba(53, 122, 163, 0.48);
+
+}
 .navbar li a, .navbar .navbar-brand {
     color: #fff !important;
 }
 .navbar-nav li a:hover, .navbar-nav li.active a {
-    color: #a660ff !important;
-    background-color: #fff !important;
+    color: #3a73ff !important;
+    background-color: #fbf6ff !important;
 }
 .navbar-default .navbar-toggle {
     border-color: transparent;

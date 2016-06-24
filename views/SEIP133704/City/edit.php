@@ -14,16 +14,20 @@ use App\Bitm\SEIP133704\GlobalClasses\Utility;
 <title>
     <?php Uses::siteKeyword() ?>
 </title>
-<div class="container">
-    <div class="container-fluid" style="margin-bottom: 130px; margin-top: 100px; padding-left: 200px">
+<div class="container ">
+    <div class="container-fluid col-sm-6" style="margin-bottom: 220px; margin-top: 90px">
+        <form class="form-group form-inline" role="form" method="post" style="margin-top: 100px" action="store.php">
+            <h2 style="padding-left: 50px; margin-bottom: 20px">
+                Enter <?php echo Uses::siteKeyword()  ?>
 
-        <form class="form-horizontal" role="form" method="post" style="margin-top: 100px" action="update.php">
-            <h2 style="padding-left: 80px; margin-bottom: 20px">
-                Edit Your <?php Uses::siteKeyword() ?>
             </h2>
-            <label for="name">Name</label>
-            <input id="name" type="text" name="name" placeholder="Your Name" value="<?php echo $singleItem->name ?>">
-            <select name="city" id="city">
+            <div class="container">
+                <label for="name">Name: </label>
+                <input id="name" type="text" name="name" placeholder="Your Name" value="<?php echo $singleItem->name ?>">
+            </div>
+            <div class="container" style="margin-top: 20px">
+                <label for="city" style="padding-left: 15px">City: </label>
+                <select name="city" id="city" >
                 <option value="Dhaka" <?php City::checked("Dhaka", $singleItem->city )  ?> >Dhaka</option>
                 <option value="Chittagong" <?php City::checked("Chittagong", $singleItem->city )  ?>>Chittagong</option>
                 <option value="Barishal" <?php City::checked("Barishal", $singleItem->city )  ?>>Barishal</option>
@@ -31,11 +35,16 @@ use App\Bitm\SEIP133704\GlobalClasses\Utility;
                 <option value="Khulna" <?php City::checked("Khulna", $singleItem->city )  ?> >Khulna</option>
                 <option value="Rangpur" <?php City::checked("Rangpur", $singleItem->city )  ?> >Rangpur</option>
                 <option value="Sylhet" <?php City::checked("Sylhet", $singleItem->city )  ?> >Sylhet</option>
-            </select>
-            <button type="submit" class="btn btn-success">SUBMIT</button>
+                </select>
+            </div>
+            <div class="container" style="padding-left: 200px">
+                <button type="submit" class="btn btn-success">SUBMIT</button>
+
+            </div>
 
         </form>
     </div>
 </div>
 <?php include "footer.php"?>
+
 

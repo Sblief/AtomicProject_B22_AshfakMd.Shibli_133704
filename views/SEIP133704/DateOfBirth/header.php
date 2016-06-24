@@ -19,7 +19,7 @@ use App\Bitm\SEIP133704\GlobalClasses\Utility;
 
 </head>
 
-<body background="../../../resource/Custom%20Design/bg1.png">
+<body background="../../../resource/Custom%20Design/image/bg1.png">
 <!--Navigation Bar start-->
 <nav role="navigation" class="navbar navbar-default navbar-fixed-top">
     <div class="container" >
