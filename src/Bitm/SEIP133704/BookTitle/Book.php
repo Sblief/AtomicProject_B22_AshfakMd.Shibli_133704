@@ -302,4 +302,26 @@
             }
         } //Deleted data fully from database.
 
+
+        public function count(){
+            $query="SELECT COUNT(*) AS totalItem FROM `".$this->dbName."`.`".$this->tableName."` WHERE `".$this->tableColumn3."` is NULL";
+            $result=mysqli_query($this->conn,$query);
+            $row= mysqli_fetch_assoc($result);
+            return $row['totalItem'];
+        }
+        public function paginator($pageStartFrom=0,$limit=5){
+            $_list = array();
+            $query="SELECT * FROM `".$this->tableName."` WHERE `".$this->tableColumn3."` is NULL ORDER BY `".$this->tableColumn1."` ASC LIMIT ".$pageStartFrom.", ".$limit ;
+            $result = mysqli_query($this->conn, $query);
+            if ($result){
+                while ($row = mysqli_fetch_object($result)) {
+                    $_list[] = $row;
+                }
+            }
+            
+
+            return $_list;
+
+        }
+
     }

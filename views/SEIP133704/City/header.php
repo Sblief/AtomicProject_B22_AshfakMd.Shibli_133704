@@ -1,6 +1,6 @@
 <?php
-    include_once ('../../../vendor/autoload.php'); //Autoload file included to recognize namespace
-    use App\Bitm\SEIP133704\BookTitle\Uses;  //Called the class files used here.
+    include_once ('../../../vendor/autoload.php');
+    use App\Bitm\SEIP133704\NewsLetter\Uses;
 ?>
 
 <!DOCTYPE html>
@@ -11,6 +11,7 @@
         <link rel="stylesheet" href="../../../resource/bootstrap-3.3.6/css/bootstrap.min.css">
         <script src="../../../resource/bootstrap-3.3.6/js/bootstrap.min.js"></script>
         <script src="../../../resource/jquery/jquery-3.0.0.min.js"></script>
+</head>
     <title><?php Uses::siteName() ?></title>
     <style>
         body {
@@ -32,6 +33,14 @@
             font-weight: 400;
             margin-bottom: 30px;
         }
+        .container-fluid {
+            padding: 27px -1px;
+        }
+        .bg-grey {
+            background-color: #f1f6b0;
+        }
+
+
         .navbar {
             margin-bottom: 0;
             background-color: #39554d;
@@ -39,7 +48,7 @@
             border: 0;
             font-size: 12px !important;
             line-height: 1.42857143 !important;
-            letter-spacing: 2px;
+            letter-spacing: 4px;
             border-radius: 0;
             font-family: Montserrat, sans-serif;
         }
@@ -59,9 +68,10 @@
     </style>
 </head>
 
-<body background="../../../resource/design/bg1.png">
+<body>
+<div class="container">
     <!--Navigation Bar start-->
-    <nav role="navigation" class="navbar navbar-default navbar-fixed-top">
+    <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container" >
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -72,7 +82,7 @@
                 <a class="navbar-brand" href="index.php"><?php Uses::siteName() ?></a>
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
-                <ul class="nav navbar-nav navbar-left">
+                <ul class="nav navbar-nav navbar-right">
                     <li><a href="index.php">HOME</a></li>
                     <li><a href="create.php">ADD</a></li>
                     <li><a href="trashed.php">TRASH</a></li>
@@ -81,6 +91,7 @@
         </div>
     </nav>
     <!--Navigation bar end-->
+</div>
 </body>
 
 </html>

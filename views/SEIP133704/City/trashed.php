@@ -1,58 +1,31 @@
 <?php
-//This page is identical to index page.
-    include_once ("../../../vendor/autoload.php"); //Autoload file included to recognize namespace
+    include_once ("../../../vendor/autoload.php");
     include "header.php";
-    use App\Bitm\SEIP133704\BookTitle\Book;
-    use App\Bitm\SEIP133704\GlobalClasses\Utility;
-    use App\Bitm\SEIP133704\GlobalClasses\Message;
-    use App\Bitm\SEIP133704\BookTitle\Uses;  //Called the class files used here.
+use App\Bitm\SEIP133704\City\City;
+use App\Bitm\SEIP133704\City\Uses;
+use App\Bitm\SEIP133704\GlobalClasses\Message;
+use App\Bitm\SEIP133704\GlobalClasses\Utility;
     
     
-    $newTrash =  new Book(); // Made an object of class
-
+    $newTrashed =  new City();
+    $list = $newTrashed->trashed();
     //Utility::d($_SESSION);
     
-    $tableColumn = array("SL","ID","Book Title","Action","","");
-
-    if(array_key_exists('itemPerPage',$_SESSION)) {
-        if(array_key_exists('itemPerPage',$_GET))
-            $_SESSION['itemPerPage'] = $_GET['itemPerPage'];
-    }
-    else $_SESSION['itemPerPage'] = 5;
-
-    $itemPerPage = $_SESSION['itemPerPage'];
-    $totalItem = $newIndex->countTrash();
-
-    $totalPage = ceil($totalItem/$itemPerPage);
-    $pagination = "";
-    if(array_key_exists('pageNumber',$_GET)){
-        $pageNumber = $_GET['pageNumber'];
-    }
-    else $pageNumber = 1;
-
-    for($i=1;$i<=$totalPage;$i++){
-        $active = ($pageNumber==$i)? "active":"";
-        $pagination.="<li class='$active'><a href='index.php?pageNumber=$i'>$i</a></li>";
-    }
-
-    $pageStartFrom = $itemPerPage*($pageNumber-1);
-    $list = $newIndex->paginatorTrash($pageStartFrom,$itemPerPage);
-
-
+    $tableColumn = array("SL","ID","Name","City","Action","","");
+    
+?>
+<?php
 if(!empty($list)){
 ?>
-    
         <div class="container">
 
     
             <div class="container-fluid" style="margin-top: 100px">
                 <h2>Trashed <?php Uses::siteKeyword() ?> List</h2>
-<!--                To recover multiple data sent through post method-->
-                <form action="recovermultiple.php" method="post" id="multiple"> 
+                <form action="recovermultiple.php" method="post" id="multiple">
                 <button type="submit"  class="btn btn-warning">Recover Selected</button>
-<!--                 To delete multiple id is used for jquery to send data to other page-->
                 <button type="button"  class="btn btn-danger" id="multiple_delete">Delete Selected</button>
-                    <h4><?php echo Message::message(); ?></h4>
+                    <h2><?php echo Message::message(); ?></h2>
                 <table class="table table-bordered table-responsive">
     
                     <thead>
@@ -62,22 +35,24 @@ if(!empty($list)){
                         <th><?php echo $tableColumn[1] ?></th>
                         <th><?php echo $tableColumn[2] ?></th>
                         <th><?php echo $tableColumn[3] ?></th>
+                        <th><?php echo $tableColumn[4] ?></th>
                     </tr>
                     </thead>
                     <tbody>
                     <?php
                     $sl = 0;
-                    foreach ($list as $item){
+                    foreach ($list as $emails){
                         $sl++;
                         ?>
                         <tr>
-                            <td><input type="checkbox" name="mark[]" value="<?php echo $item->ID ?>"></td>
+                            <td><input type="checkbox" name="mark[]" value="<?php echo $emails->ID ?>"></td>
                             <td><?php echo $sl ;?></td>
-                            <td><?php echo $item->ID ;?></td>
-                            <td><?php echo $item->bookTitle ;?></td>
+                            <td><?php echo $emails->ID ;?></td>
+                            <td><?php echo $emails->name ;?></td>
+                            <td><?php echo $emails->city ;?></td>
                             <td>
-                                <a href="recover.php?id=<?php echo $item->ID ?>" ><button type="button" class="btn btn-warning">Recover</button>
-                                <a href="delete.php?id=<?php echo $item->ID ?>" ><button type="button" class="btn btn-danger" id="delete">Delete</button>
+                                <a href="recover.php?id=<?php echo $emails->ID ?>" ><button type="button" class="btn btn-warning">Recover</button>
+                                <a href="delete.php?id=<?php echo $emails->ID ?>" ><button type="button" class="btn btn-danger" id="delete">Delete</button>
                                     
                             </td>
                         </tr>
@@ -117,4 +92,4 @@ else{
 
     })
 </script>
-<?php include ('footer.php');?>
+<?php include ('footer.php')?>
