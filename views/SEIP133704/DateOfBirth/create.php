@@ -11,7 +11,7 @@
     <?php echo Uses::siteKeyword()  ?>
 </title>
 <div class="container">
-    <div class="container-fluid" style="margin-bottom: 250px; margin-top: 100px">
+    <div class="container-fluid" style="margin-bottom: 250px; margin-top: 100px;">
 
         <form class="form-horizontal" role="form" method="post" style="margin-top: 100px" action="store.php">
             <h2 style="padding-left: 80px; margin-bottom: 20px">
@@ -20,12 +20,12 @@
             </h2>
             <div class="container-fluid">
 
-                <div class="container-fluid col-sm-6">
+                <div class="col-sm-6">
                     <label class="control-label">Enter your name</label>
                     <input type="text" class="form-control" id="title" name="name" placeholder="Enter Your Name" required>
-                    <label class="control-label"><?php echo Uses::siteKeyword() ?></label>
-                    <input type="date" class="form-control" id="birthday" name="birthday" placeholder="Enter Your <?php echo Uses::siteKeyword()  ?>" required>
-                    <button type="submit" class="btn btn-success">Submit</button>
+                    <label for="datepicker" class="control-label"><?php echo Uses::siteKeyword() ?></label>
+                    <input type="text" id="datepicker" name="birthday" placeholder="dd/mm/yyyy" required>
+                    <button  type="submit" class="btn btn-success col-sm-offset-4">Submit</button>
                 </div>
                 
             </div>
@@ -34,3 +34,9 @@
 </div>
 <?php include "footer.php"?>
 
+<script>
+    $(function() {
+        $( "#datepicker" ).datepicker({ dateFormat: 'dd/mm/yy', changeMonth: true,
+            changeYear: true, yearRange: "1950:2016"  }).val();
+    });
+</script>

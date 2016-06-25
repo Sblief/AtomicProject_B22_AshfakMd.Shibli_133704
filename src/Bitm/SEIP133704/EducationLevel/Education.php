@@ -324,7 +324,7 @@ class Education
     public function countTrash(){
         $query="SELECT COUNT(*) AS totalItem FROM `".$this->dbName."`.`".$this->tableName."` WHERE `".$this->tableColumn4."` is NOT NULL";
         $result=mysqli_query($this->conn,$query);
-        $row= mysqli_fetch_assoc($result);
+        if($result)  $row= mysqli_fetch_assoc($result);
         return $row['totalItem'];
     }
     public function paginator($pageStartFrom=0,$limit=5){
