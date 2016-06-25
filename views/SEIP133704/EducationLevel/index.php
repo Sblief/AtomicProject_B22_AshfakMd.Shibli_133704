@@ -100,7 +100,7 @@ if(!empty($list)){    //if the list of items is not empty the table will be show
             <td>
                 <a href="view.php?id=<?php echo $emails->id ?>" ><button type="button" class="btn btn-info">View</button></a>
                 <a href="edit.php?id=<?php echo $emails->id ?>" ><button type="button" class="btn btn-info">Edit</button></a>
-                <a href="delete.php?id=<?php echo $emails->id ?>" ><button type="button" class="btn btn-danger" id="delete">Delete</button>
+                <a href="delete.php?id=<?php echo $emails->id ?>" ><button type="button" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this item?');">Delete</button>
                     <a href="trash.php?id=<?php echo $emails->id ?>" ><button type="button" class="btn btn-warning">Trash</button>
             </td>
         </tr>

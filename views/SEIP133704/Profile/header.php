@@ -9,7 +9,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../../../resource/bootstrap-3.3.6/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../../../resource/Custom%20Design/css/style.css">
+    <link rel="stylesheet" href="../../../resource/CustomDesign/css/style.css">
     <script src="../../../resource/bootstrap-3.3.6/js/bootstrap.min.js"></script>
     <script src="../../../resource/jquery/jquery-3.0.0.min.js"></script>
     <title><?php Uses::siteName() ?></title>

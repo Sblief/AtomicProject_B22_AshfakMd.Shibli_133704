@@ -95,7 +95,7 @@ if(!empty($list)){
             <td>
                 <a href="view.php?id=<?php echo $item->id ?>" ><button type="button" class="btn btn-info">View</button></a>
                 <a href="edit.php?id=<?php echo $item->id ?>" ><button type="button" class="btn btn-info">Edit</button></a>
-                <a href="delete.php?id=<?php echo $item->id ?>" ><button type="button" class="btn btn-danger" id="delete">Delete</button>
+                <a href="delete.php?id=<?php echo $item->id ?>" ><button type="button" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this item?');">Delete</button>
                     <a href="trash.php?id=<?php echo $item->id ?>" ><button type="button" class="btn btn-warning">Trash</button>
             </td>
         </tr>
@@ -154,17 +154,4 @@ else{
 }
 ?>
 
-
-
-
-    <script>
-        $(document).ready(function(){
-            $("#delete").click(function(){
-                if (!confirm("Do you want to delete")){
-                    return false;
-                }
-            });
-        });
-
-    </script>
 <?php include "footer.php"?>

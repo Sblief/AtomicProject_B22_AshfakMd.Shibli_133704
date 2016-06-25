@@ -1,7 +1,7 @@
 <?php
     session_start(); //started a session to store the Message comes from a action
     include_once ("../../../vendor/autoload.php"); //Autoload file included to recognize namespace
-    include "header.php";             // Made header as a separate file as it will be used in every page
+    include ('header.php');          // Made header as a separate file as it will be used in every page
     use App\Bitm\SEIP133704\BookTitle\Book;
     use App\Bitm\SEIP133704\GlobalClasses\Utility;
     use App\Bitm\SEIP133704\GlobalClasses\Message;
@@ -37,11 +37,9 @@
     $pageStartFrom = $itemPerPage*($pageNumber-1);
     $list = $newIndex->paginator($pageStartFrom,$itemPerPage);
 
-
     if(!empty($list)){    //if the list of items is not empty the table will be shown, else a message that it is empty here.
 
 ?>
-
 <div class="container" >
 
 <div class="container-fluid form-inline"  style="margin-top: 100px">
@@ -99,8 +97,8 @@
             <td>
                 <a href="view.php?id=<?php echo $item->ID ?>" ><button type="button" class="btn btn-info">View</button></a>
                 <a href="edit.php?id=<?php echo $item->ID ?>" ><button type="button" class="btn btn-info">Edit</button></a>
-                <a href="delete.php?id=<?php echo $item->ID ?>" ><button type="button" class="btn btn-danger" id="delete">Delete</button>
-                    <a href="trash.php?id=<?php echo $item->ID ?>" ><button type="button" class="btn btn-warning">Trash</button>
+                <a href="delete.php?id=<?php echo $item->ID ?>"  ><button type="button" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this item?');">Delete</button></a>
+                <a href="trash.php?id=<?php echo $item->ID ?>" ><button type="button" class="btn btn-warning">Trash</button>
             </td>
         </tr>
         <?php }//end of foreach loop ?>
@@ -158,16 +156,4 @@ else{
 
 }//end of if..else
 ?>
-
-
-    <script>
-        $(document).ready(function(){
-            $("#delete").click(function(){
-                if (!confirm("Do you want to delete")){
-                    return false;
-                }
-            });
-        });
-
-    </script>
 <?php include "footer.php"?>
