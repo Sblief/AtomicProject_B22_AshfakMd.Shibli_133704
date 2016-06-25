@@ -12,7 +12,7 @@
         Utility::redirect('trashed.php');
         Message::message("
                         <div id=\"message\" class=\"alert alert-info\">
-                                <strong>Really!</strong> Don't be dumb please select something to recover.
+                                <strong>Ouch!</strong>Please select something to recover.
                         </div>
                         <script>
                             $('#message').show().delay(4000).fadeOut();
