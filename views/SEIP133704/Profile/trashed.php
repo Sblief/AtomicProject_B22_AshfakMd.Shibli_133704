@@ -73,7 +73,7 @@ if(!empty($list)){
 
                 <form action="recovermultiple.php" method="post" id="multiple">
                 <button type="submit"  class="btn btn-warning">Recover Selected</button>
-                <button type="button"  class="btn btn-danger" id="multiple_delete">Delete Selected</button>
+                <button type="button"  class="btn btn-danger" id="multiple_delete" >Delete Selected</button>
                     <h4><?php echo Message::message(); ?></h4>
                 <table class="table table-bordered table-responsive">
     
@@ -98,10 +98,11 @@ if(!empty($list)){
                             <td><?php echo $sl1 = $sl+$pageStartFrom ;?></td>
                             <td><?php echo $item->id ;?></td>
                             <td><?php echo $item->name ;?></td>
-                            <td><img src="../../../resource/images/<?php echo $item->images ;?>" height="200px" width="200px" </td>
+                            <td><img src="../../../resource/images/<?php echo $item->images ;?>" height="100px" width="100px" </td>
                             <td>
+                                <a href="view.php?id=<?php echo $item->id ?>" ><button type="button" class="btn btn-info">View</button></a>
                                 <a href="recover.php?id=<?php echo $item->id ?>" ><button type="button" class="btn btn-warning">Recover</button>
-                                <a href="delete.php?id=<?php echo $item->id ?>" ><button type="button" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete these items?');">Delete</button>
+                                <a href="delete.php?id=<?php echo $item->id ?>" ><button type="button" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this item?');">Delete</button>
                                     
                             </td>
                         </tr>
@@ -161,4 +162,12 @@ else{
 }
 ?>
 
+
+<script>
+    $('#multiple_delete').on('click',function () {
+        document.forms[1].action= "deletemultiple.php";
+        $('#multiple').submit();
+
+    })
+</script>
 <?php include ('footer.php');?>

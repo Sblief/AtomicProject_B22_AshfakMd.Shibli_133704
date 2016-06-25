@@ -12,7 +12,7 @@ use App\Bitm\SEIP133704\GlobalClasses\Message;
     $list = $newIndex->index();
     //Utility::d($_SESSION);
 
-    $tableColumn = array("SL","ID","Name","Birthday","Action","","");
+    $tableColumn = array("SL","ID","Organization","Summary","Action","","");
 
 if(array_key_exists('itemPerPage',$_SESSION)) {
     if(array_key_exists('itemPerPage',$_GET))

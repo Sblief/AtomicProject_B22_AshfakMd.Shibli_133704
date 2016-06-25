@@ -73,7 +73,7 @@ if(!empty($list)){
                 <form action="recovermultiple.php" method="post" id="multiple"> 
                 <button type="submit"  class="btn btn-warning">Recover Selected</button>
 <!--                 To delete multiple id is used for jquery to send data to other page-->
-                <button type="button"  class="btn btn-danger" id="multiple_delete">Delete Selected</button>
+                <button type="button"  class="btn btn-danger" id="multiple_delete" >Delete Selected</button>
                     <h4><?php echo Message::message(); ?></h4>
 
                     
@@ -101,7 +101,7 @@ if(!empty($list)){
                             <td><?php echo $item->bookTitle ;?></td>
                             <td>
                                 <a href="recover.php?id=<?php echo $item->ID ?>" ><button type="button" class="btn btn-warning">Recover</button>
-                                <a href="delete.php?id=<?php echo $item->ID ?>" ><button type="button" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete these items?');">Delete</button>
+                                <a href="delete.php?id=<?php echo $item->ID ?>" ><button type="button" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this item?');">Delete</button>
                                     
                             </td>
                         </tr>
@@ -161,4 +161,11 @@ else{
 }
 ?>
 
+<script>
+    $('#multiple_delete').on('click',function () {
+        document.forms[1].action= "deletemultiple.php";
+        $('#multiple').submit();
+
+    })
+</script>
 <?php include ('footer.php');?>

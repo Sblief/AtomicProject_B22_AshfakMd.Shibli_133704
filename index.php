@@ -15,6 +15,7 @@
             <h2>Atomic Projects</h2>
             <h3>Name: Ashfak Md. Shibli</h3>
             <h3>SEID: 133704</h3>
+            <h3>Class Serial: 6</h3>
             <h3>PHP-B22</h3>
         </div>
         <div class="panel-body">
@@ -68,27 +69,21 @@
                     </tr>
                     <tr>
                         <td>6</td>
-                        <td>Education Level (Radio) </td>
+                        <td>Highest Education Level (Radio) </td>
                         <td>
                             <a href="views/SEIP133704/EducationLevel" target="_blank"><button class="btn btn-success">Click to View</button></a>
                         </td>
                     </tr>
+
                     <tr>
                         <td>7</td>
-                        <td>Terms and Condition (Checkbox-Single)</td>
-                        <td>
-                            <a href="views/SEIP133704/TermsAndCondition" target="_blank"><button class="btn btn-success">Click to View</button></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>8</td>
                         <td>Hobby (CheckBoxMultiple)</td>
                         <td>
                             <a href="views/SEIP133704/Hobby" target="_blank"><button class="btn btn-success">Click to View</button></a>
                         </td>
                     </tr>
                     <tr>
-                        <td>9</td>
+                        <td>8</td>
                         <td>City (Select)</td>
                         <td>
                             <a href="views/SEIP133704/City" target="_blank"><button class="btn btn-success">Click to View</button></a>
@@ -117,5 +112,5 @@
         }
     </style>
     <footer class="container-fluid  text-center">
-        <p><span class="glyphicon glyphicon-copyright-mark"></span> Copyright Atomic Projects 2016</p>
+        <p><span class="glyphicon glyphicon-copyright-mark"></span> Copyright Ashfak Md. Shibli & Atomic Projects 2016</p>
     </footer>

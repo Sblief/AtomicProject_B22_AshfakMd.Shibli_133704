@@ -11,7 +11,7 @@ use App\Bitm\SEIP133704\GlobalClasses\Message;
     $list = $newTrash->trashed();
     //Utility::d($_SESSION);
     
-    $tableColumn = array("SL","ID","Name","Birthday","Action","","");
+    $tableColumn = array("SL","ID","Organization","Summary","Action","","");
 
 if(array_key_exists('itemPerTrashPage',$_SESSION)) {
     if(array_key_exists('itemPerTrashPage',$_GET))
@@ -67,7 +67,7 @@ if(!empty($list)){
 
                 <form action="recovermultiple.php" method="post" id="multiple">
                 <button type="submit"  class="btn btn-warning">Recover Selected</button>
-                <button type="button"  class="btn btn-danger" id="multiple_delete">Delete Selected</button>
+                <button type="button"  class="btn btn-danger" id="multiple_delete" >Delete Selected</button>
                     <h4><?php echo Message::message(); ?></h4>
                 <table class="table table-bordered table-responsive">
     
@@ -155,4 +155,11 @@ else{
 }
 ?>
 
+<script>
+    $('#multiple_delete').on('click',function () {
+        document.forms[1].action= "deletemultiple.php";
+        $('#multiple').submit();
+
+    })
+</script>
 <?php include ('footer.php')?>
