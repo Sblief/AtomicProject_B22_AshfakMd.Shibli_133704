@@ -1,10 +1,12 @@
 <?php
 namespace App\Bitm\SEIP133704\EducationLevel;
+use App\Bitm\SEIP133704\GlobalClasses\Message;
+use App\Bitm\SEIP133704\GlobalClasses\Utility;
 
 class Education
 {
     public $id  = "";
-    public $city = "";
+    public $level = "";
     public $name = "";
 
     public $conn;
@@ -12,10 +14,10 @@ class Education
     public $user = "root";
     public $host = "localhost";
     public $password = "";
-    public $tableName = "city"; //Don't Change this. It will make data missing.
-    public $tableColumn1 = "ID";
+    public $tableName = "educationlevel"; //Don't Change this. It will make data missing.
+    public $tableColumn1 = "id";
     public $tableColumn2 = "name";
-    public $tableColumn3 = "city";
+    public $tableColumn3 = "level";
     public $tableColumn4 = "deleted_at";
     public $tableColumn4Input = NULL;
 
@@ -25,7 +27,7 @@ class Education
     public $modified_by = "";
 
 
-    public function __construct($email = false)
+    public function __construct()
     {
         $this->link = mysqli_connect($this->host,$this->user,$this->password) or die("Database linking failed");
         $db_select = mysqli_select_db($this->link,$this->dbName);
@@ -42,8 +44,8 @@ class Education
 
     public function prepare ($data="")
     {
-        if(array_key_exists("city",$data)){
-            $this->city = $data['city'];
+        if(array_key_exists("level",$data)){
+            $this->level = $data['level'];
 
         }
         if(array_key_exists("name",$data)){
@@ -72,7 +74,7 @@ class Education
                           )";
             $resultCreateTable = mysqli_query($this->conn, $queryCreateTable);
         }
-        $queryInsert = "INSERT INTO `".$this->dbName."`.`".$this->tableName."` ( `".$this->tableColumn2."`,`".$this->tableColumn3."`) VALUES ( '".$this->name."','".$this->city."')";
+        $queryInsert = "INSERT INTO `".$this->dbName."`.`".$this->tableName."` ( `".$this->tableColumn2."`,`".$this->tableColumn3."`) VALUES ( '".$this->name."','".$this->level."')";
 
         $resultInsert=mysqli_query($this->conn,$queryInsert);
         if($resultInsert){
@@ -123,7 +125,7 @@ class Education
     }
     public function update()
     {
-        $query="UPDATE `".$this->dbName."`.`".$this->tableName."` SET `".$this->tableColumn2."` = '".$this->name."',`".$this->tableColumn3."` = '".$this->city."' WHERE `".$this->tableName."`.`".$this->tableColumn1."` = ".$this->id;
+        $query="UPDATE `".$this->dbName."`.`".$this->tableName."` SET `".$this->tableColumn2."` = '".$this->name."',`".$this->tableColumn3."` = '".$this->level."' WHERE `".$this->tableName."`.`".$this->tableColumn1."` = ".$this->id;
 
         $result=mysqli_query($this->conn,$query);
         if($result){
@@ -303,9 +305,9 @@ class Education
 
     public static function checked ($data = "", $array = ""){
 
-        $hobbyArray = $array;
-        if($data==$hobbyArray){
-            echo "selected";
+        $levelArray = $array;
+        if($data==$levelArray){
+            echo "checked";
         }
         else echo "";
 
@@ -313,9 +315,10 @@ class Education
     }
 
     public function count(){
+        $row['totalItem'] = "";
         $query="SELECT COUNT(*) AS totalItem FROM `".$this->dbName."`.`".$this->tableName."` WHERE `".$this->tableColumn4."` is NULL";
         $result=mysqli_query($this->conn,$query);
-        $row= mysqli_fetch_assoc($result);
+        if($result) $row= mysqli_fetch_assoc($result);
         return $row['totalItem'];
     }
     public function countTrash(){

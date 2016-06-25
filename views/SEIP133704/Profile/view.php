@@ -26,7 +26,7 @@ $singleItem  = $viewProfile->prepare($_GET)->view();
             <ul class="list-group">
                 <li class="list-group-item">ID:   <?php echo $singleItem->id?></li>
                 <li class="list-group-item"><?php Uses::siteKeyword() ?> of  <?php echo $singleItem->name?></li>
-                <li class="list-group-item"><img src="../../../resource/images/<?php echo $singleItem->images?>" </li>
+                <li class="list-group-item"><img src="../../../resource/images/<?php echo $singleItem->images?>" width="500px" length="500" </li>
                 <li class="list-group-item"> </li>
             </ul>
         </div>

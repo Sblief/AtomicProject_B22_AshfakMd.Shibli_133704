@@ -19,7 +19,7 @@ use App\Bitm\SEIP133704\GlobalClasses\Utility;
             </h2>
             <div class="container">
             <label for="name">Name: </label>
-            <input id="name" type="text" name="name" placeholder="Your Name">
+            <input id="name" type="text" name="name" placeholder="Your Name" required>
             </div>
             <div class="container" style="margin-top: 20px">
             <label for="city" style="padding-left: 15px">City: </label>

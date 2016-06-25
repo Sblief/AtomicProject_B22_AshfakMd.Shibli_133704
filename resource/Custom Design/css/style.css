@@ -1,6 +1,10 @@
 
-table{
+table {
     background-color: rgb(244, 246, 191);
+    text-align: center;
+}
+th{
+    text-align: center;
 }
 label{
     background-color: #ecf6ec;
@@ -36,10 +40,18 @@ h4 {
     border-radius: 0;
     font-family: Montserrat, sans-serif;
 }
+
+.navbar-fixed-bottom {
+    background-color: #39554d;
+    color: #c0ffff;
+    width: 100%;
+    letter-spacing: 0;
+}
 .navbar-nav{
     background-color: rgba(53, 122, 163, 0.48);
 
 }
+
 .navbar li a, .navbar .navbar-brand {
     color: #fff !important;
 }
@@ -51,3 +63,41 @@ h4 {
     border-color: transparent;
     color: #fff !important;
 }
+
+
+
+/* Set black background color, white text and some padding */
+footer {
+    background-color: #39554d;
+    color: #c0ffff;
+    padding: 15px;
+    position: absolute;
+    width: 100%;
+}
+
+
+html,
+body {
+    height: 100%;
+}
+
+.container {
+    display: table;
+    height: 100%;
+}
+
+
+html,
+body { height: 100%; }
+
+body {
+    display: table;
+    width: 100%;
+}
+
+.page-row {
+    display: table-row;
+    height: 1px;
+}
+
+.page-row-expanded { height: 100%; }

@@ -2,17 +2,17 @@
     session_start();
     include_once ("../../../vendor/autoload.php");
     include "header.php";
-use App\Bitm\SEIP133704\City\City;
-use App\Bitm\SEIP133704\City\Uses;
+use App\Bitm\SEIP133704\EducationLevel\Education;
+use App\Bitm\SEIP133704\EducationLevel\Uses;
 use App\Bitm\SEIP133704\GlobalClasses\Message;
 use App\Bitm\SEIP133704\GlobalClasses\Utility;
     
     
-    $newTrash =  new City();
+    $newTrash =  new Education();
     //$list = $newTrash->trashed();
     //Utility::d($_SESSION);
     
-    $tableColumn = array("SL","ID","Name","City","Action","","");
+    $tableColumn = array("SL","ID","Name","Highest Education Level","Action","","");
 
 if(array_key_exists('itemPerTrashPage',$_SESSION)) {
     if(array_key_exists('itemPerTrashPage',$_GET))
@@ -90,14 +90,14 @@ if(!empty($list)){
                         $sl++;
                         ?>
                         <tr>
-                            <td><input type="checkbox" name="mark[]" value="<?php echo $emails->ID ?>"></td>
+                            <td><input type="checkbox" name="mark[]" value="<?php echo $emails->id ?>"></td>
                             <td><?php echo $sl1 = $sl+$pageStartFrom ;?></td>
-                            <td><?php echo $emails->ID ;?></td>
+                            <td><?php echo $emails->id ;?></td>
                             <td><?php echo $emails->name ;?></td>
-                            <td><?php echo $emails->city ;?></td>
+                            <td><?php echo $emails->level ;?></td>
                             <td>
-                                <a href="recover.php?id=<?php echo $emails->ID ?>" ><button type="button" class="btn btn-warning">Recover</button>
-                                <a href="delete.php?id=<?php echo $emails->ID ?>" ><button type="button" class="btn btn-danger" id="delete">Delete</button>
+                                <a href="recover.php?id=<?php echo $emails->id ?>" ><button type="button" class="btn btn-warning">Recover</button>
+                                <a href="delete.php?id=<?php echo $emails->id ?>" ><button type="button" class="btn btn-danger" id="delete">Delete</button>
                                     
                             </td>
                         </tr>

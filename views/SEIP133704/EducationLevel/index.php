@@ -2,17 +2,16 @@
     session_start();
     include_once ("../../../vendor/autoload.php");
     include "header.php";
-use App\Bitm\SEIP133704\City\City;
-use App\Bitm\SEIP133704\City\Uses;
+use App\Bitm\SEIP133704\EducationLevel\Education;
+use App\Bitm\SEIP133704\EducationLevel\Uses;
 use App\Bitm\SEIP133704\GlobalClasses\Message;
 use App\Bitm\SEIP133704\GlobalClasses\Utility;
 
-
-    $newIndex =  new City();
+    $newIndex =  new Education();
     $list = $newIndex->index();
     //Utility::d($_SESSION);
 
-    $tableColumn = array("SL","ID","Name","City","Action","","");
+    $tableColumn = array("SL","ID","Name","Highest Education Level","Action","","");
 
 if(array_key_exists('itemPerPage',$_SESSION)) {
     if(array_key_exists('itemPerPage',$_GET))
@@ -42,7 +41,9 @@ $list = $newIndex->paginator($pageStartFrom,$itemPerPage);
 if(!empty($list)){    //if the list of items is not empty the table will be shown, else a message that it is empty here.
 
     ?>
-
+<title>
+     <?php echo Uses::siteKeyword()  ?>
+</title>
 
 <div class="container">
 
@@ -93,14 +94,14 @@ if(!empty($list)){    //if the list of items is not empty the table will be show
             ?>
         <tr>
             <td><?php echo $sl1 = $sl+$pageStartFrom ;?></td>
-            <td><?php echo $emails->ID ;?></td>
+            <td><?php echo $emails->id ;?></td>
             <td><?php echo $emails->name ;?></td>
-            <td><?php echo $emails->city ;?></td>
+            <td><?php echo $emails->level ;?></td>
             <td>
-                <a href="view.php?id=<?php echo $emails->ID ?>" ><button type="button" class="btn btn-info">View</button></a>
-                <a href="edit.php?id=<?php echo $emails->ID ?>" ><button type="button" class="btn btn-info">Edit</button></a>
-                <a href="delete.php?id=<?php echo $emails->ID ?>" ><button type="button" class="btn btn-danger" id="delete">Delete</button>
-                    <a href="trash.php?id=<?php echo $emails->ID ?>" ><button type="button" class="btn btn-warning">Trash</button>
+                <a href="view.php?id=<?php echo $emails->id ?>" ><button type="button" class="btn btn-info">View</button></a>
+                <a href="edit.php?id=<?php echo $emails->id ?>" ><button type="button" class="btn btn-info">Edit</button></a>
+                <a href="delete.php?id=<?php echo $emails->id ?>" ><button type="button" class="btn btn-danger" id="delete">Delete</button>
+                    <a href="trash.php?id=<?php echo $emails->id ?>" ><button type="button" class="btn btn-warning">Trash</button>
             </td>
         </tr>
         <?php } ?>
@@ -151,19 +152,10 @@ if(!empty($list)){    //if the list of items is not empty the table will be show
 else{
     echo "<div class='container' style='margin-top: 100px; margin-bottom: 350px'>
             <h1>Empty Index</h1>
-            <h3>Please add cities clicking ADD</h3>
+            <h3>Please add level by clicking ADD</h3>
            </div>";
 
 }//end of if..else
 ?>
-    <script>
-        $(document).ready(function(){
-            $("#delete").click(function(){
-                if (!confirm("Do you want to delete")){
-                    return false;
-                }
-            });
-        });
 
-    </script>
 <?php include "footer.php"?>

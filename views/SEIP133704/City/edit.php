@@ -16,7 +16,7 @@ use App\Bitm\SEIP133704\GlobalClasses\Utility;
 </title>
 <div class="container ">
     <div class="container-fluid col-sm-6" style="margin-bottom: 220px; margin-top: 90px">
-        <form class="form-group form-inline" role="form" method="post" style="margin-top: 100px" action="store.php">
+        <form class="form-group form-inline" role="form" method="post" style="margin-top: 100px" action="update.php">
             <h2 style="padding-left: 50px; margin-bottom: 20px">
                 Enter <?php echo Uses::siteKeyword()  ?>
 

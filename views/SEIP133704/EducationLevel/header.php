@@ -1,6 +1,6 @@
 <?php
     include_once ('../../../vendor/autoload.php');
-    use App\Bitm\SEIP133704\City\Uses;
+    use App\Bitm\SEIP133704\EducationLevel\Uses;
 ?>
 
 <!DOCTYPE html>
@@ -16,12 +16,13 @@
     
 </head>
 
-<body background="../../../resource/Custom%20Design/image/bg1.png">
+<body background="../../../resource/Custom%20Design/image/bg1.png" >
 <!--Navigation Bar start-->
 <nav role="navigation" class="navbar navbar-default navbar-fixed-top">
     <div class="container" >
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -39,5 +40,6 @@
 </nav>
 <!--Navigation bar end-->
 </body>
+
 
 </html>

@@ -1,9 +1,9 @@
 <?php
     include "header.php";
-    use App\Bitm\SEIP133704\City\City;
-    use App\Bitm\SEIP133704\City\Uses;
-use App\Bitm\SEIP133704\GlobalClasses\Message;
-use App\Bitm\SEIP133704\GlobalClasses\Utility;
+    use App\Bitm\SEIP133704\EducationLevel\Education;
+    use App\Bitm\SEIP133704\EducationLevel\Uses;
+    use App\Bitm\SEIP133704\GlobalClasses\Message;
+    use App\Bitm\SEIP133704\GlobalClasses\Utility;
 
 
 ?>
@@ -11,7 +11,7 @@ use App\Bitm\SEIP133704\GlobalClasses\Utility;
     <?php echo Uses::siteKeyword()  ?>
 </title>
 <div class="container ">
-    <div class="container-fluid col-sm-6" style="margin-bottom: 220px; margin-top: 90px">
+    <div class="container-fluid " style="margin-bottom: 120px; margin-top: 50px">
         <form class="form-group form-inline" role="form" method="post" style="margin-top: 100px" action="store.php">
             <h2 style="padding-left: 50px; margin-bottom: 20px">
                 Enter <?php echo Uses::siteKeyword()  ?>
@@ -19,25 +19,38 @@ use App\Bitm\SEIP133704\GlobalClasses\Utility;
             </h2>
             <div class="container">
             <label for="name">Name: </label>
-            <input id="name" type="text" name="name" placeholder="Your Name">
+            <input id="name" type="text" name="name" placeholder="Your Name" required>
             </div>
-            <div class="container" style="margin-top: 20px">
-            <label for="city" style="padding-left: 15px">City: </label>
-            <select name="city" id="city" >
-                            <option >Select one</option>
-                            <option value="Dhaka" >Dhaka</option>
-                            <option value="Chittagong" >Chittagong</option>
-                            <option value="Barishal" >Barishal</option>
-                            <option value="Rajshahi" >Rajshahi</option>
-                            <option value="Khulna" >Khulna</option>
-                            <option value="Rangpur" >Rangpur</option>
-                            <option value="Sylhet" >Sylhet</option>
-            </select>
-            </div>
-            <div class="container" style="padding-left: 200px">
-                <button type="submit" class="btn btn-success">SUBMIT</button>
+            <div class="container-fluid" style="margin-top: 20px">
+            <label for="radio" >Select one: </label>
+                    <div class="radio col-sm-12 ">
+                        <label><input type="radio" name="level" value="Primary Education">Primary Education</label>
+                    </div>
+                    <div class="radio col-sm-12">
+                        <label><input type="radio" name="level" value="Junior School Certificate(J.S.C)">Junior School Certificate(J.S.C)</label>
+                    </div>
+                    <div class="radio col-sm-12 ">
+                        <label><input type="radio" name="level" value="Secondary School Certificate(S.S.C)" >Secondary School Certificate(S.S.C)</label>
+                    </div>
+                    <div class="radio col-sm-12 ">
+                        <label><input type="radio" name="level" value="Higher Secondary Certificate(H.S.C)" >Higher Secondary Certificate(H.S.C)</label>
+                    </div>
+                    <div class="radio col-sm-12 ">
+                        <label><input type="radio" name="level" value="B.S.C/B.A/B.B.A" >B.S.C/B.A/B.B.A</label>
+                    </div>
+                    <div class="radio col-sm-12 ">
+                        <label><input type="radio" name="level" value="M.S.C/M.A/M.B.A" >M.S.C/M.A/M.B.A</label>
+                    </div>
+                    <div class="radio col-sm-12">
+                        <label><input type="radio" name="level" value="Phd." >Phd.</label>
+                    </div>
+                <div class="container col-sm-12" style="padding-left: 200px">
+                    <button type="submit" class="btn btn-success">SUBMIT</button>
+
+                </div>
 
             </div>
+
 
 
 

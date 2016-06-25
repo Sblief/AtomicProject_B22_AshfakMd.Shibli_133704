@@ -1,11 +1,11 @@
 <?php
     include_once ("../../../vendor/autoload.php");
-use App\Bitm\SEIP133704\City\City;
-use App\Bitm\SEIP133704\City\Uses;
+use App\Bitm\SEIP133704\EducationLevel\Education;
+use App\Bitm\SEIP133704\EducationLevel\Uses;
 use App\Bitm\SEIP133704\GlobalClasses\Message;
 use App\Bitm\SEIP133704\GlobalClasses\Utility;
 
-    $edit = new City();
+    $edit = new Education();
     $edit->prepare($_GET);
     $singleItem = $edit->view();
   
@@ -15,8 +15,8 @@ use App\Bitm\SEIP133704\GlobalClasses\Utility;
     <?php Uses::siteKeyword() ?>
 </title>
 <div class="container ">
-    <div class="container-fluid col-sm-6" style="margin-bottom: 220px; margin-top: 90px">
-        <form class="form-group form-inline" role="form" method="post" style="margin-top: 100px" action="store.php">
+    <div class="container-fluid" style="margin-bottom: 220px; margin-top: 90px">
+        <form class="form-group form-inline" role="form" method="post" style="margin-top: 100px" action="update.php">
             <h2 style="padding-left: 50px; margin-bottom: 20px">
                 Enter <?php echo Uses::siteKeyword()  ?>
 
@@ -24,22 +24,36 @@ use App\Bitm\SEIP133704\GlobalClasses\Utility;
             <div class="container">
                 <label for="name">Name: </label>
                 <input id="name" type="text" name="name" placeholder="Your Name" value="<?php echo $singleItem->name ?>">
+                <input name="id" class="hidden" value="<?php echo $singleItem->id ?>">
             </div>
-            <div class="container" style="margin-top: 20px">
-                <label for="city" style="padding-left: 15px">City: </label>
-                <select name="city" id="city" >
-                <option value="Dhaka" <?php City::checked("Dhaka", $singleItem->city )  ?> >Dhaka</option>
-                <option value="Chittagong" <?php City::checked("Chittagong", $singleItem->city )  ?>>Chittagong</option>
-                <option value="Barishal" <?php City::checked("Barishal", $singleItem->city )  ?>>Barishal</option>
-                <option value="Rajshahi" <?php City::checked("Rajshahi", $singleItem->city )  ?> >Rajshahi</option>
-                <option value="Khulna" <?php City::checked("Khulna", $singleItem->city )  ?> >Khulna</option>
-                <option value="Rangpur" <?php City::checked("Rangpur", $singleItem->city )  ?> >Rangpur</option>
-                <option value="Sylhet" <?php City::checked("Sylhet", $singleItem->city )  ?> >Sylhet</option>
-                </select>
-            </div>
-            <div class="container" style="padding-left: 200px">
-                <button type="submit" class="btn btn-success">SUBMIT</button>
+            <div class="container-fluid" style="margin-top: 20px">
+                <label for="form" ">Select One: </label>
 
+                    <div class="radio col-sm-12">
+                        <label><input type="radio" name="level" value="Primary Education" <?php Education::checked("Primary Education", $singleItem->level )  ?>>Primary Education</label>
+                    </div>
+                    <div class="radio col-sm-12">
+                        <label><input type="radio" name="level" value="Junior School Certificate(J.S.C)" <?php Education::checked("Junior School Certificate(J.S.C)", $singleItem->level )  ?>>Junior School Certificate(J.S.C)</label>
+                    </div>
+                    <div class="radio col-sm-12">
+                        <label><input type="radio" name="level" value="Secondary School Certificate(S.S.C)" <?php Education::checked("Secondary School Certificate(S.S.C)", $singleItem->level )  ?> >Secondary School Certificate(S.S.C)</label>
+                    </div>
+                    <div class="radio col-sm-12">
+                        <label><input type="radio" name="level" value="Higher Secondary Certificate(H.S.C)" <?php Education::checked("Higher Secondary Certificate(H.S.C)", $singleItem->level )  ?>>Higher Secondary Certificate(H.S.C)</label>
+                    </div>
+                    <div class="radio col-sm-12 ">
+                        <label><input type="radio" name="level" value="B.S.C/B.A/B.B.A" <?php Education::checked("B.S.C/B.A/B.B.A", $singleItem->level )  ?>>B.S.C/B.A/B.B.A</label>
+                    </div>
+                    <div class="radio col-sm-12">
+                        <label><input type="radio" name="level" value="M.S.C/M.A/M.B.A" <?php Education::checked("M.S.C/M.A/M.B.A", $singleItem->level )  ?>>M.S.C/M.A/M.B.A</label>
+                    </div>
+                    <div class="radio col-sm-12">
+                        <label><input type="radio" name="level" value="Phd." <?php Education::checked("Phd.", $singleItem->level )  ?> >Phd.</label>
+                    </div>
+                <div class="container col-sm-12" style="padding-left: 200px">
+                    <button type="submit" class="btn btn-success">SUBMIT</button>
+
+                </div>
             </div>
 
         </form>

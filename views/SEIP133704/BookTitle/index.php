@@ -170,4 +170,4 @@ else{
         });
 
     </script>
-<?php include "footer.php"?>  // Made footer as a separate file as it will be used in every page?> 
+<?php include "footer.php"?>

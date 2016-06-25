@@ -28,7 +28,7 @@ class Birthday
     public $modified_by = "";
 
 
-    public function __construct($email = false)
+    public function __construct()
     {
         $this->link = mysqli_connect($this->host,$this->user,$this->password) or die("Database linking failed");
         $db_select = mysqli_select_db($this->link,$this->dbName);

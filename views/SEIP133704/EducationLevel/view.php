@@ -1,13 +1,13 @@
 <?php
     include_once ("../../../vendor/autoload.php");
     include "header.php";
-    use App\Bitm\SEIP133704\City\City;
-    use App\Bitm\SEIP133704\City\Uses;
-    use App\Bitm\SEIP133704\GlobalClasses\Message;
-    use App\Bitm\SEIP133704\GlobalClasses\Utility;
+use App\Bitm\SEIP133704\EducationLevel\Education;
+use App\Bitm\SEIP133704\EducationLevel\Uses;
+use App\Bitm\SEIP133704\GlobalClasses\Message;
+use App\Bitm\SEIP133704\GlobalClasses\Utility;
 
 
-    $view= new City();
+    $view= new Education();
     $view->prepare($_GET);
     $singleItem = $view->view();
 ?>
@@ -24,7 +24,7 @@
         </div>
         <div class="panel-body" style="margin-bottom: 88px">
             <ul class="list-group">
-                <li class="list-group-item">ID:   <?php echo $singleItem->ID?></li>
+                <li class="list-group-item">ID:   <?php echo $singleItem->id?></li>
                 <li class="list-group-item">Name:   <?php echo $singleItem->name?></li>
                 
 
