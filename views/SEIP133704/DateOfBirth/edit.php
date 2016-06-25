@@ -23,11 +23,11 @@ use App\Bitm\SEIP133704\GlobalClasses\Utility;
             <div class="container-fluid">
                 <div class="col-sm-6">
                     <label class="control-label">Enter Name</label>
-                    <input type="hidden" name="id" id="title" value="<?php echo $singleItem->ID ?>">
+                    <input type="hidden" name="id" id="title" value="<?php echo $singleItem->id ?>">
                     <input  type="text" class="form-control" id="email" name="name" placeholder="Enter Your Name" value="<?php echo $singleItem->name ?>" required>
                     <label for="datepicker" class="control-label"><?php Uses::siteKeyword() ?></label>
                     <input type="text" id="datepicker" name="birthday" placeholder="dd/mm/yyyy"  value="<?php echo $singleItem->date_of_birth ?>" required>
-                    <button type="submit" class="btn btn-success col-sm-offset-4">Submit</button>
+                    <button type="submit" class="btn btn-success col-sm-offset-10">Submit</button>
                 </div>
             </div>
 

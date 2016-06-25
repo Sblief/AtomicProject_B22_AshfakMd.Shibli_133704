@@ -15,9 +15,9 @@ use App\Bitm\SEIP133704\GlobalClasses\Utility;
     <link rel="stylesheet" href="../../../resource/CustomDesign/css/style.css">
     <script src="../../../resource/bootstrap-3.3.6/js/bootstrap.min.js"></script>
     <script src="../../../resource/jquery/jquery-3.0.0.min.js"></script>
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <link rel="stylesheet" href="../../../resource/jquery/jquery-ui.css">
+    <script src="../../../resource/jquery/jquery-ui.js"></script>
+    <script src="../../../resource/jquery/jquery-ui.min.js"></script>
     <title><?php Uses::siteName() ?></title>
 
 </head>
