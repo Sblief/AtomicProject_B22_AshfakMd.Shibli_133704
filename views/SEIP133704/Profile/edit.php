@@ -7,7 +7,6 @@ use App\Bitm\SEIP133704\Profile\Uses;
 $profilePicture= new Picture();
 $singleInfo=$profilePicture->prepare($_GET)->view();
 ?>
-
 <title>
     <?php Uses::siteName() ?>
 </title>
