@@ -11,8 +11,9 @@ if(!empty($_POST['mark']))
 
 else {
     Utility::redirect('trashed.php');
-    Message::message("<div id=\"message\" class=\"alert alert-info\">
-                                <strong>Really!</strong> Don't be dumb please select something to delete.
+    Message::message("
+                        <div id=\"message\" class=\"alert alert-info\">
+                                <strong>Ouch!</strong> Please select something to delete.
                         </div>
                         <script>
                             $('#message').show().delay(4000).fadeOut();
