@@ -24,6 +24,7 @@ use App\Bitm\SEIP133704\GlobalClasses\Utility;
             <div class="container">
                 <label for="name">Name: </label>
                 <input id="name" type="text" name="name" placeholder="Your Name" value="<?php echo $singleItem->name ?>">
+                <input id="id" type="hidden" name="id"  value="<?php echo $singleItem->ID ?>">
             </div>
             <div class="container" style="margin-top: 20px">
                 <label for="city" style="padding-left: 15px">City: </label>

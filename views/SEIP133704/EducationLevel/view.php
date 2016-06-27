@@ -28,7 +28,7 @@ use App\Bitm\SEIP133704\GlobalClasses\Utility;
                 <li class="list-group-item">Name:   <?php echo $singleItem->name?></li>
                 
 
-                <li class="list-group-item"><?php Uses::siteKeyword() ?>:   <?php echo $singleItem->city?></li>
+                <li class="list-group-item"><?php Uses::siteKeyword() ?>:   <?php echo $singleItem->level ?></li>
                 <li class="list-group-item"> </li>
                 <li class="list-group-item"> </li>
             </ul>

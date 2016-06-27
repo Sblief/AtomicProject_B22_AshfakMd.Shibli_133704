@@ -23,7 +23,7 @@ use App\Bitm\SEIP133704\GlobalClasses\Message;
             <div class="form-group">
                 <div class="col-sm-6">
                     <label class="control-label">Enter Name</label>
-                    <input type="hidden" name="id" id="title" value="<?php echo $singleItem->ID ?>">
+                    <input type="hidden" name="id" id="title" value="<?php echo $singleItem->id ?>">
                     <input type="text" class="form-control" id="org" name="name" placeholder="Enter Your Name" value="<?php echo $singleItem->name ?>" required>
                     <label class="control-label"><?php Uses::siteKeyword() ?></label>
                     <textarea  class="form-control" id="summary" name="summary" required> <?php echo $singleItem->summary ?> </textarea>

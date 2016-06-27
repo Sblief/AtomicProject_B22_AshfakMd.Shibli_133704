@@ -28,7 +28,7 @@ use App\Bitm\SEIP133704\GlobalClasses\Message;
                 <li class="list-group-item">ID:   <?php echo $singleItem->id?></li>
                 <li class="list-group-item">Name:   <?php echo $singleItem->name?></li>
 
-                <li class="list-group-item"><?php Uses::siteKeyword() ?>:   <?php echo $singleItem->date_of_birth ?></li>
+                <li class="list-group-item"><?php Uses::siteKeyword() ?>:   <?php echo $singleItem->summary ?></li>
                 <li class="list-group-item"> </li>
                 <li class="list-group-item"> </li>
             </ul>

@@ -125,7 +125,7 @@ class Summary
     public function update()
     {
         $query="UPDATE `".$this->dbName."`.`".$this->tableName."` SET `".$this->tableColumn2."` = '".$this->name."',`".$this->tableColumn3."` = '".$this->summary."' WHERE `".$this->tableName."`.`".$this->tableColumn1."` = ".$this->id;
-
+      
         $result=mysqli_query($this->conn,$query);
         if($result){
             Message::message("

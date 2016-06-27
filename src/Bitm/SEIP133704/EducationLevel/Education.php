@@ -119,6 +119,7 @@ class Education
 
     public function view(){
         $query="SELECT * FROM `".$this->tableName."` WHERE `".$this->tableColumn1."`=".$this->id;
+
         $result= mysqli_query($this->conn,$query);
         $row= mysqli_fetch_object($result);
         return $row;
@@ -184,7 +185,7 @@ class Education
     {
         $this->tableColumn4Input = time();
         $query="UPDATE `".$this->dbName."`.`".$this->tableName."` SET `".$this->tableColumn4."` = ".$this->tableColumn4Input." WHERE `".$this->tableName."`.`".$this->tableColumn1."` = ".$this->id;
-        echo $query;
+     
 
         $result=mysqli_query($this->conn,$query);
         if($result){

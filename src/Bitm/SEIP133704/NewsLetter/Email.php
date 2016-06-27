@@ -184,7 +184,7 @@ class Email
     {
         $this->tableColumn4Input = time();
         $query="UPDATE `".$this->dbName."`.`".$this->tableName."` SET `".$this->tableColumn4."` = ".$this->tableColumn4Input." WHERE `".$this->tableName."`.`".$this->tableColumn1."` = ".$this->id;
-        echo $query;
+   
 
         $result=mysqli_query($this->conn,$query);
         if($result){
