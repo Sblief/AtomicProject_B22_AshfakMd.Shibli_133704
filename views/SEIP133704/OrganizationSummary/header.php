@@ -21,7 +21,33 @@ use App\Bitm\SEIP133704\GlobalClasses\Message;
 
 <body>
 <!--Navigation Bar start-->
-<nav role="navigation" class="navbar navbar-default navbar-fixed-top">
+<nav role="navigation" class="navbar navbar-fixed-top atomic" style="height: 20px">
+    <div class="container" >
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar1">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar1">
+            <ul class="nav navbar-nav navbar-left nav-tabs">
+                <li><a href="../../../index.php">ATOMIC PROJECT HOME</a></li>
+                <li><a href="../BookTitle">1.Text</a></li>
+                <li><a href="../DateOfBirth">2.Date</a></li>
+                <li class="active"><a href="../OrganizationSummary">3.Textarea</a></li>
+                <li><a href="../NewsLetter">4.Email</a></li>
+                <li><a href="../Profile">5.File</a></li>
+                <li><a href="../EducationLevel">6.Radio</a></li>
+                <li><a href="../Hobby">7.Multiple Checkbox</a></li>
+                <li><a href="../City">8.Select</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!--Navigation bar end-->
+<!--Navigation Bar start-->
+<nav role="navigation" class="navbar navbar-default navbar-fixed-top" style="margin-top: 24px">
     <div class="container" >
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">

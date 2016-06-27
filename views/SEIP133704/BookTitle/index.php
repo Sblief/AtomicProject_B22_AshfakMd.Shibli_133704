@@ -71,7 +71,7 @@
     <!--    Show item per page end-->
 
            <!--    Table Start-->
-    <table class="table table-bordered table-responsive" >
+    <table class="table table-bordered table-responsive table-hover" >
 
         <thead>
         <tr>
