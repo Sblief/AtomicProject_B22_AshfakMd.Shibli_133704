@@ -302,16 +302,16 @@ class City
         }
     }
 
-    public static function checked ($data = "", $array = ""){
+    public static function checked ($data = "", $array = Array()){
 
-        $hobbyArray = $array;
-        if($data==$hobbyArray){
+        $cityArray = $array;
+        if(in_array($data,$cityArray)){
             echo "selected";
         }
         else echo "";
 
 
-    }
+    } //Static function returns 'checked' when checked in trashed page.
 
     public function count(){
         $query="SELECT COUNT(*) AS totalItem FROM `".$this->dbName."`.`".$this->tableName."` WHERE `".$this->tableColumn4."` is NULL";

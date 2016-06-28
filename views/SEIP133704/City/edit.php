@@ -8,6 +8,7 @@ use App\Bitm\SEIP133704\GlobalClasses\Utility;
     $edit = new City();
     $edit->prepare($_GET);
     $singleItem = $edit->view();
+    $array = explode(",",$singleItem->city);
   
 ?>
 <?php include "header.php" ?>
@@ -28,14 +29,14 @@ use App\Bitm\SEIP133704\GlobalClasses\Utility;
             </div>
             <div class="container" style="margin-top: 20px">
                 <label for="city" style="padding-left: 15px">City: </label>
-                <select name="city" id="city" >
-                <option value="Dhaka" <?php City::checked("Dhaka", $singleItem->city )  ?> >Dhaka</option>
-                <option value="Chittagong" <?php City::checked("Chittagong", $singleItem->city )  ?>>Chittagong</option>
-                <option value="Barishal" <?php City::checked("Barishal", $singleItem->city )  ?>>Barishal</option>
-                <option value="Rajshahi" <?php City::checked("Rajshahi", $singleItem->city )  ?> >Rajshahi</option>
-                <option value="Khulna" <?php City::checked("Khulna", $singleItem->city )  ?> >Khulna</option>
-                <option value="Rangpur" <?php City::checked("Rangpur", $singleItem->city )  ?> >Rangpur</option>
-                <option value="Sylhet" <?php City::checked("Sylhet", $singleItem->city )  ?> >Sylhet</option>
+                <select name="city[]" id="city" multiple size="7">
+                <option value="Dhaka" <?php City::checked("Dhaka", $array )  ?> >Dhaka</option>
+                <option value="Chittagong" <?php City::checked("Chittagong", $array )  ?>>Chittagong</option>
+                <option value="Barishal" <?php City::checked("Barishal", $array )  ?>>Barishal</option>
+                <option value="Rajshahi" <?php City::checked("Rajshahi", $array )  ?> >Rajshahi</option>
+                <option value="Khulna" <?php City::checked("Khulna", $array )  ?> >Khulna</option>
+                <option value="Rangpur" <?php City::checked("Rangpur", $array )  ?> >Rangpur</option>
+                <option value="Sylhet" <?php City::checked("Sylhet", $array )  ?> >Sylhet</option>
                 </select>
             </div>
             <div class="container" style="padding-left: 200px">

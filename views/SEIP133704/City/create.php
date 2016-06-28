@@ -23,7 +23,7 @@ use App\Bitm\SEIP133704\GlobalClasses\Utility;
             </div>
             <div class="container" style="margin-top: 20px">
             <label for="city" style="padding-left: 15px">City: </label>
-            <select name="city" id="city" >
+            <select name="city[]" id="city" size="8" multiple>
                             <option >Select one</option>
                             <option value="Dhaka" >Dhaka</option>
                             <option value="Chittagong" >Chittagong</option>
