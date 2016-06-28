@@ -70,7 +70,7 @@ if(!empty($list)){
     </form>
     <!--    Show item per page end-->
 
-    <table class="table table-bordered table-responsive" >
+    <table class="table table-bordered table-responsive table-hover" >
 
         <thead>
         <tr>

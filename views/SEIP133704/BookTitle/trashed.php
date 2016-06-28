@@ -77,7 +77,7 @@ if(!empty($list)){
                     <h4><?php echo Message::message(); ?></h4>
 
                     
-                <table class="table table-bordered table-responsive" >
+                <table class="table table-bordered table-responsive table-hover" >
     
                     <thead>
                     <tr>

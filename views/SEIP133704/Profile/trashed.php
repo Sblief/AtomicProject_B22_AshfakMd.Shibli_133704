@@ -75,7 +75,7 @@ if(!empty($list)){
                 <button type="submit"  class="btn btn-warning">Recover Selected</button>
                 <button type="button"  class="btn btn-danger" id="multiple_delete" >Delete Selected</button>
                     <h4><?php echo Message::message(); ?></h4>
-                <table class="table table-bordered table-responsive">
+                <table class="table table-bordered table-responsive table-hover">
     
                     <thead>
                     <tr>

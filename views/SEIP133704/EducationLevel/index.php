@@ -75,7 +75,7 @@ if(!empty($list)){    //if the list of items is not empty the table will be show
     </form>
     <!--    Show item per page end-->
 
-    <table class="table table-bordered table-responsive" >
+    <table class="table table-bordered table-responsive table-hover" >
 
         <thead>
         <tr>
