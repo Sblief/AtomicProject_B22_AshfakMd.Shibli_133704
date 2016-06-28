@@ -53,7 +53,7 @@
                 <div class="form-group">
                     <label for="slct">Show
 
-                    <select id="slct" class="form-control" name="itemPerPage">
+                    <select id="slct" class="form-control" name="itemPerPage"  >
                        <?php for($i=1;$i<26;$i++){
                            if($i==$itemPerPage)
                            echo "<option selected >$i</option>";
@@ -63,7 +63,6 @@
 
                     </select>
                         items per page</label>
-                    <button class="btn btn-success" type="submit">GO!</button>
 
 
                 </div>
@@ -156,4 +155,12 @@ else{
 
 }//end of if..else
 ?>
+<script>
+    $(function() {
+        $('#slct').change(function() {
+            this.form.submit();
+        });
+    });
+</script>
+
 <?php include "footer.php"?>

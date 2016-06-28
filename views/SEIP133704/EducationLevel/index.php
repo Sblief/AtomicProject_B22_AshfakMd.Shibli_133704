@@ -68,7 +68,7 @@ if(!empty($list)){    //if the list of items is not empty the table will be show
 
                 </select>
                 items per page</label>
-            <button class="btn btn-success" type="submit">GO!</button>
+
 
 
         </div>
@@ -157,5 +157,13 @@ else{
 
 }//end of if..else
 ?>
+
+    <script>
+        $(function() {
+            $('#slct').change(function() {
+                this.form.submit();
+            });
+        });
+    </script>
 
 <?php include "footer.php"?>

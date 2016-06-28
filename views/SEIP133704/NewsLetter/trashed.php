@@ -61,7 +61,7 @@ if(!empty($list)){
 
                             </select>
                             items per page</label>
-                        <button class="btn btn-success" type="submit">GO!</button>
+
 
 
                     </div>
@@ -163,6 +163,12 @@ else{
         document.forms[1].action= "deletemultiple.php";
         $('#multiple').submit();
 
-    })
+    });
+
+    $(function() {
+        $('#slct').change(function() {
+            this.form.submit();
+        });
+    });
 </script>
 <?php include ('footer.php')?>
