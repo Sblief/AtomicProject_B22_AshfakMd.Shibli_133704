@@ -23,11 +23,29 @@
     $totalItem = $newIndex->count();
 
     $totalPage = ceil($totalItem/$itemPerPage);
+    
+    
     $pagination = "";
     if(array_key_exists('pageNumber',$_GET)){
         $pageNumber = $_GET['pageNumber'];
     }
+    //coming from create page
+    else if(array_key_exists('totalPage',$_SESSION)){
+        $pageNumber = $_SESSION['totalPage'];
+        unset($_SESSION['totalPage']);
+    }
+    //coming from create page
     else $pageNumber = 1;
+
+//back to this page
+$pageNumberBack = $pageNumber;
+$totalPageBack = ceil(($totalItem-1)/$itemPerPage);
+if($totalPage == $pageNumber){
+    if($totalPageBack<$totalPage){
+        $pageNumberBack = $pageNumber-1;
+    }
+}
+//back to this page
 
     for($i=1;$i<=$totalPage;$i++){
         $active = ($pageNumber==$i)? "active":"";
@@ -36,6 +54,8 @@
 
     $pageStartFrom = $itemPerPage*($pageNumber-1);
     $list = $newIndex->paginator($pageStartFrom,$itemPerPage);
+
+
 
     if(!empty($list)){    //if the list of items is not empty the table will be shown, else a message that it is empty here.
 
@@ -95,9 +115,9 @@
             <td><?php echo $item->bookTitle ;?></td>
             <td>
                 <a href="view.php?id=<?php echo $item->ID ?>" ><button type="button" class="btn btn-info">View</button></a>
-                <a href="edit.php?id=<?php echo $item->ID ?>" ><button type="button" class="btn btn-info">Edit</button></a>
-                <a href="delete.php?id=<?php echo $item->ID ?>"  ><button type="button" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this item?');">Delete</button></a>
-                <a href="trash.php?id=<?php echo $item->ID ?>" ><button type="button" class="btn btn-warning">Trash</button>
+                <a href="edit.php?id=<?php echo $item->ID ?>&bringBackPage=<?php echo $pageNumber ?>" ><button type="button" class="btn btn-info">Edit</button></a>
+                <a href="delete.php?id=<?php echo $item->ID ?>&bringBackPage=<?php echo $pageNumberBack ?>"  ><button type="button" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this item?');">Delete</button></a>
+                <a href="trash.php?id=<?php echo $item->ID ?>&bringBackPage=<?php echo $pageNumberBack ?>" ><button type="button" class="btn btn-warning">Trash</button>
             </td>
         </tr>
         <?php }//end of foreach loop ?>
@@ -146,7 +166,9 @@
     </div>
     <!--    Pagination End              -->
 </div>
-<?php }
+<?php
+       // $_SESSION['currentPage'] = $pageNumber;
+    }
 else{
     echo "<div class='container' style='margin-top: 100px; margin-bottom: 350px'>
             <h1>Empty Index</h1>

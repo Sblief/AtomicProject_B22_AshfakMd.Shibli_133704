@@ -22,6 +22,7 @@
             <div class="form-group">
                 <label class="control-label col-sm-2"><?php Uses::siteKeyword() ?></label>
                 <div class="col-sm-6">
+                    <input type="hidden" name="bringBackPage" id="bringBackPage" value="<?php echo $_GET['bringBackPage']?>">
                     <input type="hidden" name="id" id="title" value="<?php echo $singleItem->ID ?>">
                     <input type="text" class="form-control" id="title" name="title" placeholder="Enter <?php Uses::siteKeyword() ?>" value="<?php echo $singleItem->bookTitle ?>" required>
                 </div>
