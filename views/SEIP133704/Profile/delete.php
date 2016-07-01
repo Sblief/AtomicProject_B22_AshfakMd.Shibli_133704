@@ -7,3 +7,4 @@
     $singleInfo = $profilePicture->prepare($_GET)->view();
     unlink($_SERVER['DOCUMENT_ROOT'].'/AtomicProjectB22_AshfakMd.Shibli_133704/resource/images/'.$singleInfo->images);
     $profilePicture->prepare($_GET)->delete();
+?>
