@@ -17,6 +17,7 @@ $singleInfo=$profilePicture->prepare($_GET)->view();
             <h2 style="padding-left: 80px; margin-bottom: 20px">
                 Edit Your <?php Uses::siteKeyword() ?>
             </h2>
+            <input type="hidden" name="bringBackPage" id="bringBackPage" value="<?php echo $_GET['bringBackPage']?>">
             <input type="hidden" name="id" value="<?php echo $singleInfo->id?>">
             <div class="form-group">
                 <label>Name:</label>

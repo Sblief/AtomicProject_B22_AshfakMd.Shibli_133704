@@ -94,7 +94,7 @@ if(!empty($list)){
                             <td><?php echo $items->date_of_birth ;?></td>
                             <td>
                                 <a href="recover.php?id=<?php echo $items->id ?>" ><button type="button" class="btn btn-warning">Recover</button>
-                                <a href="delete.php?id=<?php echo $items->ID ?>" ><button type="button" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this item?');">Delete</button>
+                                <a href="delete.php?id=<?php echo $items->ID ?>&fromtrash=true" ><button type="button" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this item?');">Delete</button>
                                     
                             </td>
                         </tr>

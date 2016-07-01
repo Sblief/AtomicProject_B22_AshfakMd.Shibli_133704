@@ -8,6 +8,8 @@ class Education
     public $id  = "";
     public $level = "";
     public $name = "";
+    public $pageNumber;
+    public $fromtrash = false;
 
     public $conn;
     public $dbName = "atomicprojectB22_133704";
@@ -55,6 +57,13 @@ class Education
         if(array_key_exists("id",$data)){
             $this->id = $data['id'];
 
+        }
+        if(array_key_exists("bringBackPage",$data)){
+            $this->pageNumber = $data['bringBackPage'];
+
+        }
+        if(array_key_exists("fromtrash",$data)){
+            $this->fromtrash = $data['fromtrash'];
         }
 
 
@@ -137,7 +146,7 @@ class Education
                         <script>
                             $('#message').show().delay(2000).fadeOut();
                         </script>");
-            Utility::redirect("index.php");
+            Utility::redirect("index.php?pageNumber=$this->pageNumber");
         }
         else {
             Message::message("
@@ -164,7 +173,8 @@ class Education
                         <script>
                             $('#message').show().delay(2000).fadeOut();
                         </script>");
-            Utility::redirect("index.php");
+            if($this->fromtrash==true) Utility::redirect("trashed.php");
+            else Utility::redirect("index.php?pageNumber=$this->pageNumber");
         }
         else {
             Message::message("
@@ -196,7 +206,7 @@ class Education
                         <script>
                             $('#message').show().delay(2000).fadeOut();
                         </script>");
-            Utility::redirect("index.php");
+            Utility::redirect("index.php?pageNumber=$this->pageNumber");
         }
         else {
             Message::message("

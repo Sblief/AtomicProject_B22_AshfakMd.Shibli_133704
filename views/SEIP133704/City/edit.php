@@ -24,6 +24,7 @@ use App\Bitm\SEIP133704\GlobalClasses\Utility;
             </h2>
             <div class="container">
                 <label for="name">Name: </label>
+                <input type="hidden" name="bringBackPage" id="bringBackPage" value="<?php echo $_GET['bringBackPage']?>">
                 <input id="name" type="text" name="name" placeholder="Your Name" value="<?php echo $singleItem->name ?>">
                 <input id="id" type="hidden" name="id"  value="<?php echo $singleItem->ID ?>">
             </div>

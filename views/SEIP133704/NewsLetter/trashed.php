@@ -98,7 +98,7 @@ if(!empty($list)){
                             <td><?php echo $emails->email_address ;?></td>
                             <td>
                                 <a href="recover.php?id=<?php echo $emails->ID ?>" ><button type="button" class="btn btn-warning">Recover</button>
-                                <a href="delete.php?id=<?php echo $emails->ID ?>" ><button type="button" class="btn btn-danger" id="delete">Delete</button>
+                                <a href="delete.php?id=<?php echo $emails->ID ?>&fromtrash=true" ><button type="button" class="btn btn-danger" id="delete" onclick="return confirm('Are you sure you want to delete these items?');">Delete</button>
                                     
                             </td>
                         </tr>

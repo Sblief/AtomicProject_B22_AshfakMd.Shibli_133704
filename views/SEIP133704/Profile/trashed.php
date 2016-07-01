@@ -102,7 +102,7 @@ if(!empty($list)){
                             <td>
                                 <a href="view.php?id=<?php echo $item->id ?>" ><button type="button" class="btn btn-info">View</button></a>
                                 <a href="recover.php?id=<?php echo $item->id ?>" ><button type="button" class="btn btn-warning">Recover</button>
-                                <a href="delete.php?id=<?php echo $item->id ?>" ><button type="button" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this item?');">Delete</button>
+                                <a href="delete.php?id=<?php echo $item->id ?>&fromtrash=true" ><button type="button" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this item?');">Delete</button>
                                     
                             </td>
                         </tr>

@@ -21,6 +21,7 @@
             <div class="form-group">
                 <div class="col-sm-6">
                     <label class="control-label">Enter Name</label>
+                    <input type="hidden" name="bringBackPage" id="bringBackPage" value="<?php echo $_GET['bringBackPage']?>">
                     <input type="hidden" name="id" id="title" value="<?php echo $singleItem->ID ?>">
                     <input type="text" class="form-control" id="email" name="name" placeholder="Enter Your Name" value="<?php echo $singleItem->name ?>" required>
                     <label class="control-label"><?php Uses::siteKeyword() ?></label>

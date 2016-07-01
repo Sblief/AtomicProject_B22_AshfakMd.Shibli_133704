@@ -97,7 +97,7 @@ if(!empty($list)){
                             <td><?php echo $emails->level ;?></td>
                             <td>
                                 <a href="recover.php?id=<?php echo $emails->id ?>" ><button type="button" class="btn btn-warning">Recover</button>
-                                <a href="delete.php?id=<?php echo $emails->id ?>" ><button type="button" class="btn btn-danger" id="delete" onclick="return confirm('Are you sure you want to delete this item?');">Delete</button>
+                                <a href="delete.php?id=<?php echo $emails->id ?>&fromtrash=true" ><button type="button" class="btn btn-danger" id="delete" onclick="return confirm('Are you sure you want to delete this item?');">Delete</button>
                                     
                             </td>
                         </tr>

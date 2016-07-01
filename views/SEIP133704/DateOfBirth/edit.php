@@ -23,6 +23,7 @@ use App\Bitm\SEIP133704\GlobalClasses\Utility;
             <div class="container-fluid">
                 <div class="col-sm-6">
                     <label class="control-label">Enter Name</label>
+                    <input type="hidden" name="bringBackPage" id="bringBackPage" value="<?php echo $_GET['bringBackPage']?>">
                     <input type="hidden" name="id" id="title" value="<?php echo $singleItem->id ?>">
                     <input  type="text" class="form-control" id="email" name="name" placeholder="Enter Your Name" value="<?php echo $singleItem->name ?>" required>
                     <label for="datepicker" class="control-label"><?php Uses::siteKeyword() ?></label>
