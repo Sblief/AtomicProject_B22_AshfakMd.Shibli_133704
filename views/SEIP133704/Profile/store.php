@@ -5,7 +5,7 @@ use App\Bitm\SEIP133704\Profile\Picture;
 use App\Bitm\SEIP133704\Profile\Uses;
 use App\Bitm\SEIP133704\GlobalClasses\Utility;
 
-$newIndex = new Book();
+$newIndex = new Picture();
 $itemPerPage = $_SESSION['itemPerPage'];
 $totalItem = $newIndex->count();
 $totalPage = ceil($totalItem/$itemPerPage);

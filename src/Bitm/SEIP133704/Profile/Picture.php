@@ -367,6 +367,21 @@ class Picture
 
     }
 
+    public function dataselected($IDs = "")
+    {
+        $_list = array();
+        $ids = implode(",",$IDs);
+        $query = "SELECT * FROM `".$this->tableName."` WHERE `".$this->tableColumn1."` IN (".$ids.")";
+        $result = mysqli_query($this->conn,$query);
+        if($result){
+            while ($row = mysqli_fetch_object($result)){
+                $_list[] = $row;
+            }
+        }
+        return $_list;
+
+    }
+
 
 
 }
