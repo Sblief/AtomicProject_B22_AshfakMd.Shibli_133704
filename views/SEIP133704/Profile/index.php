@@ -10,8 +10,7 @@ use App\Bitm\SEIP133704\Profile\Uses;
 
 
     $newIndex =  new Picture();
-
-
+    $activeItem = $newIndex->getActive();
     $tableColumn = array("SL","ID","User Name","Thumbnail","Action","","");
 
 if(array_key_exists('itemPerPage',$_SESSION)) {
@@ -64,7 +63,25 @@ if(!empty($list)){
 
     <?php if(array_key_exists('message',$_SESSION) && (!empty($_SESSION['message'])))
         echo Message::message() ;?>
+    <div class="col-sm-4 col-sm-offset-3">
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <h5>Active Profile Picture</h5>
+        </div>
+        <div class="panel-body">
+            <?php
+            if (is_null($activeItem)) echo ('<h4>There is no Active Profile Picture</h4>');
+            else{
+                ?>
+                <img src="../../../resource/images/<?php echo $activeItem->images; ?>" height="200px" width="250px">
+
+
+            <?php } ?>
+        </div>
+    </div>
+    </div>
     <!--    Show item per page Start-->
+    <div class="container">
     <form role="form">
         <div class="form-group">
             <label for="slct">Show
@@ -84,6 +101,7 @@ if(!empty($list)){
 
         </div>
     </form>
+    </div>
     <!--    Show item per page end-->
 
     <table class="table table-bordered table-responsive table-hover" >
@@ -109,6 +127,12 @@ if(!empty($list)){
             <td><?php echo $item->name ;?></td>
             <td><img src="../../../resource/images/<?php echo $item->images ;?>" height="50px" width="50px"></td>
             <td>
+                <?php
+                if(isset($activeItem) && ($activeItem->id == $item->id) ) {?>
+                    <a href="deactive.php?id=<?php echo $item->id ?>&bringBackPage=<?php echo $pageNumber ?>"> <button class="btn btn-danger">Make Deactive</button></a>
+                <?php } else { ?>
+                    <a href="active.php?id=<?php echo $item->id ?>&bringBackPage=<?php echo $pageNumber ?>"> <button class="btn btn-success">Make Active</button></a>
+                <?php } ?>
                 <a href="view.php?id=<?php echo $item->id ?>" ><button type="button" class="btn btn-info">View</button></a>
                 <a href="edit.php?id=<?php echo $item->id ?>&bringBackPage=<?php echo $pageNumber ?>" ><button type="button" class="btn btn-info">Edit</button></a>
                 <a href="delete.php?id=<?php echo $item->id ?>&bringBackPage=<?php echo $pageNumberBack ?>" ><button type="button" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this item?');">Delete</button>

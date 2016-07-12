@@ -22,6 +22,7 @@ class Picture
     public $tableColumn2 = "name";
     public $tableColumn3 = "images";
     public $tableColumn4 = "deleted_at";
+    public $tableColumn5 = "active";
     public $tableColumn4Input = NULL;
     
     
@@ -81,6 +82,7 @@ class Picture
                           $this->tableColumn2 varchar(255) ,
                           $this->tableColumn3 varchar(255) ,
                           $this->tableColumn4 varchar(255) NULL,
+                          $this->tableColumn5 varchar(255) NULL,
                           PRIMARY KEY  ($this->tableColumn1)
                           )";
             $resultCreateTable = mysqli_query($this->conn, $queryCreateTable);
@@ -132,7 +134,7 @@ class Picture
         $result= mysqli_query($this->conn,$query);
         $row= mysqli_fetch_object($result);
         return $row;
-    } //Return data array of selected id.
+    }//Return data array of selected id.
     
     public function update()
     {
@@ -380,6 +382,55 @@ class Picture
         }
         return $_list;
 
+    }
+
+
+    public function active()
+    {
+        $query="UPDATE `".$this->dbName."`.`".$this->tableName."` SET `".$this->tableColumn5."` = NULL ";
+        $result = mysqli_query($this->conn,$query);
+        
+        $active = time();
+        $query="UPDATE `".$this->dbName."`.`".$this->tableName."` SET `".$this->tableColumn5."` = '".$active."' WHERE `".$this->tableName."`.`".$this->tableColumn1."` = ".$this->id;
+        
+
+        $result = mysqli_query($this->conn,$query);
+        if($result){
+            Message::message("
+                        <div id=\"message\" class=\"alert alert-info\">
+                                <strong>Success!</strong> Activated Profile Picture 
+                        </div>
+                        <script>
+                            $('#message').show().delay(2000).fadeOut();
+                        </script>");
+            Utility::redirect("index.php?pageNumber=$this->pageNumber");
+        }
+    }
+    
+    public function deactive()
+    {
+        $query="UPDATE `".$this->dbName."`.`".$this->tableName."` SET `".$this->tableColumn5."` = NULL WHERE `".$this->tableName."`.`".$this->tableColumn1."` = ".$this->id;
+
+        $result = mysqli_query($this->conn,$query);
+        if($result){
+            Message::message("
+                        <div id=\"message\" class=\"alert alert-info\">
+                                <strong></strong> Deactivated Profile Picture 
+                        </div>
+                        <script>
+                            $('#message').show().delay(2000).fadeOut();
+                        </script>");
+            Utility::redirect("index.php?pageNumber=$this->pageNumber");
+        }
+    }
+
+    public function getActive()
+    {
+        $query = "SELECT * FROM $this->tableName WHERE `$this->tableColumn5` IS NOT NULL  ";
+        $result = mysqli_query($this->conn,$query);
+
+        $row = mysqli_fetch_object($result);
+        return $row;
     }
 
 
