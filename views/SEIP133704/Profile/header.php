@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="../../../resource/CustomDesign/css/style.css">
     <script src="../../../resource/bootstrap-3.3.6/js/bootstrap.min.js"></script>
     <script src="../../../resource/jquery/jquery-3.0.0.min.js"></script>
-    <title><?php Uses::siteName() ?></title>
+    <title><?php echo Uses::siteName() ?></title>
 
 </head>
 
@@ -52,7 +52,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.php"><?php Uses::siteName() ?></a>
+            <a class="navbar-brand" href="index.php"><?php echo Uses::siteName() ?></a>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav navbar-left">

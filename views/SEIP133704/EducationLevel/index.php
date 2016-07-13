@@ -58,13 +58,13 @@ if(!empty($list)){    //if the list of items is not empty the table will be show
 
     ?>
 <title>
-     <?php echo Uses::siteKeyword()  ?>
+     <?php  echo Uses::siteKeyword()  ?>
 </title>
 
 <div class="container">
 
 <div class="container-fluid form-inline" style="margin-top: 100px">
-    <h2><?php Uses::siteKeyword() ?> List</h2>
+    <h2><?php echo Uses::siteKeyword() ?> List</h2>
 
     <?php if(array_key_exists('message',$_SESSION) && (!empty($_SESSION['message'])))
         echo Message::message() ;?>

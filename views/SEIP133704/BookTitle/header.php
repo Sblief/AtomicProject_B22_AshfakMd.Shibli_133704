@@ -13,7 +13,7 @@ use App\Bitm\SEIP133704\BookTitle\Uses;
     <script src="../../../resource/jquery/1.12.0/jquery.min.js"></script>
     <script src="../../../resource/bootstrap-3.3.6/js/bootstrap.min.js"></script>
 
-    <title><?php Uses::siteName() ?></title>
+    <title><?php echo Uses::siteName() ?></title>
 
 </head>
 
@@ -54,7 +54,7 @@ use App\Bitm\SEIP133704\BookTitle\Uses;
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.php"><?php Uses::siteName() ?></a>
+            <a class="navbar-brand" href="index.php"><?php echo Uses::siteName() ?></a>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav navbar-left">

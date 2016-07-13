@@ -48,7 +48,7 @@ if(!empty($list)){
 
     
             <div class="container-fluid form-inline" style="margin-top: 100px">
-                <h2>Trashed <?php Uses::siteKeyword() ?> List</h2>
+                <h2>Trashed <?php echo Uses::siteKeyword() ?> List</h2>
 
                 <!--    Show item per page Start-->
                 <form role="form">

@@ -6,11 +6,11 @@ class Uses
 {
     public  static function siteName ()
     {
-        echo "Education";
+        return "Education";
     }
 
     public static function siteKeyword ()
     {
-        echo "Highest Level of Education";
+        return "Highest Level of Education";
     }
 }

@@ -8,14 +8,14 @@ $profilePicture= new Picture();
 $singleInfo=$profilePicture->prepare($_GET)->view();
 ?>
 <title>
-    <?php Uses::siteName() ?>
+    <?php echo Uses::siteName() ?>
 </title>
 <div class="container" style="margin-bottom: 250px; margin-top: 100px">
     <div class="container-fluid col-sm-6" >
 
         <form class="form-horizontal" role="form" method="post" style="margin-top: 100px" action="update.php" enctype="multipart/form-data">
             <h2 style="padding-left: 80px; margin-bottom: 20px">
-                Edit Your <?php Uses::siteKeyword() ?>
+                Edit Your <?php echo Uses::siteKeyword() ?>
             </h2>
             <input type="hidden" name="bringBackPage" id="bringBackPage" value="<?php echo $_GET['bringBackPage']?>">
             <input type="hidden" name="id" value="<?php echo $singleInfo->id?>">

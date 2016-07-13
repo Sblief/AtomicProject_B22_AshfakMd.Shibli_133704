@@ -23,13 +23,13 @@
     <p></p>
     <div class="container-viewport panel-default">
         <div class="panel-heading">
-            <?php Uses::siteKeyword() ?>
+            <?php echo Uses::siteKeyword() ?>
 
         </div>
         <div class="panel-body" style="margin-bottom: 88px">
             <ul class="list-group">
                 <li class="list-group-item">ID:   <?php echo $singleItem->ID?></li>
-                <li class="list-group-item"><?php Uses::siteKeyword() ?>:   <?php echo $singleItem->bookTitle?></li>
+                <li class="list-group-item"><?php echo Uses::siteKeyword() ?>:   <?php echo $singleItem->bookTitle?></li>
                 <li class="list-group-item"> </li>
                 <li class="list-group-item"> </li>
             </ul>

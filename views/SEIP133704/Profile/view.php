@@ -19,13 +19,13 @@ $singleItem  = $viewProfile->prepare($_GET)->view();
     <p></p>
     <div class="container-viewport panel-default">
         <div class="panel-heading">
-            <?php Uses::siteKeyword() ?>
+            <?php echo Uses::siteKeyword() ?>
 
         </div>
         <div class="panel-body" style="margin-bottom: 88px">
             <ul class="list-group">
                 <li class="list-group-item">ID:   <?php echo $singleItem->id?></li>
-                <li class="list-group-item"><?php Uses::siteKeyword() ?> of  <?php echo $singleItem->name?></li>
+                <li class="list-group-item"><?php echo Uses::siteKeyword() ?> of  <?php echo $singleItem->name?></li>
                 <li class="list-group-item"><img src="../../../resource/images/<?php echo $singleItem->images?>" width="500px" length="500" </li>
                 <li class="list-group-item"> </li>
             </ul>

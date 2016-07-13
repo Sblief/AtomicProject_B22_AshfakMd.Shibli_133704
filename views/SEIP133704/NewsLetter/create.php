@@ -5,7 +5,7 @@
 
 ?>
 <title>
-    <?php echo Uses::siteKeyword()  ?>
+    <?php  echo Uses::siteKeyword()  ?>
 </title>
 <div class="container">
     <div class="container-fluid" style="margin-bottom: 250px; margin-top: 100px">

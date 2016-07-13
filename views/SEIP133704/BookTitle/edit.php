@@ -10,21 +10,21 @@
 ?>
 
 <title>
-   <?php Uses::siteName() ?>
+   <?php echo Uses::siteName() ?>
 </title>
 <div class="container">
     <div class="container-fluid" style="margin-bottom: 250px; margin-top: 100px">
 
         <form class="form-horizontal" role="form" method="post" style="margin-top: 100px" action="update.php">
             <h2 style="padding-left: 80px; margin-bottom: 20px">
-                Edit Your <?php Uses::siteKeyword() ?>
+                Edit Your <?php echo Uses::siteKeyword() ?>
             </h2>
             <div class="form-group">
-                <label class="control-label col-sm-2"><?php Uses::siteKeyword() ?></label>
+                <label class="control-label col-sm-2"><?php echo Uses::siteKeyword() ?></label>
                 <div class="col-sm-6">
                     <input type="hidden" name="bringBackPage" id="bringBackPage" value="<?php echo $_GET['bringBackPage']?>">
                     <input type="hidden" name="id" id="title" value="<?php echo $singleItem->ID ?>">
-                    <input type="text" class="form-control" id="title" name="title" placeholder="Enter <?php Uses::siteKeyword() ?>" value="<?php echo $singleItem->bookTitle ?>" required>
+                    <input type="text" class="form-control" id="title" name="title" placeholder="Enter <?php echo Uses::siteKeyword() ?>" value="<?php echo $singleItem->bookTitle ?>" required>
                 </div>
             </div>
             <div class="form-group">

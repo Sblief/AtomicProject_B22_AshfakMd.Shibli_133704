@@ -6,11 +6,11 @@ class Uses
 {
     public  static function siteName ()
     {
-        echo "Hobbies";
+        return "Hobbies";
     }
 
     public static function siteKeyword ()
     {
-        echo "Hobby";
+        return "Hobby";
     }
 }

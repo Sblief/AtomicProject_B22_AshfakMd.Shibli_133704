@@ -13,7 +13,7 @@ use App\Bitm\SEIP133704\GlobalClasses\Utility;
 ?>
 <?php include "header.php" ?>
 <title>
-    <?php Uses::siteKeyword() ?>
+    <?php echo Uses::siteKeyword() ?>
 </title>
 <div class="container ">
     <div class="container-fluid col-sm-6" style="margin-bottom: 220px; margin-top: 90px">

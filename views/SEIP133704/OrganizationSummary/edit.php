@@ -11,14 +11,14 @@ use App\Bitm\SEIP133704\GlobalClasses\Message;
 ?>
 <?php include "header.php" ?>
 <title>
-    <?php Uses::siteKeyword() ?>
+    <?php echo Uses::siteKeyword() ?>
 </title>
 <div class="container">
     <div class="container-fluid" style="margin-bottom: 130px; margin-top: 100px; padding-left: 200px">
 
         <form class="form-horizontal" role="form" method="post" style="margin-top: 100px" action="update.php">
             <h2 style="padding-left: 80px; margin-bottom: 20px">
-                Edit Your <?php Uses::siteKeyword() ?>
+                Edit Your <?php echo Uses::siteKeyword() ?>
             </h2>
             <div class="form-group">
                 <div class="col-sm-6">
@@ -26,7 +26,7 @@ use App\Bitm\SEIP133704\GlobalClasses\Message;
                     <input type="hidden" name="bringBackPage" id="bringBackPage" value="<?php echo $_GET['bringBackPage']?>">
                     <input type="hidden" name="id" id="title" value="<?php echo $singleItem->id ?>">
                     <input type="text" class="form-control" id="org" name="name" placeholder="Enter Your Name" value="<?php echo $singleItem->name ?>" required>
-                    <label class="control-label"><?php Uses::siteKeyword() ?></label>
+                    <label class="control-label"><?php echo Uses::siteKeyword() ?></label>
                     <textarea  class="form-control" id="summary" name="summary" required> <?php echo $singleItem->summary ?> </textarea>
                 </div>
             </div>

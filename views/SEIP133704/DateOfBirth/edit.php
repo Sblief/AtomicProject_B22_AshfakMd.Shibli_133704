@@ -11,14 +11,14 @@ use App\Bitm\SEIP133704\GlobalClasses\Utility;
 ?>
 <?php include "header.php" ?>
 <title>
-    <?php Uses::siteKeyword() ?>
+    <?php echo Uses::siteKeyword() ?>
 </title>
 <div class="container">
     <div class="container-fluid" style="margin-bottom: 130px; margin-top: 100px; ">
 
         <form class="form-horizontal" role="form" method="post" style="margin-top: 100px" action="update.php">
             <h2 style="padding-left: 80px; margin-bottom: 20px">
-                Edit Your <?php Uses::siteKeyword() ?>
+                Edit Your <?php echo Uses::siteKeyword() ?>
             </h2>
             <div class="container-fluid">
                 <div class="col-sm-6">
@@ -26,7 +26,7 @@ use App\Bitm\SEIP133704\GlobalClasses\Utility;
                     <input type="hidden" name="bringBackPage" id="bringBackPage" value="<?php echo $_GET['bringBackPage']?>">
                     <input type="hidden" name="id" id="title" value="<?php echo $singleItem->id ?>">
                     <input  type="text" class="form-control" id="email" name="name" placeholder="Enter Your Name" value="<?php echo $singleItem->name ?>" required>
-                    <label for="datepicker" class="control-label"><?php Uses::siteKeyword() ?></label>
+                    <label for="datepicker" class="control-label"><?php echo Uses::siteKeyword() ?></label>
                     <input type="text" id="datepicker" name="birthday" placeholder="dd/mm/yyyy"  value="<?php echo $singleItem->date_of_birth ?>" required>
                     <button type="submit" class="btn btn-success col-sm-offset-10">Submit</button>
                 </div>

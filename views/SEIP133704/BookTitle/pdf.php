@@ -7,8 +7,15 @@ use App\Bitm\SEIP133704\BookTitle\Uses;
 
 $newPdf = new Book();
 $allItems = $newPdf->index();
+
+$tableColumn = array("SL","ID","Book Title","Action","","");
+$title =  Uses::siteName();
+$keyword =  Uses::siteKeyword();
+
+
 $tableDynamicData = "";
 $sl = 0;
+
 
 foreach ($allItems as $item ):
 $sl++;
@@ -21,9 +28,7 @@ $tableDynamicData .= "</tr>";
 endforeach;
 
 
-$tableColumn = array("SL","ID","Book Title","Action","","");
-$title = Uses::siteName();
-$keyword = Uses::siteKeyword();
+
 
 $html = <<<ATOMIC
 <!DOCTYPE html>
@@ -78,5 +83,5 @@ $mpdf = new mPDF();
 
 $mpdf->WriteHTML($html);
 
-$mpdf->Output('booklist.pdf','D');
+$mpdf->Output($title.'.pdf','D');
 

@@ -63,7 +63,7 @@ if($totalPage == $pageNumber){
 <div class="container" >
 
 <div class="container-fluid form-inline"  style="margin-top: 100px">
-    <h2><?php Uses::siteKeyword() ?> List</h2>
+    <h2><?php echo Uses::siteKeyword() ?> List</h2>
 
     <?php if(array_key_exists('message',$_SESSION) && (!empty($_SESSION['message'])))
         echo Message::message() ;  // if the session variable is not empty then it contains a message. so,the message is echoed.?>

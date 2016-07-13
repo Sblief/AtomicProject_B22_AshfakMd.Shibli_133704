@@ -13,11 +13,11 @@ class Uses
 {
     public  static function siteName ()
     {
-        echo "NewsLetter";
+        return "NewsLetter";
     }
 
     public static function siteKeyword ()
     {
-        echo "Email Address";
+        return "Email Address";
     }
 }
