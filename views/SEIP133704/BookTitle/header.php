@@ -10,8 +10,9 @@ use App\Bitm\SEIP133704\BookTitle\Uses;
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../../../resource/bootstrap-3.3.6/css/bootstrap.min.css">
     <link rel="stylesheet" href="../../../resource/CustomDesign/css/style.css">
+    <script src="../../../resource/jquery/1.12.0/jquery.min.js"></script>
     <script src="../../../resource/bootstrap-3.3.6/js/bootstrap.min.js"></script>
-    <script src="../../../resource/jquery/jquery-3.0.0.min.js"></script>
+
     <title><?php Uses::siteName() ?></title>
 
 </head>
@@ -23,9 +24,9 @@ use App\Bitm\SEIP133704\BookTitle\Uses;
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar1">
                 <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
+
             </button>
+
         </div>
         <div class="collapse navbar-collapse" id="myNavbar1">
             <ul class="nav navbar-nav navbar-left nav-tabs">
@@ -60,11 +61,19 @@ use App\Bitm\SEIP133704\BookTitle\Uses;
                 <li><a href="index.php">HOME</a></li>
                 <li><a href="create.php">ADD</a></li>
                 <li><a href="trashed.php">TRASH</a></li>
-            </ul>
+                <li><a href="#" class="dropdown-toggle"  data-toggle="dropdown">Download/Send
+                        <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="pdf.php">PDF</a></li>
+                        <li><a href="excel.php">Excel</a></li>
+                        <li><a href="sendmail.php">Send to Email</a></li>
+                    </ul>
+                </li>
+
+
         </div>
+
     </div>
 </nav>
-<!--Navigation bar end-->
-</body>
 
-</html>
+<!--Navigation bar end-->
