@@ -61,17 +61,9 @@ use App\Bitm\SEIP133704\BookTitle\Uses;
                 <li><a href="index.php">HOME</a></li>
                 <li><a href="create.php">ADD</a></li>
                 <li><a href="trashed.php">TRASH</a></li>
-                <li><a href="#" class="dropdown-toggle"  data-toggle="dropdown">Download/Send
-                        <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="pdf.php">PDF</a></li>
-                        <li><a href="excel.php">Excel</a></li>
-                        <li><a href="sendmail.php">Send to Email</a></li>
-                    </ul>
-                </li>
-
-
+            </ul>
         </div>
+        
 
     </div>
 </nav>

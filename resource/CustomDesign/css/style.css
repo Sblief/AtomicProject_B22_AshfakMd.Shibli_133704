@@ -1,5 +1,21 @@
+#download{
+    margin-top: 20px;
+}
+.modal {
+    position: absolute;
+    top: 15%;
+    right: 100px;
+    bottom: 0;
+    left: 0;
+    z-index: 10040;
+    overflow: auto;
+    overflow-y: auto;
+}
+
+
 .dropdown-menu {
-    background-color: #39554d;
+    background-color: #87c5b7;
+
 }
 
 table {

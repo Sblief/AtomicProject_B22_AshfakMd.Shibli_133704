@@ -193,7 +193,7 @@ $mail->Password = "emon744254";
 //Set who the message is to be sent from
 $mail->setFrom('atomicproject@shibliemon.com', 'Ashfak Md. Shibli');
 //Set an alternative reply-to address
-$mail->addReplyTo('shibli.emon@gmail.com', 'Hello');
+$mail->addReplyTo('shibli.emon@gmail.com', 'First Last');
 //Set who the message is to be sent to
 $mail->addAddress($email, $name);
 //Set the subject line

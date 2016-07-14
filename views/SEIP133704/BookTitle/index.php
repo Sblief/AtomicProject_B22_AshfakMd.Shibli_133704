@@ -11,6 +11,8 @@
     $newIndex =  new Book();   // Made an object of class
     //Utility::d($_SESSION); //Utility static class an d method called for debugging a variable.
 
+    
+
     $tableColumn = array("SL","ID","Book Title","Action","","");  //Table column heads are taken in an array to change easily
 
     if(array_key_exists('itemPerPage',$_SESSION)) {
@@ -60,15 +62,90 @@ if($totalPage == $pageNumber){
     if(!empty($list)){    //if the list of items is not empty the table will be shown, else a message that it is empty here.
 
 ?>
+<!--       Send Mail Modal Start-->
 <div class="container" >
+    <div id="form-content" class="modal fade in " >
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <a class="close" data-dismiss="modal">×</a>
+                    <h3>Send via Email</h3>
+                </div>
+                <form class="contact" name="contact">
+        <div class="modal-body">
+            <div class="container-fluid">
+                <div class="container-fluid col-sm-6">
+                    <input type="number" class="form-control hidden" name="id" placeholder="Enter ID" id="getId">
+                    <label class="control-label">Recipients name</label>
+                    <input type="text" class="form-control"  name="receiverName" placeholder="Enter Name" required>
+                    <label class="control-label">Recipients Email</label>
+                    <input type="email" class="form-control"  name="receiverEmail" placeholder="Email Address" required>
 
-<div class="container-fluid form-inline"  style="margin-top: 100px">
-    <h2><?php echo Uses::siteKeyword() ?> List</h2>
+                </div>
 
-    <?php if(array_key_exists('message',$_SESSION) && (!empty($_SESSION['message'])))
+            </div>
+        </div>
+                <div class="modal-footer">
+                    <img hidden src="../../../resource/CustomDesign/image/hourglass (1).gif" id="loading-image">
+                    <a class="btn btn-success " id="submit" type="submit">Send</a>
+                    <a href="#" class="btn btn-danger" data-dismiss="modal" id="cancel">Cancel</a>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+<!--  Send Mail  Modal End       -->
+<!--    Confirm-Delete Modal Start-->
+    <div class="modal fade in" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                   <p>Once Deleted it cannot be undone. It's safer to trash.</p>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure want to Delete?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-danger btn-ok">Delete</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--    Confirm-Delete Modal End-->
+
+
+
+    <div class="container-fluid"  style="margin-top: 100px">
+        
+        <div class="container-fluid">
+            <div class="col-sm-3">
+                <h2><?php echo Uses::siteKeyword() ?> List</h2>
+            </div>
+<!--            Download button-->
+            <div id="download" class="col-sm-9">
+                <a href="#" class="dropdown-toggle"  data-toggle="dropdown"><button class="btn btn-info"> Download/Send  <span class="caret"></span></button></a>
+                <ul class="dropdown-menu">
+                    <li><a href="pdf.php">Download as PDF</a></li>
+                    <li role="presentation" class="divider"></li>
+                    <li><a href="excel.php">Download as Excel</a></li>
+                    <li role="presentation" class="divider"></li>
+                    <li><a data-toggle="modal" href="#form-content">Send to a Friend</a></li>
+
+                </ul>
+            </div>
+            <!--            Download button          -->
+            
+        </div>
+<!--        Message Area-->
+    <div id="msg"><?php if(array_key_exists('message',$_SESSION) && (!empty($_SESSION['message'])))
         echo Message::message() ;  // if the session variable is not empty then it contains a message. so,the message is echoed.?>
-
+    </div>
+        <!--        Message Area-->
+        
         <!--    Show item per page Start-->
+
+        <div class="form-inline">
             <form role="form">
                 <div class="form-group">
                     <label for="slct">Show
@@ -87,6 +164,8 @@ if($totalPage == $pageNumber){
 
                 </div>
             </form>
+        </div>
+
     <!--    Show item per page end-->
 
            <!--    Table Start-->
@@ -116,8 +195,14 @@ if($totalPage == $pageNumber){
             <td>
                 <a href="view.php?id=<?php echo $item->ID ?>" ><button type="button" class="btn btn-info">View</button></a>
                 <a href="edit.php?id=<?php echo $item->ID ?>&bringBackPage=<?php echo $pageNumber ?>" ><button type="button" class="btn btn-info">Edit</button></a>
-                <a href="delete.php?id=<?php echo $item->ID ?>&bringBackPage=<?php echo $pageNumberBack ?>"  ><button type="button" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this item?');">Delete</button></a>
+<!--                Delete Button by Modal-->
+                <a href="#" data-href="delete.php?id=<?php echo $item->ID ?>&bringBackPage=<?php echo $pageNumberBack ?>"  data-toggle="modal" data-target="#confirm-delete" >
+                    <button type="button" class="btn btn-danger" >Delete</button></a>
+<!--                Delete Button by Modal-->
                 <a href="trash.php?id=<?php echo $item->ID ?>&bringBackPage=<?php echo $pageNumberBack ?>" ><button type="button" class="btn btn-warning">Trash</button>
+<!--                 Send email single Item by Modal-->
+                <a data-toggle="modal" data-target="#form-content" data-id="<?php echo $item->ID ?>" class="dialog"><button type="button" class="btn btn-success">Send Item to Friend</button>
+<!--                 Send email single Item by Modal-->   
             </td>
         </tr>
         <?php }//end of foreach loop ?>
@@ -178,10 +263,55 @@ else{
 }//end of if..else
 ?>
 <script>
+    $('#confirm-delete').on('show.bs.modal', function(e) {
+        $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+    });
     $(function() {
         $('#slct').change(function() {
             this.form.submit();
         });
+    });
+    $(document).on("click", ".dialog", function () {
+        var ID = $(this).data('id');
+        $(".modal-body #getId").val( ID );
+    });
+
+    $(document).ready(function () {
+        $("a#submit").click(function(){
+
+            $(this).toggleClass('active');
+            $.ajax({
+                type: "POST",
+                url: "sendmail.php", //process to mail
+                data: $('form.contact').serialize(),
+                beforeSend: function(){
+                    $('img#loading-image').show();
+                    $('a#submit').hide();
+                },
+                success: function(msg){
+                    $("#msg").html("<div id=\"message\" class=\"alert alert-info\"> <strong>Success!</strong> Data has been sent successfully.</div> ");
+                    $('#message').show().delay(2000).fadeOut();
+                    $("#form-content").modal('hide'); //hide popup
+                },
+                complete: function(){
+                    $('img#loading-image').hide();
+                    $('a#submit').show();
+                    $(".contact")[0].reset();
+
+                },
+                error: function(){
+                    $("#msg").html("<div id=\"message\" class=\"alert alert-danger\"> <strong>Failure!</strong> Data has not been sent successfully.</div> ");
+                    $('#message').show().delay(2000).fadeOut();
+                    $("#form-content").modal('hide'); //hide popup
+                }
+            });
+
+        });
+        $("a#cancel").click(function(){
+            $(".contact")[0].reset();
+        });
+
+
     });
 </script>
 
