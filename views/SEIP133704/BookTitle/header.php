@@ -11,6 +11,7 @@ use App\Bitm\SEIP133704\BookTitle\Uses;
     <link rel="stylesheet" href="../../../resource/bootstrap-3.3.6/css/bootstrap.min.css">
     <link rel="stylesheet" href="../../../resource/CustomDesign/css/style.css">
     <script src="../../../resource/jquery/1.12.0/jquery.min.js"></script>
+    <script src="../../../resource/jquery/jquery.validate.js"></script>
     <script src="../../../resource/bootstrap-3.3.6/js/bootstrap.min.js"></script>
 
     <title><?php echo Uses::siteName() ?></title>
@@ -61,6 +62,10 @@ use App\Bitm\SEIP133704\BookTitle\Uses;
                 <li><a href="index.php">HOME</a></li>
                 <li><a href="create.php">ADD</a></li>
                 <li><a href="trashed.php">TRASH</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><input class="input-lg" type="text" id="search" placeholder="Search"></li>
+
             </ul>
         </div>
         

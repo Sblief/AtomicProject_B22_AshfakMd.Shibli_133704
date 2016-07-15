@@ -64,6 +64,7 @@ if($totalPage == $pageNumber){
 ?>
 <!--       Send Mail Modal Start-->
 <div class="container" >
+
     <div id="form-content" class="modal fade in " >
         <div class="modal-dialog">
             <div class="modal-content">
@@ -94,6 +95,7 @@ if($totalPage == $pageNumber){
             </div>
         </div>
     </div>
+
 <!--  Send Mail  Modal End       -->
 <!--    Confirm-Delete Modal Start-->
     <div class="modal fade in" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -278,8 +280,6 @@ else{
 
     $(document).ready(function () {
         $("a#submit").click(function(){
-
-            $(this).toggleClass('active');
             $.ajax({
                 type: "POST",
                 url: "sendmail.php", //process to mail
@@ -288,7 +288,7 @@ else{
                     $('img#loading-image').show();
                     $('a#submit').hide();
                 },
-                success: function(msg){
+                success: function(){
                     $("#msg").html("<div id=\"message\" class=\"alert alert-info\"> <strong>Success!</strong> Data has been sent successfully.</div> ");
                     $('#message').show().delay(2000).fadeOut();
                     $("#form-content").modal('hide'); //hide popup
