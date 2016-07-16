@@ -8,6 +8,7 @@ class Summary
 {
     public $id  = "";
     public $summary = "";
+    public $summaryNoTag = "";
     public $name = "";
     public $pageNumber;
     public $fromtrash = false;
@@ -21,8 +22,9 @@ class Summary
     public $tableColumn1 = "id";
     public $tableColumn2 = "name";
     public $tableColumn3 = "summary";
-    public $tableColumn4 = "deleted_at";
-    public $tableColumn4Input = NULL;
+    public $tableColumn4 = "summaryTagRemoved";
+    public $tableColumn5 = "deleted_at";
+    public $tableColumn5Input = NULL;
 
     public $created = "";
     public $created_by = "";
@@ -49,6 +51,7 @@ class Summary
     {
         if(array_key_exists("summary",$data)){
             $this->summary = $data['summary'];
+            $this->summaryNoTag = strip_tags($this->summary);
 
         }
         if(array_key_exists("name",$data)){
@@ -78,14 +81,19 @@ class Summary
             $queryCreateTable = "CREATE TABLE $this->tableName (
                           $this->tableColumn1 int(11) AUTO_INCREMENT,
                           $this->tableColumn2 varchar(255),
-                          $this->tableColumn3 varchar(255),
-                          $this->tableColumn4 varchar(255) NULL,
+                          $this->tableColumn3 text,
+                          $this->tableColumn4 text,
+                          $this->tableColumn5 varchar(255) NULL,
                           PRIMARY KEY  ($this->tableColumn1)
                           )";
             $resultCreateTable = mysqli_query($this->conn, $queryCreateTable);
         }
-        $queryInsert = "INSERT INTO `".$this->dbName."`.`".$this->tableName."` ( `".$this->tableColumn2."`,`".$this->tableColumn3."`) VALUES ( '".$this->name."','".$this->summary."')";
+
+        $queryInsert = "INSERT INTO `".$this->dbName."`.`".$this->tableName."` ( `".$this->tableColumn2."`,`".$this->tableColumn3."` ,`".$this->tableColumn4."`) VALUES ( '".$this->name."','".$this->summary."' ,'".$this->summaryNoTag."')";
         $resultInsert=mysqli_query($this->conn,$queryInsert);
+
+
+
         if($resultInsert){
             Message::message("
                         <div id=\"message\" class=\"alert alert-info\">
@@ -113,7 +121,7 @@ class Summary
     public function index()
     {
         $_list =  array();
-        $query = "SELECT * FROM $this->tableName WHERE `$this->tableColumn4` IS NULL ";
+        $query = "SELECT * FROM $this->tableName WHERE `$this->tableColumn5` IS NULL ";
         $result =  mysqli_query($this->conn,$query);
         if($result){
             while($row = mysqli_fetch_object($result)){
@@ -133,7 +141,7 @@ class Summary
     }
     public function update()
     {
-        $query="UPDATE `".$this->dbName."`.`".$this->tableName."` SET `".$this->tableColumn2."` = '".$this->name."',`".$this->tableColumn3."` = '".$this->summary."' WHERE `".$this->tableName."`.`".$this->tableColumn1."` = ".$this->id;
+        $query="UPDATE `".$this->dbName."`.`".$this->tableName."` SET `".$this->tableColumn2."` = '".$this->name."',`".$this->tableColumn3."` = '".$this->summary."' ,`".$this->tableColumn4."` = '".$this->summaryNoTag."' WHERE `".$this->tableName."`.`".$this->tableColumn1."` = ".$this->id;
       
         $result=mysqli_query($this->conn,$query);
         if($result){
@@ -191,8 +199,8 @@ class Summary
 
     public function trash()
     {
-        $this->tableColumn4Input = time();
-        $query="UPDATE `".$this->dbName."`.`".$this->tableName."` SET `".$this->tableColumn4."` = ".$this->tableColumn4Input." WHERE `".$this->tableName."`.`".$this->tableColumn1."` = ".$this->id;
+        $this->tableColumn5Input = time();
+        $query="UPDATE `".$this->dbName."`.`".$this->tableName."` SET `".$this->tableColumn5."` = ".$this->tableColumn5Input." WHERE `".$this->tableName."`.`".$this->tableColumn1."` = ".$this->id;
        
 
         $result=mysqli_query($this->conn,$query);
@@ -220,7 +228,7 @@ class Summary
     public function trashed()
     {
         $_list =  array();
-        $query = "SELECT * FROM $this->tableName WHERE `$this->tableColumn4` IS NOT NULL ";
+        $query = "SELECT * FROM $this->tableName WHERE `$this->tableColumn5` IS NOT NULL ";
         $result =  mysqli_query($this->conn,$query);
         if($result){
             while($row = mysqli_fetch_object($result)){
@@ -232,7 +240,7 @@ class Summary
     }
     public function recover()
     {
-        $query="UPDATE `".$this->dbName."`.`".$this->tableName."` SET `".$this->tableColumn4."` = NULL WHERE `".$this->tableName."`.`".$this->tableColumn1."` = ".$this->id;
+        $query="UPDATE `".$this->dbName."`.`".$this->tableName."` SET `".$this->tableColumn5."` = NULL WHERE `".$this->tableName."`.`".$this->tableColumn1."` = ".$this->id;
         $result=mysqli_query($this->conn,$query);
         if($result){
             Message::message("
@@ -260,7 +268,7 @@ class Summary
     {
         if (is_array($IDs) && count($IDs) > 0) {
             $ids = implode(",",$IDs);
-            $query = "UPDATE `" . $this->dbName . "`.`" . $this->tableName . "` SET `" . $this->tableColumn4 . "` = NULL WHERE `" . $this->tableName . "`.`" . $this->tableColumn1 . "` IN (" . $ids. ")";
+            $query = "UPDATE `" . $this->dbName . "`.`" . $this->tableName . "` SET `" . $this->tableColumn5 . "` = NULL WHERE `" . $this->tableName . "`.`" . $this->tableColumn1 . "` IN (" . $ids. ")";
             $result = mysqli_query($this->conn, $query);
             if ($result) {
                 Message::message("
@@ -312,20 +320,20 @@ class Summary
         }
     }
     public function count(){
-        $query="SELECT COUNT(*) AS totalItem FROM `".$this->dbName."`.`".$this->tableName."` WHERE `".$this->tableColumn4."` is NULL";
+        $query="SELECT COUNT(*) AS totalItem FROM `".$this->dbName."`.`".$this->tableName."` WHERE `".$this->tableColumn5."` is NULL";
         $result=mysqli_query($this->conn,$query);
         if($result)  $row= mysqli_fetch_assoc($result);
         return $row['totalItem'];
     }
     public function countTrash(){
-        $query="SELECT COUNT(*) AS totalItem FROM `".$this->dbName."`.`".$this->tableName."` WHERE `".$this->tableColumn4."` is NOT NULL";
+        $query="SELECT COUNT(*) AS totalItem FROM `".$this->dbName."`.`".$this->tableName."` WHERE `".$this->tableColumn5."` is NOT NULL";
         $result=mysqli_query($this->conn,$query);
         if($result)  $row= mysqli_fetch_assoc($result);
         return $row['totalItem'];
     }
     public function paginator($pageStartFrom=0,$limit=5){
         $_list = array();
-        $query="SELECT * FROM `".$this->tableName."` WHERE `".$this->tableColumn4."` is NULL ORDER BY `".$this->tableColumn1."` ASC LIMIT ".$pageStartFrom.", ".$limit ;
+        $query="SELECT * FROM `".$this->tableName."` WHERE `".$this->tableColumn5."` is NULL ORDER BY `".$this->tableColumn1."` ASC LIMIT ".$pageStartFrom.", ".$limit ;
         $result = mysqli_query($this->conn, $query);
         if ($result){
             while ($row = mysqli_fetch_object($result)) {
@@ -339,7 +347,7 @@ class Summary
     }
     public function paginatorTrash($pageStartFrom=0,$limit=5){
         $_list = array();
-        $query="SELECT * FROM `".$this->tableName."` WHERE `".$this->tableColumn4."` is NOT NULL ORDER BY `".$this->tableColumn1."` ASC LIMIT ".$pageStartFrom.", ".$limit ;
+        $query="SELECT * FROM `".$this->tableName."` WHERE `".$this->tableColumn5."` is NOT NULL ORDER BY `".$this->tableColumn1."` ASC LIMIT ".$pageStartFrom.", ".$limit ;
         $result = mysqli_query($this->conn, $query);
         if ($result){
             while ($row = mysqli_fetch_object($result)) {
