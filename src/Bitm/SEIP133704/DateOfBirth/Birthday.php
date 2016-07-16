@@ -13,10 +13,10 @@ class Birthday
     public $fromtrash = false;
 
     public $conn;
-    public $dbName = "atomicprojectB22_133704";
-    public $user = "root";
+    public $dbName = "shibli_atomicprojectB22_133704";
+    public $user = "shibli_atomic";
     public $host = "localhost";
-    public $password = "";
+    public $password = "atomic744254";
     public $tableName = "birthday"; //Don't Change this. It will make data missing.
     public $tableColumn1 = "id";
     public $tableColumn2 = "name";

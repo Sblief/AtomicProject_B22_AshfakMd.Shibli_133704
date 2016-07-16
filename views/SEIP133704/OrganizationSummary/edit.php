@@ -20,18 +20,17 @@ use App\Bitm\SEIP133704\GlobalClasses\Message;
             <h2 style="padding-left: 80px; margin-bottom: 20px">
                 Edit Your <?php echo Uses::siteKeyword() ?>
             </h2>
-            <div class="form-group">
+            <div class="container-fluid">
                 <div class="col-sm-6">
-                    <label class="control-label">Enter Name</label>
                     <input type="hidden" name="bringBackPage" id="bringBackPage" value="<?php echo $_GET['bringBackPage']?>">
                     <input type="hidden" name="id" id="title" value="<?php echo $singleItem->id ?>">
-                    <input type="text" class="form-control" id="org" name="name" placeholder="Enter Your Name" value="<?php echo $singleItem->name ?>" required>
-                    <label class="control-label"><?php echo Uses::siteKeyword() ?></label>
-                    <textarea  class="form-control" id="summary" name="summary" required> <?php echo $singleItem->summary ?> </textarea>
+                    <label class="control-label"> Organization name</label>
+                    <input type="text" class="form-control" id="title" name="name" placeholder="Enter Your Organization Name" value="<?php echo $singleItem->name ?>" required>
                 </div>
-            </div>
-            <div class="form-group">
+                <div class="col-sm-6"></div>
                 <div class="container">
+                    <label class="control-label"><?php echo Uses::siteKeyword() ?></label>
+                    <textarea  class="form-control" id="summary" name="summary" placeholder="Enter Your <?php echo Uses::siteKeyword()  ?>" required><?php echo $singleItem->summary ?></textarea>
                     <button type="submit" class="btn btn-success">Submit</button>
                 </div>
             </div>
@@ -39,5 +38,25 @@ use App\Bitm\SEIP133704\GlobalClasses\Message;
         </form>
     </div>
 </div>
+<script>
+    tinymce.init({
+        selector: 'textarea',
+        height: 500,
+        theme: 'modern',
+        plugins: [
+            'advlist autolink lists link image charmap print preview hr anchor pagebreak',
+            'searchreplace wordcount visualblocks visualchars code fullscreen',
+            'insertdatetime media nonbreaking save table contextmenu directionality',
+            'emoticons template paste textcolor colorpicker textpattern imagetools'
+        ],
+        toolbar1: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+        toolbar2: 'print preview media | forecolor backcolor emoticons',
+        image_advtab: true,
+        content_css: [
+            '//fonts.googleapis.com/css?family=Lato:300,300i,400,400i',
+            '//www.tinymce.com/css/codepen.min.css'
+        ]
+    });
+</script>
 <?php include "footer.php"?>
 

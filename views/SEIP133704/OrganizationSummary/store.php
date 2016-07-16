@@ -6,7 +6,7 @@ use App\Bitm\SEIP133704\OrganizationSummary\Uses;
 use App\Bitm\SEIP133704\GlobalClasses\Utility;
 use App\Bitm\SEIP133704\GlobalClasses\Message;
 
-$newIndex = new Book();
+$newIndex = new Summary();
 $itemPerPage = $_SESSION['itemPerPage'];
 $totalItem = $newIndex->count();
 $totalPage = ceil($totalItem/$itemPerPage);

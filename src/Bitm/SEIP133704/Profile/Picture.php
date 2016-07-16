@@ -13,10 +13,10 @@ class Picture
     public $fromtrash = false;
 
     public $conn;
-    public $dbName = "atomicprojectB22_133704";
-    public $user = "root";
+    public $dbName = "shibli_atomicprojectB22_133704";
+    public $user = "shibli_atomic";
     public $host = "localhost";
-    public $password = "";
+    public $password = "atomic744254";
     public $tableName = "profilepicture"; //Don't Change this. It will make data missing.
     public $tableColumn1 = "id";
     public $tableColumn2 = "name";
@@ -24,8 +24,8 @@ class Picture
     public $tableColumn4 = "deleted_at";
     public $tableColumn5 = "active";
     public $tableColumn4Input = NULL;
-    
-    
+
+
 
     public $created = "";
     public $created_by = "";
@@ -135,7 +135,7 @@ class Picture
         $row= mysqli_fetch_object($result);
         return $row;
     }//Return data array of selected id.
-    
+
     public function update()
     {
         if(!empty($this->image_name)){
@@ -169,7 +169,7 @@ class Picture
             Utility::redirect("index.php");
         }
     } //Update data in the database.
-    
+
     public function delete()
     {
 
@@ -207,7 +207,7 @@ class Picture
     {
         $this->tableColumn4Input = time();
         $query="UPDATE `".$this->dbName."`.`".$this->tableName."` SET `".$this->tableColumn4."` = ".$this->tableColumn4Input." WHERE `".$this->tableName."`.`".$this->tableColumn1."` = ".$this->id;
-       
+
 
         $result=mysqli_query($this->conn,$query);
         if($result){
@@ -231,7 +231,7 @@ class Picture
             Utility::redirect("index.php");
         }
     } //Trash data by setting deleted_at field some value.
-    
+
     public function trashed()
     {
         $_list =  array();
@@ -245,7 +245,7 @@ class Picture
         return $_list;
 
     }//Returns data array which deleted_at field have some value. i.e. Trashed data.
-    
+
     public function recover()
     {
         $query="UPDATE `".$this->dbName."`.`".$this->tableName."` SET `".$this->tableColumn4."` = NULL WHERE `".$this->tableName."`.`".$this->tableColumn1."` = ".$this->id;
@@ -389,10 +389,10 @@ class Picture
     {
         $query="UPDATE `".$this->dbName."`.`".$this->tableName."` SET `".$this->tableColumn5."` = NULL ";
         $result = mysqli_query($this->conn,$query);
-        
+
         $active = time();
         $query="UPDATE `".$this->dbName."`.`".$this->tableName."` SET `".$this->tableColumn5."` = '".$active."' WHERE `".$this->tableName."`.`".$this->tableColumn1."` = ".$this->id;
-        
+
 
         $result = mysqli_query($this->conn,$query);
         if($result){
@@ -406,7 +406,7 @@ class Picture
             Utility::redirect("index.php?pageNumber=$this->pageNumber");
         }
     }
-    
+
     public function deactive()
     {
         $query="UPDATE `".$this->dbName."`.`".$this->tableName."` SET `".$this->tableColumn5."` = NULL WHERE `".$this->tableName."`.`".$this->tableColumn1."` = ".$this->id;
@@ -426,10 +426,12 @@ class Picture
 
     public function getActive()
     {
+        $row = "";
         $query = "SELECT * FROM $this->tableName WHERE `$this->tableColumn5` IS NOT NULL  ";
         $result = mysqli_query($this->conn,$query);
-
-        $row = mysqli_fetch_object($result);
+        if($result) {
+            $row = mysqli_fetch_object($result);
+        }
         return $row;
     }
 

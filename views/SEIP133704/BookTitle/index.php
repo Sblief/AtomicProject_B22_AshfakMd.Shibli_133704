@@ -87,9 +87,9 @@ if($totalPage == $pageNumber){
             </div>
         </div>
                 <div class="modal-footer">
-                    <img hidden src="../../../resource/CustomDesign/image/hourglass (1).gif" id="loading-image">
+                    <label id="loading-image" hidden><img  src="../../../resource/CustomDesign/image/hourglass (1).gif" >Please wait we are sending your email...</label>
                     <a class="btn btn-success " id="submit" type="submit">Send</a>
-                    <a href="#" class="btn btn-danger" data-dismiss="modal" id="cancel">Cancel</a>
+                    <button href="#" class="btn btn-danger" data-dismiss="modal" id="cancel">Cancel</button>
                 </div>
                 </form>
             </div>
@@ -279,13 +279,16 @@ else{
     });
 
     $(document).ready(function () {
+
         $("a#submit").click(function(){
+
+            $(this).toggleClass('active');
             $.ajax({
                 type: "POST",
                 url: "sendmail.php", //process to mail
                 data: $('form.contact').serialize(),
                 beforeSend: function(){
-                    $('img#loading-image').show();
+                    $('label#loading-image').show();
                     $('a#submit').hide();
                 },
                 success: function(){
@@ -294,7 +297,7 @@ else{
                     $("#form-content").modal('hide'); //hide popup
                 },
                 complete: function(){
-                    $('img#loading-image').hide();
+                    $('label#loading-image').hide();
                     $('a#submit').show();
                     $(".contact")[0].reset();
 
@@ -307,12 +310,14 @@ else{
             });
 
         });
-        $("a#cancel").click(function(){
+        $("button#cancel").click(function(){
             $(".contact")[0].reset();
         });
+        
 
 
     });
+
 </script>
 
 <?php include "footer.php"?>

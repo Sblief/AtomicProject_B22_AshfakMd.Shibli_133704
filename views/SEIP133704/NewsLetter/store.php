@@ -4,7 +4,7 @@ include_once ("../../../vendor/autoload.php");
 use App\Bitm\SEIP133704\NewsLetter\Email;
 use App\Bitm\SEIP133704\GlobalClasses\Utility;
 
-$newIndex = new Book();
+$newIndex = new Email();
 $itemPerPage = $_SESSION['itemPerPage'];
 $totalItem = $newIndex->count();
 $totalPage = ceil($totalItem/$itemPerPage);

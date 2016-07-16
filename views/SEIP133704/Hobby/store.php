@@ -5,7 +5,7 @@ use App\Bitm\SEIP133704\Hobby\Hobby;
 use App\Bitm\SEIP133704\GlobalClasses\Utility;
 use App\Bitm\SEIP133704\Hobby\Uses;
 
-$newIndex = new Book();
+$newIndex = new Hobby();
 $itemPerPage = $_SESSION['itemPerPage'];
 $totalItem = $newIndex->count();
 $totalPage = ceil($totalItem/$itemPerPage);

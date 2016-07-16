@@ -11,10 +11,10 @@
         public $fromtrash = false;
 
         public $conn;
-        public $dbName = "atomicprojectB22_133704";
-        public $user = "root";
+        public $dbName = "shibli_atomicprojectB22_133704";
+        public $user = "shibli_atomic";
         public $host = "localhost";
-        public $password = "";
+        public $password = "atomic744254";
         public $tableName = "book"; //Don't Change this. It will make data missing.
         public $tableColumn1 = "ID";
         public $tableColumn2 = "bookTitle";
@@ -129,7 +129,7 @@
         public function update()
         {
             $query="UPDATE `".$this->dbName."`.`".$this->tableName."` SET `".$this->tableColumn2."` = '".$this->title."' WHERE `".$this->tableName."`.`".$this->tableColumn1."` = ".$this->id;
-            echo $query;
+           
 
             $result=mysqli_query($this->conn,$query);
             if($result){
@@ -190,7 +190,7 @@
         {
             $this->tableColumn3Input = time();
             $query="UPDATE `".$this->dbName."`.`".$this->tableName."` SET `".$this->tableColumn3."` = ".$this->tableColumn3Input." WHERE `".$this->tableName."`.`".$this->tableColumn1."` = ".$this->id;
-            echo $query;
+            
 
             $result=mysqli_query($this->conn,$query);
             if($result){
