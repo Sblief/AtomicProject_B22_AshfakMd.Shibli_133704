@@ -72,7 +72,7 @@ if(!empty($list)){
     
                     <thead>
                     <tr>
-                        <th>Check Item</th>
+                        <th><input type="checkbox" id="checkAll"/>Check Item</th>
                         <th><?php echo $tableColumn[0] ?></th>
                         <th><?php echo $tableColumn[1] ?></th>
                         <th><?php echo $tableColumn[2] ?></th>
@@ -165,6 +165,9 @@ else{
         $('#slct').change(function() {
             this.form.submit();
         });
+    });
+    $("#checkAll").change(function () {
+        $("input:checkbox").prop('checked', $(this).prop("checked"));
     });
 
 </script>

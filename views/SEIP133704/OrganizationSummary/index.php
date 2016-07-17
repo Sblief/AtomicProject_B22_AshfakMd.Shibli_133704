@@ -10,7 +10,7 @@
 
     $newIndex =  new Summary();
     $list = $newIndex->index();
-    //Utility::d($_SESSION);
+    //Utility::dd($list);
 
     $tableColumn = array("SL","ID","Organization","Summary","Action","","");
 
@@ -109,7 +109,7 @@ if(!empty($list)){    //if the list of items is not empty the table will be show
             <td><?php echo  $sl1 = $sl+$pageStartFrom;?></td>
             <td><?php echo $item->id ;?></td>
             <td><?php echo $item->name ;?></td>
-            <td><?php echo $item->summary ;?></td>
+            <td><?php echo $item->summaryTagRemoved ;?></td>
             <td>
                 <a href="view.php?id=<?php echo $item->id ?>" ><button type="button" class="btn btn-info">View</button></a>
                 <a href="edit.php?id=<?php echo $item->id ?>&bringBackPage=<?php echo $pageNumber ?>" ><button type="button" class="btn btn-info">Edit</button></a>

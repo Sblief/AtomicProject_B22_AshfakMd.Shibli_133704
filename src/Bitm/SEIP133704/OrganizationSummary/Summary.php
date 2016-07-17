@@ -11,6 +11,9 @@ class Summary
     public $summaryNoTag = "";
     public $name = "";
     public $pageNumber;
+    public $organizationFilter = "";
+    public $summaryFilter = "";
+    public $search = "";
     public $fromtrash = false;
 
     public $conn;
@@ -54,8 +57,20 @@ class Summary
             $this->summaryNoTag = strip_tags($this->summary);
 
         }
-        if(array_key_exists("name",$data)){
-            $this->name = $data['name'];
+        if(isset($data['organizationFilter']) && array_key_exists("organizationFilter",$data)){
+            $this->organizationFilter = $data['organizationFilter'];
+
+        }
+        if(isset($data['summaryFilter']) && array_key_exists("summaryFilter",$data)){
+            $this->summaryFilter = $data['summaryFilter'];
+
+        }
+        if(array_key_exists("search",$data)){
+            $this->search = $data['search'];
+
+        }
+        if(array_key_exists("id",$data)){
+            $this->id = $data['id'];
 
         }
         if(array_key_exists("id",$data)){
@@ -120,14 +135,30 @@ class Summary
 
     public function index()
     {
+        $andSql  = " 1=1 ";
+        if(!empty($this->summaryFilter)){
+            $andSql .= " AND  $this->tableColumn4 LIKE '%".$this->search."%'";
+        }
+        if(!empty($this->organizationFilter)){
+            $andSql .= " AND  $this->tableColumn2 LIKE '%".$this->search."%'";
+        }
+        if(!empty($this->search)){
+            $andSql .= " AND  $this->tableColumn4 LIKE '%".$this->search."%' OR $this->tableColumn2 LIKE '%".$this->search."%'";
+        }
+
+
+
         $_list =  array();
-        $query = "SELECT * FROM $this->tableName WHERE `$this->tableColumn5` IS NULL ";
+        $query = "SELECT * FROM $this->tableName WHERE `$this->tableColumn5` IS NULL AND ".$andSql;
+//        echo $query;
+//        die();
         $result =  mysqli_query($this->conn,$query);
         if($result){
             while($row = mysqli_fetch_object($result)){
                 $_list[]= $row;
             }
         }
+        
         return $_list;
 
     }

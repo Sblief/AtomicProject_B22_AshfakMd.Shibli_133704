@@ -73,7 +73,7 @@ if(!empty($list)){
     
                     <thead>
                     <tr>
-                        <th>Check Item</th>
+                        <th><input type="checkbox" id="checkAll"/>Check Item</th>
                         <th><?php echo $tableColumn[0] ?></th>
                         <th><?php echo $tableColumn[1] ?></th>
                         <th><?php echo $tableColumn[2] ?></th>
@@ -92,10 +92,10 @@ if(!empty($list)){
                             <td><?php echo $sl1 = $sl+$pageStartFrom ;?></td>
                             <td><?php echo $items->id ;?></td>
                             <td><?php echo $items->name ;?></td>
-                            <td><?php echo $items->summary ;?></td>
+                            <td><?php echo $items->summaryTagRemoved ;?></td>
                             <td>
                                 <a href="recover.php?id=<?php echo $items->id ?>" ><button type="button" class="btn btn-warning">Recover</button>
-                                <a href="delete.php?id=<?php echo $items->ID ?>&fromtrash=true" ><button type="button" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete these items?');">Delete</button>
+                                <a href="delete.php?id=<?php echo $items->id ?>&fromtrash=true" ><button type="button" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete these items?');">Delete</button>
                                     
                             </td>
                         </tr>
@@ -166,6 +166,9 @@ else{
         $('#slct').change(function() {
             this.form.submit();
         });
+    });
+    $("#checkAll").change(function () {
+        $("input:checkbox").prop('checked', $(this).prop("checked"));
     });
 
 </script>

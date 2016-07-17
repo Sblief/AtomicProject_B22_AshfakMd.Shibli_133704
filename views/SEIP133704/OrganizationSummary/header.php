@@ -66,10 +66,32 @@ use App\Bitm\SEIP133704\GlobalClasses\Message;
                 <li><a href="create.php">ADD</a></li>
                 <li><a href="trashed.php">TRASH</a></li>
             </ul>
+            <form method="get" action="search.php">
+            <ul class="nav navbar-nav navbar-right">
+                <li class=" filter">
+
+                    <label><input class="checkbox" type="checkbox" id="organization" name="organizationFilter">In Org</label>
+                </li>
+                <li ><span class="glyphicon-filter"></span></li>
+                <li >
+
+                    <label><input class="checkbox" type="checkbox" id="summary" name="summaryFilter">In Summary</label>
+                </li>
+
+                <li><input class="input-lg" type="text" id="search" name="search" placeholder="Search"></li>
+            </ul>
+            </form>
         </div>
     </div>
 </nav>
 <!--Navigation bar end-->
+<script>
+    $(function() {
+        $('#search').change(function() {
+            this.form.submit();
+        });
+    });
+</script>
 </body>
 
 </html>
