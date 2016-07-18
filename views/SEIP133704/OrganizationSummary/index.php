@@ -112,8 +112,8 @@ if(!empty($list)){    //if the list of items is not empty the table will be show
             <td><?php echo $item->summaryTagRemoved ;?></td>
             <td>
                 <a href="view.php?id=<?php echo $item->id ?>" ><button type="button" class="btn btn-info">View</button></a>
-                <a href="edit.php?id=<?php echo $item->id ?>&bringBackPage=<?php echo $pageNumber ?>" ><button type="button" class="btn btn-info">Edit</button></a>
-                <a href="delete.php?id=<?php echo $item->id ?>&bringBackPage=<?php echo $pageNumberBack ?>" ><button type="button" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this item?');">Delete</button>
+                <a href="edit.php?id=<?php echo $item->id ?>&bringBackPage=<?php echo $pageNumber ?>" ><button type="button" class="btn btn-info"> Edit</button></a>
+                <a href="delete.php?id=<?php echo $item->id ?>&bringBackPage=<?php echo $pageNumberBack ?>" ><button type="button" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this item?');"> Delete</button>
                     <a href="trash.php?id=<?php echo $item->id ?>&bringBackPage=<?php echo $pageNumberBack ?>" ><button type="button" class="btn btn-warning">Trash</button>
             </td>
         </tr>

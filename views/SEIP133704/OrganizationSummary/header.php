@@ -4,6 +4,13 @@ use App\Bitm\SEIP133704\OrganizationSummary\Summary;
 use App\Bitm\SEIP133704\OrganizationSummary\Uses;
 use App\Bitm\SEIP133704\GlobalClasses\Utility;
 use App\Bitm\SEIP133704\GlobalClasses\Message;
+
+$id1 = "Organization";
+$id2 = "Summary";
+
+$name1 = strtolower($id1)."Filter";
+$name2 = strtolower($id2)."Filter";
+
 ?>
 
 <!DOCTYPE html>
@@ -17,6 +24,7 @@ use App\Bitm\SEIP133704\GlobalClasses\Message;
     <script src="../../../resource/jquery/jquery.validate.js"></script>
     <script src="../../../resource/bootstrap-3.3.6/js/bootstrap.min.js"></script>
     <script src="../../../resource/tinymce/js/tinymce/tinymce.min.js"></script>
+    <link rel="stylesheet" href="../../../resource/font-awesome-4.6.3/css/font-awesome.min.css">
 
     <title><?php echo Uses::siteName() ?></title>
 
@@ -68,17 +76,20 @@ use App\Bitm\SEIP133704\GlobalClasses\Message;
             </ul>
             <form method="get" action="search.php">
             <ul class="nav navbar-nav navbar-right">
-                <li class=" filter">
 
-                    <p><input class="checkbox" type="checkbox" id="organization" name="organizationFilter">In Org</p>
+                <li>
+                    <div class="checkbox">
+                        <label><input class="checkbox" type="checkbox" id="<?php echo $id1 ?>" name="<?php echo $name1 ?>">In <?php echo $id1 ?></label>
+
+                        <label><input class="checkbox" type="checkbox" id="<?php echo $id2 ?>" name="<?php echo $name2 ?>">In <?php echo $id2 ?></label>
+                    </div>
                 </li>
-                <li ></></li>
-                <li >
-
-                    <p><input class="checkbox" type="checkbox" id="summary" name="summaryFilter">In Summary</p>
+                <li>
+                    <div class="has-feedback">
+                        <input class="input-lg" type="text" id="search" name="search" placeholder="Search" required>
+                        <span class="fa fa-search form-control-feedback"></span>
+                    </div>
                 </li>
-
-                <li><p><input class="input-lg" type="text" id="search" name="search" placeholder="Search"><span class="glyphicon-search"></span></li>
             </ul>
             </form>
         </div>

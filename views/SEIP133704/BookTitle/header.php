@@ -13,6 +13,7 @@ use App\Bitm\SEIP133704\BookTitle\Uses;
     <script src="../../../resource/jquery/1.12.0/jquery.min.js"></script>
     <script src="../../../resource/jquery/jquery.validate.js"></script>
     <script src="../../../resource/bootstrap-3.3.6/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../../../resource/font-awesome-4.6.3/css/font-awesome.min.css">
 
     <title><?php echo Uses::siteName() ?></title>
 

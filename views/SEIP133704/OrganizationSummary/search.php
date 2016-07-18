@@ -17,14 +17,16 @@ $list = $newSearch->index();
 
 $tableColumn = array("SL","ID","Organization","Summary","Action","","");
 
+$getId1 = strtolower($tableColumn[2])."Filter";
+$getId2 = strtolower($tableColumn[3])."Filter";
 
-if(isset($_GET['organizationFilter'])) {
+if(isset($_GET["$getId1"])) {
     $filter .= "filtering " ."'". $tableColumn[2]."'";
-    if (isset($_GET['summaryFilter'])) {
+    if (isset($_GET["$getId2"])) {
         $filter .= " and " ."'". $tableColumn[3]."'";
     }
 }
-elseif (isset($_GET['summaryFilter'])){
+elseif (isset($_GET["$getId2"])){
     $filter = "filtering "."'".$tableColumn[3]."'";
 }
 else{

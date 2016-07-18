@@ -154,12 +154,18 @@ body {
 
 
 
-
 .btn-danger {
+
     color: #ffffff;
     background-color: #C40000;
     border-color: #130269;
 }
+.btn-danger:before{
+    content: "\f057";
+    font-family: FontAwesome;
+    padding-right: 0.5em;
+}
+
 
 .btn-danger:hover,
 .btn-danger:focus,
@@ -214,6 +220,11 @@ fieldset[disabled] .btn-danger.active {
     background-color: #1BC25E;
     border-color: #130269;
 }
+.btn-success:before {
+    content:  "\f135";
+    font-family: FontAwesome;
+    padding-right: 0.5em;
+}
 
 .btn-success:hover,
 .btn-success:focus,
@@ -267,6 +278,13 @@ fieldset[disabled] .btn-success.active {
     background-color: #1BC2A1;
     border-color: #2EAAB3;
 }
+.btn-info:before {
+    content: "\f138";
+    font-family: FontAwesome;
+    padding-right: 0.5em;
+}
+
+
 
 .btn-info:hover,
 .btn-info:focus,
@@ -306,4 +324,11 @@ fieldset[disabled] .btn-info.active {
 .btn-info .badge {
     color: #1BC2A1;
     background-color: #ffffff;
+}
+
+.btn-warning:before{
+    content:  "\f1f8";
+    font-family: FontAwesome;
+    padding-right: 0.5em;
+
 }
