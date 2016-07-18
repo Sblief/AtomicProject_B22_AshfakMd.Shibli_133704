@@ -1,14 +1,14 @@
 <?php
-include_once ('../../../vendor/autoload.php');
-use App\Bitm\SEIP133704\BookTitle\Book;
-use App\Bitm\SEIP133704\GlobalClasses\Message;
+include_once ("../../../vendor/autoload.php");
+use App\Bitm\SEIP133704\OrganizationSummary\Summary;
+use App\Bitm\SEIP133704\OrganizationSummary\Uses;
 use App\Bitm\SEIP133704\GlobalClasses\Utility;
-use App\Bitm\SEIP133704\BookTitle\Uses;
+use App\Bitm\SEIP133704\GlobalClasses\Message;
 
-$newPdf = new Book();
+$newPdf = new Summary();
 $allItems = $newPdf->index();
 
-$tableColumn = array("SL","ID","Book Title","Action","","");
+$tableColumn = array("SL","ID","Organization","Summary","","");
 $title =  Uses::siteName();
 $keyword =  Uses::siteKeyword();
 
@@ -21,8 +21,9 @@ foreach ($allItems as $item ):
 $sl++;
 $tableDynamicData .= "<tr>";
     $tableDynamicData .= "<td>$sl</td>";
-    $tableDynamicData .= "<td>$item->ID</td>";
-    $tableDynamicData .= "<td>$item->bookTitle</td>";
+    $tableDynamicData .= "<td>$item->id</td>";
+    $tableDynamicData .= "<td>$item->name</td>";
+    $tableDynamicData .= "<td>$item->summaryTagRemoved</td>";
 $tableDynamicData .= "</tr>";
 
 endforeach;
@@ -56,6 +57,7 @@ $html = <<<ATOMIC
             <th>$tableColumn[0]</th>
             <th>$tableColumn[1]</th>
             <th>$tableColumn[2]</th>
+            <th>$tableColumn[3]</th>
             
         </tr>
         </thead>

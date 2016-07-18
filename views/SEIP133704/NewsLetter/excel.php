@@ -1,14 +1,16 @@
 <?php
-include_once ('../../../vendor/autoload.php');
-use App\Bitm\SEIP133704\BookTitle\Book;
-use App\Bitm\SEIP133704\GlobalClasses\Message;
+include_once ("../../../vendor/autoload.php");
+use App\Bitm\SEIP133704\NewsLetter\Email;
 use App\Bitm\SEIP133704\GlobalClasses\Utility;
-use App\Bitm\SEIP133704\BookTitle\Uses;
+use App\Bitm\SEIP133704\GlobalClasses\Message;
+use App\Bitm\SEIP133704\NewsLetter\Uses;
 
-$newXL = new Book();
+
+$newXL = new Email();
 $allItems = $newXL->index();
-$tableColumn = array("SL","ID","Book Title","Action","","");
-$title = 'Book Library';
+$tableColumn = array("SL","ID","Name","Email Addresses","","");
+$title =  Uses::siteName();
+$keyword =  Uses::siteKeyword();
 
 //$keyword = echo Uses::siteKeyword();
 /**
@@ -67,7 +69,8 @@ $objPHPExcel->getProperties()->setCreator("Ashfak md. Shibli")
 $objPHPExcel->setActiveSheetIndex(0)
     ->setCellValue('A1', $tableColumn[0])
     ->setCellValue('B1', $tableColumn[1])
-    ->setCellValue('C1', $tableColumn[2]);
+    ->setCellValue('C1', $tableColumn[2])
+    ->setCellValue('D1', $tableColumn[3]);
 
 
 $sl = 0;
@@ -80,7 +83,8 @@ foreach ($allItems as $item):
 $objPHPExcel->setActiveSheetIndex(0)
     ->setCellValue('A'.$counter, $sl)
     ->setCellValue('B'.$counter, $item->ID)
-    ->setCellValue('C'.$counter, $item->bookTitle);
+    ->setCellValue('C'.$counter, $item->name)
+    ->setCellValue('D'.$counter, $item->email_address);
 
 // Rename worksheet
 $objPHPExcel->getActiveSheet()->setTitle("$title");

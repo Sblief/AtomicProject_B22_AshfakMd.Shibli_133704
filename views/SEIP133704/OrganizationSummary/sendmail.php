@@ -1,25 +1,26 @@
 <?php
-include_once ('../../../vendor/autoload.php');
-use App\Bitm\SEIP133704\BookTitle\Book;
-use App\Bitm\SEIP133704\GlobalClasses\Message;
+include_once ("../../../vendor/autoload.php");
+use App\Bitm\SEIP133704\OrganizationSummary\Summary;
+use App\Bitm\SEIP133704\OrganizationSummary\Uses;
 use App\Bitm\SEIP133704\GlobalClasses\Utility;
-use App\Bitm\SEIP133704\BookTitle\Uses;
+use App\Bitm\SEIP133704\GlobalClasses\Message;
 
 if (isset($_POST['receiverName'])) {
     $name = $_POST['receiverName'];
     $email = $_POST['receiverEmail'];
 }
 
-$newMail = new Book();
+$newMail = new Summary();
 if(!empty($_POST['id'])) {
     $newMail->prepare($_POST);
     $singleItem = $newMail->view();
 
-    $id = $singleItem->ID;
-    $itemName = $singleItem->bookTitle;
+    $id = $singleItem->id;
+    $itemName = $singleItem->name;
+    $itemData = $singleItem->summaryTagRemoved;
 
 
-    $tableColumn = array("SL","ID","Book Title");
+    $tableColumn = array("SL","ID","Organization","Summary","","");
     $title =  Uses::siteName();
     $keyword =  Uses::siteKeyword();
 
@@ -30,6 +31,7 @@ if(!empty($_POST['id'])) {
         $tableDynamicData .= "<td>$sl</td>";
         $tableDynamicData .= "<td>$id</td>";
         $tableDynamicData .= "<td>$itemName</td>";
+        $tableDynamicData .= "<td>$itemData</td>";
         $tableDynamicData .= "</tr>";
 $html = <<<ATOMIC
 <!DOCTYPE html>
@@ -57,6 +59,7 @@ $html = <<<ATOMIC
             <th>$tableColumn[0]</th>
             <th>$tableColumn[1]</th>
             <th>$tableColumn[2]</th>
+            <th>$tableColumn[3]</th>
             
         </tr>
         </thead>
@@ -85,7 +88,7 @@ else {
 
 
 
-$tableColumn = array("SL","ID","Book Title");
+    $tableColumn = array("SL","ID","Name","Birthday","","");
 $title =  Uses::siteName();
 $keyword =  Uses::siteKeyword();
 
@@ -99,8 +102,9 @@ foreach ($allItems as $item ):
 
     $tableDynamicData .= "<tr>";
     $tableDynamicData .= "<td>$sl</td>";
-    $tableDynamicData .= "<td>$item->ID</td>";
-    $tableDynamicData .= "<td>$item->bookTitle</td>";
+    $tableDynamicData .= "<td>$item->id</td>";
+    $tableDynamicData .= "<td>$item->name</td>";
+    $tableDynamicData .= "<td>$item->summaryTagRemoved</td>";
     $tableDynamicData .= "</tr>";
 
 endforeach;
@@ -134,6 +138,7 @@ $html = <<<ATOMIC
             <th>$tableColumn[0]</th>
             <th>$tableColumn[1]</th>
             <th>$tableColumn[2]</th>
+            <th>$tableColumn[3]</th>
             
         </tr>
         </thead>
@@ -189,7 +194,7 @@ $mail->SMTPAuth = true;
 //Username to use for SMTP authentication - use full email address for gmail
 $mail->Username = "sblief.sb@gmail.com";
 //Password to use for SMTP authentication
-$mail->Password = "emon744254";
+$mail->Password = "emON#744254";
 //Set who the message is to be sent from
 $mail->setFrom('atomicproject@shibliemon.com', 'Ashfak Md. Shibli');
 //Set an alternative reply-to address

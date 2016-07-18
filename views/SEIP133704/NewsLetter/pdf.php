@@ -1,14 +1,14 @@
 <?php
-include_once ('../../../vendor/autoload.php');
-use App\Bitm\SEIP133704\BookTitle\Book;
-use App\Bitm\SEIP133704\GlobalClasses\Message;
+include_once ("../../../vendor/autoload.php");
+use App\Bitm\SEIP133704\NewsLetter\Email;
 use App\Bitm\SEIP133704\GlobalClasses\Utility;
-use App\Bitm\SEIP133704\BookTitle\Uses;
+use App\Bitm\SEIP133704\GlobalClasses\Message;
+use App\Bitm\SEIP133704\NewsLetter\Uses;
 
-$newPdf = new Book();
+$newPdf = new Email();
 $allItems = $newPdf->index();
 
-$tableColumn = array("SL","ID","Book Title","Action","","");
+$tableColumn = array("SL","ID","Name","Email Addresses","","");
 $title =  Uses::siteName();
 $keyword =  Uses::siteKeyword();
 
@@ -22,7 +22,8 @@ $sl++;
 $tableDynamicData .= "<tr>";
     $tableDynamicData .= "<td>$sl</td>";
     $tableDynamicData .= "<td>$item->ID</td>";
-    $tableDynamicData .= "<td>$item->bookTitle</td>";
+    $tableDynamicData .= "<td>$item->name</td>";
+    $tableDynamicData .= "<td>$item->email_address</td>";
 $tableDynamicData .= "</tr>";
 
 endforeach;
@@ -56,6 +57,7 @@ $html = <<<ATOMIC
             <th>$tableColumn[0]</th>
             <th>$tableColumn[1]</th>
             <th>$tableColumn[2]</th>
+            <th>$tableColumn[3]</th>
             
         </tr>
         </thead>

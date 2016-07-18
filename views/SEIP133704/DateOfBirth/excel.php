@@ -1,14 +1,16 @@
 <?php
-include_once ('../../../vendor/autoload.php');
-use App\Bitm\SEIP133704\BookTitle\Book;
+include_once ("../../../vendor/autoload.php");
+use App\Bitm\SEIP133704\DateOfBirth\Birthday;
+use App\Bitm\SEIP133704\DateOfBirth\Uses;
 use App\Bitm\SEIP133704\GlobalClasses\Message;
 use App\Bitm\SEIP133704\GlobalClasses\Utility;
-use App\Bitm\SEIP133704\BookTitle\Uses;
 
-$newXL = new Book();
+
+$newXL = new Birthday();
 $allItems = $newXL->index();
-$tableColumn = array("SL","ID","Book Title","Action","","");
-$title = 'Book Library';
+$tableColumn = array("SL","ID","Name","Birthday","","");
+$title =  Uses::siteName();
+$keyword =  Uses::siteKeyword();
 
 //$keyword = echo Uses::siteKeyword();
 /**
@@ -67,7 +69,8 @@ $objPHPExcel->getProperties()->setCreator("Ashfak md. Shibli")
 $objPHPExcel->setActiveSheetIndex(0)
     ->setCellValue('A1', $tableColumn[0])
     ->setCellValue('B1', $tableColumn[1])
-    ->setCellValue('C1', $tableColumn[2]);
+    ->setCellValue('C1', $tableColumn[2])
+    ->setCellValue('D1', $tableColumn[3]);
 
 
 $sl = 0;
@@ -79,8 +82,9 @@ foreach ($allItems as $item):
 // Miscellaneous glyphs, UTF-8
 $objPHPExcel->setActiveSheetIndex(0)
     ->setCellValue('A'.$counter, $sl)
-    ->setCellValue('B'.$counter, $item->ID)
-    ->setCellValue('C'.$counter, $item->bookTitle);
+    ->setCellValue('B'.$counter, $item->id)
+    ->setCellValue('C'.$counter, $item->name)
+    ->setCellValue('D'.$counter, $item->date_of_birth);
 
 // Rename worksheet
 $objPHPExcel->getActiveSheet()->setTitle("$title");

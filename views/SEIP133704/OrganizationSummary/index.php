@@ -59,10 +59,30 @@ if(!empty($list)){    //if the list of items is not empty the table will be show
 <div class="container">
 
 <div class="container-fluid form-inline" style="margin-top: 100px">
-    <h2><?php echo Uses::siteKeyword() ?> List</h2>
+    <div class="container-fluid">
+        <div class="col-sm-3">
+            <h2><?php echo Uses::siteKeyword() ?> List</h2>
+        </div>
+        <!--            Download button-->
+        <div id="download" class="col-sm-9">
+            <a href="#" class="dropdown-toggle"  data-toggle="dropdown"><button class="btn btn-info"> Download/Send  <span class="caret"></span></button></a>
+            <ul class="dropdown-menu">
+                <li><a href="pdf.php">Download as PDF</a></li>
+                <li role="presentation" class="divider"></li>
+                <li><a href="excel.php">Download as Excel</a></li>
+                <li role="presentation" class="divider"></li>
+                <li><a  href="mailformatter.php">Send to a Friend</a></li>
 
-    <?php if(array_key_exists('message',$_SESSION) && (!empty($_SESSION['message'])))
-        echo Message::message() ;?>
+            </ul>
+        </div>
+        <!--            Download button          -->
+
+    </div>
+    <!--        Message Area-->
+    <div id="msg"><?php if(array_key_exists('message',$_SESSION) && (!empty($_SESSION['message'])))
+            echo Message::message() ;  // if the session variable is not empty then it contains a message. so,the message is echoed.?>
+    </div>
+    <!--        Message Area-->
 
     <!--    Show item per page Start-->
     <form role="form">
@@ -114,6 +134,8 @@ if(!empty($list)){    //if the list of items is not empty the table will be show
                 <a href="edit.php?id=<?php echo $item->id ?>&bringBackPage=<?php echo $pageNumber ?>" ><button type="button" class="btn btn-info"> Edit</button></a>
                 <a href="delete.php?id=<?php echo $item->id ?>&bringBackPage=<?php echo $pageNumberBack ?>" ><button type="button" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this item?');"> Delete</button>
                     <a href="trash.php?id=<?php echo $item->id ?>&bringBackPage=<?php echo $pageNumberBack ?>" ><button type="button" class="btn btn-warning">Trash</button>
+                        <a href="mailformatter.php?id=<?php echo $item->id ?>"  ><button type="button" class="btn btn-success">Send Item to Friend</button>
+
             </td>
         </tr>
         <?php } ?>

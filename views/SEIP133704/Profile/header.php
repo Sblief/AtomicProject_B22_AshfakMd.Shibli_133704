@@ -12,9 +12,9 @@
     <link rel="stylesheet" href="../../../resource/jquery/jquery-ui.min.css">
     <link rel="stylesheet" href="../../../resource/CustomDesign/css/style.css">
     <script src="../../../resource/jquery/1.12.0/jquery.min.js"></script>
-    <script src="../../../resource/jquery/jquery-3.0.0.min.js"></script>
+    <script src="../../../resource/tinymce/js/tinymce/tinymce.min.js"></script>
     <script src="../../../resource/bootstrap-3.3.6/js/bootstrap.min.js"></script>
-    <script src="../../../resource/jquery/jquery-ui.min.js"></script>
+    <script src="../../../resource/jquery/1.12.0/jquery-ui.js"></script>
     <link rel="stylesheet" href="../../../resource/font-awesome-4.6.3/css/font-awesome.min.css">
 
     <title><?php echo Uses::siteName() ?></title>

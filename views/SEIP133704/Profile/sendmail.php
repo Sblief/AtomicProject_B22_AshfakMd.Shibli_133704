@@ -1,25 +1,27 @@
 <?php
-include_once ('../../../vendor/autoload.php');
-use App\Bitm\SEIP133704\BookTitle\Book;
-use App\Bitm\SEIP133704\GlobalClasses\Message;
+error_reporting(0);
+include_once ("../../../vendor/autoload.php");
+use App\Bitm\SEIP133704\Profile\Picture;
+use App\Bitm\SEIP133704\Profile\Uses;
 use App\Bitm\SEIP133704\GlobalClasses\Utility;
-use App\Bitm\SEIP133704\BookTitle\Uses;
+use App\Bitm\SEIP133704\GlobalClasses\Message;
 
 if (isset($_POST['receiverName'])) {
     $name = $_POST['receiverName'];
     $email = $_POST['receiverEmail'];
 }
 
-$newMail = new Book();
+$newMail = new Picture();
 if(!empty($_POST['id'])) {
     $newMail->prepare($_POST);
     $singleItem = $newMail->view();
 
-    $id = $singleItem->ID;
-    $itemName = $singleItem->bookTitle;
+    $id = $singleItem->id;
+    $itemName = $singleItem->name;
+    $itemData = $singleItem->email_address;
 
 
-    $tableColumn = array("SL","ID","Book Title");
+    $tableColumn = array("SL","ID","User Name","Thumbnail","","");
     $title =  Uses::siteName();
     $keyword =  Uses::siteKeyword();
 
@@ -30,6 +32,7 @@ if(!empty($_POST['id'])) {
         $tableDynamicData .= "<td>$sl</td>";
         $tableDynamicData .= "<td>$id</td>";
         $tableDynamicData .= "<td>$itemName</td>";
+    $tableDynamicData .= "<td><img src=\"../../../resource/images/$singleItem->images\" height=\"50px\" width=\"50px\"></td>";
         $tableDynamicData .= "</tr>";
 $html = <<<ATOMIC
 <!DOCTYPE html>
@@ -57,6 +60,7 @@ $html = <<<ATOMIC
             <th>$tableColumn[0]</th>
             <th>$tableColumn[1]</th>
             <th>$tableColumn[2]</th>
+            <th>$tableColumn[3]</th>
             
         </tr>
         </thead>
@@ -81,11 +85,12 @@ ATOMIC;
 
 }
 else {
+    include ('pdf.php');
     $allItems = $newMail->index();
 
 
 
-$tableColumn = array("SL","ID","Book Title");
+    $tableColumn = array("SL","ID","User Name","Thumbnail","","");
 $title =  Uses::siteName();
 $keyword =  Uses::siteKeyword();
 
@@ -100,7 +105,8 @@ foreach ($allItems as $item ):
     $tableDynamicData .= "<tr>";
     $tableDynamicData .= "<td>$sl</td>";
     $tableDynamicData .= "<td>$item->ID</td>";
-    $tableDynamicData .= "<td>$item->bookTitle</td>";
+    $tableDynamicData .= "<td>$item->name</td>";
+    $tableDynamicData .= "<td><img src=\"../../../resource/images/$item->images\" height=\"50px\" width=\"50px\"></td>";
     $tableDynamicData .= "</tr>";
 
 endforeach;
@@ -134,6 +140,7 @@ $html = <<<ATOMIC
             <th>$tableColumn[0]</th>
             <th>$tableColumn[1]</th>
             <th>$tableColumn[2]</th>
+            <th>$tableColumn[3]</th>
             
         </tr>
         </thead>
@@ -189,7 +196,7 @@ $mail->SMTPAuth = true;
 //Username to use for SMTP authentication - use full email address for gmail
 $mail->Username = "sblief.sb@gmail.com";
 //Password to use for SMTP authentication
-$mail->Password = "emon744254";
+$mail->Password = "emON#744254";
 //Set who the message is to be sent from
 $mail->setFrom('atomicproject@shibliemon.com', 'Ashfak Md. Shibli');
 //Set an alternative reply-to address
@@ -205,7 +212,13 @@ $mail->Subject = $title;
 $mail->AltBody = 'This is a plain-text message body';
 $mail->Body= $html;
 //Attach an image file
-//$mail->addAttachment('images/phpmailer_mini.png');
+if(isset($_SESSION['attach'])){
+    $mail->addAttachment($_SESSION['attach']);
+    unset($_SESSION['attach']);
+}
+else {
+    $mail->addAttachment('../../../resource/images/'.$singleItem->images);
+}
 //send the message, check for errors
 if (!$mail->send()) {
     echo Message::message("Mailer Error: " . $mail->ErrorInfo);

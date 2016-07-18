@@ -1,14 +1,14 @@
 <?php
-include_once ('../../../vendor/autoload.php');
-use App\Bitm\SEIP133704\BookTitle\Book;
-use App\Bitm\SEIP133704\GlobalClasses\Message;
+include_once ("../../../vendor/autoload.php");
+use App\Bitm\SEIP133704\Profile\Picture;
+use App\Bitm\SEIP133704\Profile\Uses;
 use App\Bitm\SEIP133704\GlobalClasses\Utility;
-use App\Bitm\SEIP133704\BookTitle\Uses;
+use App\Bitm\SEIP133704\GlobalClasses\Message;
 
-$newPdf = new Book();
+$newPdf = new Picture();
 $allItems = $newPdf->index();
 
-$tableColumn = array("SL","ID","Book Title","Action","","");
+$tableColumn = array("SL","ID","User Name","Thumbnail","","");
 $title =  Uses::siteName();
 $keyword =  Uses::siteKeyword();
 
@@ -21,8 +21,9 @@ foreach ($allItems as $item ):
 $sl++;
 $tableDynamicData .= "<tr>";
     $tableDynamicData .= "<td>$sl</td>";
-    $tableDynamicData .= "<td>$item->ID</td>";
-    $tableDynamicData .= "<td>$item->bookTitle</td>";
+    $tableDynamicData .= "<td>$item->id</td>";
+    $tableDynamicData .= "<td>$item->name</td>";
+    $tableDynamicData .= "<td><img src=\"../../../resource/images/$item->images\" height=\"50px\" width=\"50px\"></td>";
 $tableDynamicData .= "</tr>";
 
 endforeach;
@@ -56,6 +57,7 @@ $html = <<<ATOMIC
             <th>$tableColumn[0]</th>
             <th>$tableColumn[1]</th>
             <th>$tableColumn[2]</th>
+            <th>$tableColumn[3]</th>
             
         </tr>
         </thead>
@@ -83,5 +85,15 @@ $mpdf = new mPDF();
 
 $mpdf->WriteHTML($html);
 
-$mpdf->Output($title.'.pdf','D');
+if(isset($_GET['pdf']) && $_GET['pdf'] == 'download'){
+    $mpdf->Output($title.'.pdf','D');
+}
+
+else {
+    $title = $title.time();
+    $mpdf->Output('../../../resource/pdf/'.$title.'.pdf','F');
+    $_SESSION['attach'] = '../../../resource/pdf/'.$title.'.pdf';
+    
+}
+
 
