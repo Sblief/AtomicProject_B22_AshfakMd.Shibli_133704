@@ -70,15 +70,15 @@ use App\Bitm\SEIP133704\GlobalClasses\Message;
             <ul class="nav navbar-nav navbar-right">
                 <li class=" filter">
 
-                    <label><input class="checkbox" type="checkbox" id="organization" name="organizationFilter">In Org</label>
+                    <p><input class="checkbox" type="checkbox" id="organization" name="organizationFilter">In Org</p>
                 </li>
-                <li ><span class="glyphicon-filter"></span></li>
+                <li ></></li>
                 <li >
 
-                    <label><input class="checkbox" type="checkbox" id="summary" name="summaryFilter">In Summary</label>
+                    <p><input class="checkbox" type="checkbox" id="summary" name="summaryFilter">In Summary</p>
                 </li>
 
-                <li><input class="input-lg" type="text" id="search" name="search" placeholder="Search"></li>
+                <li><p><input class="input-lg" type="text" id="search" name="search" placeholder="Search"><span class="glyphicon-search"></span></li>
             </ul>
             </form>
         </div>
