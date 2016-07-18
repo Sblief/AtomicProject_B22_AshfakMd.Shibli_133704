@@ -30,6 +30,7 @@ $comaSeparated = '"'.implode('","',$available).'"';
     <script src="../../../resource/bootstrap-3.3.6/js/bootstrap.min.js"></script>
     <script src="../../../resource/jquery/1.12.0/jquery-ui.js"></script>
     <link rel="stylesheet" href="../../../resource/font-awesome-4.6.3/css/font-awesome.min.css">
+    <script src="../../../resource/tinymce/js/tinymce/tinymce.min.js"></script>
 
     <title><?php echo Uses::siteName() ?></title>
 

@@ -73,8 +73,8 @@ class Summary
             $this->id = $data['id'];
 
         }
-        if(array_key_exists("id",$data)){
-            $this->id = $data['id'];
+        if(array_key_exists("name",$data)){
+            $this->name = $data['name'];
 
         }
         if(array_key_exists("bringBackPage",$data)){
@@ -171,7 +171,7 @@ class Summary
     public function update()
     {
         $query="UPDATE `".$this->dbName."`.`".$this->tableName."` SET `".$this->tableColumn2."` = '".$this->name."',`".$this->tableColumn3."` = '".$this->summary."' ,`".$this->tableColumn4."` = '".$this->summaryNoTag."' WHERE `".$this->tableName."`.`".$this->tableColumn1."` = ".$this->id;
-      
+     
         $result=mysqli_query($this->conn,$query);
         if($result){
             Message::message("
@@ -209,7 +209,11 @@ class Summary
                             $('#message').show().delay(2000).fadeOut();
                         </script>");
             if($this->fromtrash==true) Utility::redirect("trashed.php");
-            else Utility::redirect("index.php?pageNumber=$this->pageNumber");
+            else {
+                if(!empty($this->pageNumber))
+                Utility::redirect("index.php?pageNumber=$this->pageNumber");
+                else Utility::redirect("index.php");
+            }
         }
         else {
             Message::message("
