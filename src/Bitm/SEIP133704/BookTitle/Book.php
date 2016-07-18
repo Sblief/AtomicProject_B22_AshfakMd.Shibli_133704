@@ -415,7 +415,7 @@
                     $_all[] .= $row["$this->tableColumn2"];
 
                 }
-                
+                $_all[] = $row["$this->tableColumn3"];
                 $_all[] = $row["$this->tableColumn2"];
 
 
