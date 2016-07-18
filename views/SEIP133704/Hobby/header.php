@@ -1,6 +1,23 @@
 <?php
     include_once ('../../../vendor/autoload.php');
-    use App\Bitm\SEIP133704\Hobby\Uses;
+use App\Bitm\SEIP133704\Hobby\Hobby;
+use App\Bitm\SEIP133704\GlobalClasses\Utility;
+use App\Bitm\SEIP133704\GlobalClasses\Message;
+use App\Bitm\SEIP133704\Hobby\Uses;
+
+$showID1 = "User Name";
+$showID2 = "Hobbies";
+
+$id1 = "name";
+$id2 = "resource";
+
+$name1 = strtolower($id1)."Filter";
+$name2 = strtolower($id2)."Filter";
+
+$newIndex =  new Hobby();
+$available = $newIndex->getAllFirstSearch();
+$comaSeparated = '"'.implode('","',$available).'"';
+
 ?>
 
 <!DOCTYPE html>
@@ -12,14 +29,16 @@
     <link rel="stylesheet" href="../../../resource/jquery/jquery-ui.min.css">
     <link rel="stylesheet" href="../../../resource/CustomDesign/css/style.css">
     <script src="../../../resource/jquery/1.12.0/jquery.min.js"></script>
-    <script src="../../../resource/jquery/jquery-3.0.0.min.js"></script>
+    <script src="../../../resource/tinymce/js/tinymce/tinymce.min.js"></script>
     <script src="../../../resource/bootstrap-3.3.6/js/bootstrap.min.js"></script>
-    <script src="../../../resource/jquery/jquery-ui.min.js"></script>
+    <script src="../../../resource/jquery/1.12.0/jquery-ui.js"></script>
     <link rel="stylesheet" href="../../../resource/font-awesome-4.6.3/css/font-awesome.min.css">
+
 
     <title><?php echo Uses::siteName() ?></title>
 
 </head>
+
 
 <body>
 <!--Navigation Bar start-->
@@ -65,10 +84,47 @@
                 <li><a href="create.php">ADD</a></li>
                 <li><a href="trashed.php">TRASH</a></li>
             </ul>
+            <!--            Search area                    -->
+            <form method="get" action="search.php">
+                <ul class="nav navbar-nav navbar-right">
+
+                    <li>
+                        <div class="checkbox">
+                            <label><input class="checkbox" type="checkbox" id="<?php echo $id1 ?>" name="<?php echo $name1 ?>">In <?php echo $showID1 ?></label>
+
+                            <label><input class="checkbox" type="checkbox" id="<?php echo $id2 ?>" name="<?php echo $name2 ?>">In <?php echo $showID2 ?></label>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="has-feedback">
+                            <input class="input-lg" type="text" id="search" name="search" placeholder="Search" required>
+                            <span class="fa fa-search form-control-feedback"></span>
+                        </div>
+                    </li>
+                </ul>
+            </form>
+            <!--            Search area         -->
         </div>
     </div>
 </nav>
 <!--Navigation bar end-->
+<script>
+    $(function() {
+        $('#search').change(function() {
+            this.form.submit();
+        });
+    });
+</script>
+<script>
+    $( function() {
+        var availableTags = [
+            <?php echo $comaSeparated ?>
+        ];
+        $( "#search" ).autocomplete({
+            source: availableTags
+        });
+    } );
+</script>
 </body>
 
 </html>

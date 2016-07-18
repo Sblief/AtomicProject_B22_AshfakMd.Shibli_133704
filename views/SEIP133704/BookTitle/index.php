@@ -13,7 +13,7 @@
 
     
 
-    $tableColumn = array("SL","ID","Book Title","Action","","");  //Table column heads are taken in an array to change easily
+    $tableColumn = array("SL","ID","Book Title","Description","Action","","");  //Table column heads are taken in an array to change easily
 
     if(array_key_exists('itemPerPage',$_SESSION)) {
         if(array_key_exists('itemPerPage',$_GET))
@@ -180,6 +180,7 @@ if($totalPage == $pageNumber){
             <th><?php echo $tableColumn[1] ?></th>
             <th><?php echo $tableColumn[2] ?></th>
             <th><?php echo $tableColumn[3] ?></th>
+            <th><?php echo $tableColumn[4] ?></th>
         </tr>
         </thead>
         <tbody>
@@ -194,6 +195,7 @@ if($totalPage == $pageNumber){
             <!--     $item is an object so object notation used. after ->  '' is the field of $list which we fetched from database using index method in class-->
             <td><?php echo $item->ID ;?></td>
             <td><?php echo $item->bookTitle ;?></td>
+            <td><?php echo $item->description ;?></td>
             <td>
                 <a href="view.php?id=<?php echo $item->ID ?>" ><button type="button" class="btn btn-info">View</button></a>
                 <a href="edit.php?id=<?php echo $item->ID ?>&bringBackPage=<?php echo $pageNumber ?>" ><button type="button" class="btn btn-info">Edit</button></a>

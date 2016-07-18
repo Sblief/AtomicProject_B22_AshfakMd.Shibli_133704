@@ -7,8 +7,13 @@
     {
         public $id  = "";
         public $title = "";
+        public $description = "";
         public $pageNumber;
         public $fromtrash = false;
+
+        public $nameFilter = "";
+        public $resourceFilter = "";
+        public $search = "";
 
         public $conn;
         public $dbName = "shibli_atomicprojectB22_133704";
@@ -18,8 +23,9 @@
         public $tableName = "book"; //Don't Change this. It will make data missing.
         public $tableColumn1 = "ID";
         public $tableColumn2 = "bookTitle";
-        public $tableColumn3 = "deleted_at";
-        public $tableColumn3Input = NULL;
+        public $tableColumn3 = "description";
+        public $tableColumn4 = "deleted_at";
+        public $tableColumn4Input = NULL;
 
         public $created = "";
         public $created_by = "";
@@ -44,10 +50,28 @@
         
         public function prepare ($data="")
         {
+            if(isset($data['nameFilter']) && array_key_exists("nameFilter",$data)){
+                $this->nameFilter = $data['nameFilter'];
+
+            }
+            if(isset($data['resourceFilter']) && array_key_exists("resourceFilter",$data)){
+                $this->resourceFilter = $data['resourceFilter'];
+
+            }
+            if(array_key_exists("search",$data)){
+                $this->search = $data['search'];
+
+            }
+            
             if(array_key_exists("title",$data)){
                 $this->title = $data['title'];
 
             }
+            if(array_key_exists("description",$data)){
+                $this->description = $data['description'];
+
+            }
+
             if(array_key_exists("id",$data)){
                 $this->id = $data['id'];
 
@@ -71,12 +95,13 @@
                 $queryCreateTable = "CREATE TABLE $this->tableName (
                           $this->tableColumn1 int(11) AUTO_INCREMENT,
                           $this->tableColumn2 varchar(255) NOT NULL,
-                          $this->tableColumn3 varchar(255) NULL,
+                          $this->tableColumn3 text,
+                          $this->tableColumn4 varchar(255) NULL,
                           PRIMARY KEY  ($this->tableColumn1)
                           )";
                 $resultCreateTable = mysqli_query($this->conn, $queryCreateTable);
             }
-            $queryInsert = "INSERT INTO `".$this->dbName."`.`".$this->tableName."` ( `".$this->tableColumn2."`) VALUES ( '".$this->title."')";
+            $queryInsert = "INSERT INTO `".$this->dbName."`.`".$this->tableName."` ( `".$this->tableColumn2."`, `".$this->tableColumn3."`) VALUES ( '".$this->title."', '".$this->description."')";
 
             $resultInsert=mysqli_query($this->conn,$queryInsert);
             if($resultInsert){
@@ -105,8 +130,23 @@
 
         public function index()
         {
+            $andSql  = "AND 1=1 ";
+            if(!empty($this->resourceFilter)){
+                $andSql .= " AND  $this->tableColumn3 LIKE '%".$this->search."%'";
+            }
+            if(!empty($this->nameFilter)){
+                $andSql .= " AND  $this->tableColumn2 LIKE '%".$this->search."%'";
+            }
+            if(!empty($this->resourceFilter) && !empty($this->nameFilter )) {
+                $andSql .= " AND  $this->tableColumn3 LIKE '%".$this->search."%' OR $this->tableColumn2 LIKE '%".$this->search."%'";
+            }
+            if (empty($this->resourceFilter) && empty($this->nameFilter )) {
+                $andSql .= " AND  $this->tableColumn3 LIKE '%".$this->search."%' OR $this->tableColumn2 LIKE '%".$this->search."%'";
+            }
+            
             $_list =  array();
-            $query = "SELECT * FROM $this->tableName WHERE `$this->tableColumn3` IS NULL ";
+            $query = "SELECT * FROM $this->tableName WHERE `$this->tableColumn4` IS NULL ".$andSql;
+            
             $result =  mysqli_query($this->conn,$query);
             if($result){
                 while($row = mysqli_fetch_object($result)){
@@ -115,6 +155,7 @@
             }
 
             return $_list;
+            
 
         }//Returns array of data from database.
 
@@ -128,7 +169,7 @@
 
         public function update()
         {
-            $query="UPDATE `".$this->dbName."`.`".$this->tableName."` SET `".$this->tableColumn2."` = '".$this->title."' WHERE `".$this->tableName."`.`".$this->tableColumn1."` = ".$this->id;
+            $query="UPDATE `".$this->dbName."`.`".$this->tableName."` SET `".$this->tableColumn2."` = '".$this->title."', `".$this->tableColumn3."` = '".$this->description."' WHERE `".$this->tableName."`.`".$this->tableColumn1."` = ".$this->id;
            
 
             $result=mysqli_query($this->conn,$query);
@@ -140,7 +181,7 @@
                         <script>
                             $('#message').show().delay(2000).fadeOut();
                         </script>");
-                Utility::redirect("index.php?pageNumber=$this->pageNumber");
+                if(!empty($this->pageNumber))   Utility::redirect("index.php?pageNumber=$this->pageNumber"); else Utility::redirect("index.php");
             }
             else {
                 Message::message("
@@ -169,7 +210,7 @@
                             $('#message').show().delay(2000).fadeOut();
                         </script>");
                 if($this->fromtrash==true) Utility::redirect("trashed.php");
-                else Utility::redirect("index.php?pageNumber=$this->pageNumber");
+                else if(!empty($this->pageNumber))   Utility::redirect("index.php?pageNumber=$this->pageNumber"); else Utility::redirect("index.php");
             }
             else {
                 Message::message("
@@ -188,8 +229,8 @@
 
         public function trash()
         {
-            $this->tableColumn3Input = time();
-            $query="UPDATE `".$this->dbName."`.`".$this->tableName."` SET `".$this->tableColumn3."` = ".$this->tableColumn3Input." WHERE `".$this->tableName."`.`".$this->tableColumn1."` = ".$this->id;
+            $this->tableColumn4Input = time();
+            $query="UPDATE `".$this->dbName."`.`".$this->tableName."` SET `".$this->tableColumn4."` = ".$this->tableColumn4Input." WHERE `".$this->tableName."`.`".$this->tableColumn1."` = ".$this->id;
             
 
             $result=mysqli_query($this->conn,$query);
@@ -201,7 +242,7 @@
                         <script>
                             $('#message').show().delay(2000).fadeOut();
                         </script>");
-                Utility::redirect("index.php?pageNumber=$this->pageNumber");
+                if(!empty($this->pageNumber))   Utility::redirect("index.php?pageNumber=$this->pageNumber"); else Utility::redirect("index.php");
             }
             else {
                 Message::message("
@@ -219,7 +260,7 @@
         public function trashed()
         {
             $_list =  array();
-            $query = "SELECT * FROM $this->tableName WHERE `$this->tableColumn3` IS NOT NULL ";
+            $query = "SELECT * FROM $this->tableName WHERE `$this->tableColumn4` IS NOT NULL ";
             $result =  mysqli_query($this->conn,$query);
             if($result){
                 while($row = mysqli_fetch_object($result)){
@@ -232,7 +273,7 @@
 
         public function recover()
         {
-            $query="UPDATE `".$this->dbName."`.`".$this->tableName."` SET `".$this->tableColumn3."` = NULL WHERE `".$this->tableName."`.`".$this->tableColumn1."` = ".$this->id;
+            $query="UPDATE `".$this->dbName."`.`".$this->tableName."` SET `".$this->tableColumn4."` = NULL WHERE `".$this->tableName."`.`".$this->tableColumn1."` = ".$this->id;
             $result=mysqli_query($this->conn,$query);
             if($result){
                 Message::message("
@@ -260,7 +301,7 @@
         {
             if (is_array($IDs) && count($IDs) > 0) {
                 $ids = implode(",",$IDs);
-                $query = "UPDATE `" . $this->dbName . "`.`" . $this->tableName . "` SET `" . $this->tableColumn3 . "` = NULL WHERE `" . $this->tableName . "`.`" . $this->tableColumn1 . "` IN (" . $ids. ")";
+                $query = "UPDATE `" . $this->dbName . "`.`" . $this->tableName . "` SET `" . $this->tableColumn4 . "` = NULL WHERE `" . $this->tableName . "`.`" . $this->tableColumn1 . "` IN (" . $ids. ")";
                 $result = mysqli_query($this->conn, $query);
                 if ($result) {
                     Message::message("
@@ -314,20 +355,20 @@
 
 
         public function count(){
-            $query="SELECT COUNT(*) AS totalItem FROM `".$this->dbName."`.`".$this->tableName."` WHERE `".$this->tableColumn3."` is NULL";
+            $query="SELECT COUNT(*) AS totalItem FROM `".$this->dbName."`.`".$this->tableName."` WHERE `".$this->tableColumn4."` is NULL";
             $result=mysqli_query($this->conn,$query);
             if($result)  $row= mysqli_fetch_assoc($result);
             return $row['totalItem'];
         }
         public function countTrash(){
-            $query="SELECT COUNT(*) AS totalItem FROM `".$this->dbName."`.`".$this->tableName."` WHERE `".$this->tableColumn3."` is NOT NULL";
+            $query="SELECT COUNT(*) AS totalItem FROM `".$this->dbName."`.`".$this->tableName."` WHERE `".$this->tableColumn4."` is NOT NULL";
             $result=mysqli_query($this->conn,$query);
             if($result)  $row= mysqli_fetch_assoc($result);
             return $row['totalItem'];
         }
         public function paginator($pageStartFrom=0,$limit=5){
             $_list = array();
-            $query="SELECT * FROM `".$this->tableName."` WHERE `".$this->tableColumn3."` is NULL ORDER BY `".$this->tableColumn1."` ASC LIMIT ".$pageStartFrom.", ".$limit ;
+            $query="SELECT * FROM `".$this->tableName."` WHERE `".$this->tableColumn4."` is NULL ORDER BY `".$this->tableColumn1."` ASC LIMIT ".$pageStartFrom.", ".$limit ;
             $result = mysqli_query($this->conn, $query);
             if ($result){
                 while ($row = mysqli_fetch_object($result)) {
@@ -341,7 +382,7 @@
         }
         public function paginatorTrash($pageStartFrom=0,$limit=5){
             $_list = array();
-            $query="SELECT * FROM `".$this->tableName."` WHERE `".$this->tableColumn3."` is NOT NULL ORDER BY `".$this->tableColumn1."` ASC LIMIT ".$pageStartFrom.", ".$limit ;
+            $query="SELECT * FROM `".$this->tableName."` WHERE `".$this->tableColumn4."` is NOT NULL ORDER BY `".$this->tableColumn1."` ASC LIMIT ".$pageStartFrom.", ".$limit ;
             $result = mysqli_query($this->conn, $query);
             if ($result){
                 while ($row = mysqli_fetch_object($result)) {
@@ -351,6 +392,37 @@
 
 
             return $_list;
+
+        }
+
+
+        public function getAllFirstSearch()
+        {
+
+            $_all = array();
+            $query = "SELECT * FROM $this->tableName WHERE `$this->tableColumn4` IS NULL";
+            $result = mysqli_query($this->conn, $query);
+            while ($row = mysqli_fetch_assoc($result)) {
+                if(!empty($this->resourceFilter)){
+                    $_all[] = $row["$this->tableColumn3"];
+                }
+                if(!empty($this->nameFilter)){
+                    $_all[] = $row["$this->tableColumn2"];
+
+                }
+                if(!empty($this->search)){
+                    $_all[] .= $row["$this->tableColumn3"];
+                    $_all[] .= $row["$this->tableColumn2"];
+
+                }
+                
+                $_all[] = $row["$this->tableColumn2"];
+
+
+            }
+
+            return $_all;
+
 
         }
 

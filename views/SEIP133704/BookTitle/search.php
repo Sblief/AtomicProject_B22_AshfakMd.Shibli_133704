@@ -1,20 +1,19 @@
 <?php
 include_once ("../../../vendor/autoload.php");
 include "header.php";
-use App\Bitm\SEIP133704\OrganizationSummary\Summary;
-use App\Bitm\SEIP133704\OrganizationSummary\Uses;
+use App\Bitm\SEIP133704\BookTitle\Book;
 use App\Bitm\SEIP133704\GlobalClasses\Utility;
 use App\Bitm\SEIP133704\GlobalClasses\Message;
+use App\Bitm\SEIP133704\BookTitle\Uses;         //Called the class files used here.
 
 $search = $_GET['search'];
-$newSearch =  new Summary();
+$newSearch =  new Book();
 $newSearch->prepare($_GET);
 $list = $newSearch->index();
 
-$tableColumn = array("SL","ID","Organization","Summary","Action","","");
+$tableColumn = array("SL","ID","Book Title","Description","","");
 
-
-
+$filter = "";
 if(isset($_GET["nameFilter"])) {
     $filter .= "filtering " ."'". $tableColumn[2]."'";
     if (isset($_GET["resourceFilter"])) {
@@ -29,6 +28,7 @@ else{
 }
 
 
+
 if(!empty($list)){    //if the list of items is not empty the table will be shown, else a message that it is empty here.
     ?>
 
@@ -37,7 +37,7 @@ if(!empty($list)){    //if the list of items is not empty the table will be show
 
         <div class="container-fluid form-inline" style="margin-top: 100px">
             <h2>Search results</h2>
-            <h3>for <?php echo "'".$search."'"?></h3>
+            <h3>for <?php echo "'".$search."'"." ".$filter?></h3>
             
 
             <table class="table table-bordered table-responsive table-hover" >
@@ -60,14 +60,14 @@ if(!empty($list)){    //if the list of items is not empty the table will be show
                     <tr>
                         <td><?php echo  $sl1 = $sl
                                 //+$pageStartFrom;?></td>
-                        <td><?php echo $item->id ;?></td>
-                        <td><?php echo $item->name ;?></td>
-                        <td><?php echo $item->summaryTagRemoved ;?></td>
+                        <td><?php echo $item->ID ;?></td>
+                        <td><?php echo $item->bookTitle ;?></td>
+                        <td><?php echo $item->description ;?></td>
                         <td>
-                            <a href="view.php?id=<?php echo $item->id ?>" ><button type="button" class="btn btn-info">View</button></a>
-                            <a href="edit.php?id=<?php echo $item->id ?>" ><button type="button" class="btn btn-info">Edit</button></a>
-                            <a href="delete.php?id=<?php echo $item->id ?>" ><button type="button" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this item?');">Delete</button>
-                                <a href="trash.php?id=<?php echo $item->id ?>" ><button type="button" class="btn btn-warning">Trash</button>
+                            <a href="view.php?id=<?php echo $item->ID ?>" ><button type="button" class="btn btn-info">View</button></a>
+                            <a href="edit.php?id=<?php echo $item->ID ?>" ><button type="button" class="btn btn-info">Edit</button></a>
+                            <a href="delete.php?id=<?php echo $item->ID ?>" ><button type="button" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this item?');">Delete</button>
+                                <a href="trash.php?id=<?php echo $item->ID ?>" ><button type="button" class="btn btn-warning">Trash</button>
                         </td>
                     </tr>
                 <?php } ?>
@@ -79,7 +79,7 @@ if(!empty($list)){    //if the list of items is not empty the table will be show
 <?php }
 else{
     echo "<div class='container' style='margin-top: 100px; margin-bottom: 350px'>
-            <h1>There is no item having '$search' $filter</h1>
+            <h1>There is no item having '$search'   $filter</h1>
             <h3>Please search again.</h3>
            </div>";
 

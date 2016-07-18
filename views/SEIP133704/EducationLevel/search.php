@@ -1,20 +1,20 @@
 <?php
 include_once ("../../../vendor/autoload.php");
 include "header.php";
-use App\Bitm\SEIP133704\OrganizationSummary\Summary;
-use App\Bitm\SEIP133704\OrganizationSummary\Uses;
-use App\Bitm\SEIP133704\GlobalClasses\Utility;
+use App\Bitm\SEIP133704\EducationLevel\Education;
+use App\Bitm\SEIP133704\EducationLevel\Uses;
 use App\Bitm\SEIP133704\GlobalClasses\Message;
+use App\Bitm\SEIP133704\GlobalClasses\Utility;
 
 $search = $_GET['search'];
-$newSearch =  new Summary();
+$newSearch =  new Education();
 $newSearch->prepare($_GET);
 $list = $newSearch->index();
 
-$tableColumn = array("SL","ID","Organization","Summary","Action","","");
+$tableColumn = array("SL","ID","Name","Highest Education Level","Action","","");
 
 
-
+$filter = "";
 if(isset($_GET["nameFilter"])) {
     $filter .= "filtering " ."'". $tableColumn[2]."'";
     if (isset($_GET["resourceFilter"])) {
@@ -37,7 +37,7 @@ if(!empty($list)){    //if the list of items is not empty the table will be show
 
         <div class="container-fluid form-inline" style="margin-top: 100px">
             <h2>Search results</h2>
-            <h3>for <?php echo "'".$search."'"?></h3>
+            <h3>for <?php echo "'".$search."'"." ".$filter?></h3>
             
 
             <table class="table table-bordered table-responsive table-hover" >
@@ -62,7 +62,7 @@ if(!empty($list)){    //if the list of items is not empty the table will be show
                                 //+$pageStartFrom;?></td>
                         <td><?php echo $item->id ;?></td>
                         <td><?php echo $item->name ;?></td>
-                        <td><?php echo $item->summaryTagRemoved ;?></td>
+                        <td><?php echo $item->level ;?></td>
                         <td>
                             <a href="view.php?id=<?php echo $item->id ?>" ><button type="button" class="btn btn-info">View</button></a>
                             <a href="edit.php?id=<?php echo $item->id ?>" ><button type="button" class="btn btn-info">Edit</button></a>

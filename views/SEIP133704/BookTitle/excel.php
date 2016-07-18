@@ -7,7 +7,7 @@ use App\Bitm\SEIP133704\BookTitle\Uses;
 
 $newXL = new Book();
 $allItems = $newXL->index();
-$tableColumn = array("SL","ID","Book Title","Action","","");
+$tableColumn = array("SL","ID","Book Title","Description","","");
 $title = 'Book Library';
 
 //$keyword = echo Uses::siteKeyword();
@@ -67,7 +67,8 @@ $objPHPExcel->getProperties()->setCreator("Ashfak md. Shibli")
 $objPHPExcel->setActiveSheetIndex(0)
     ->setCellValue('A1', $tableColumn[0])
     ->setCellValue('B1', $tableColumn[1])
-    ->setCellValue('C1', $tableColumn[2]);
+    ->setCellValue('C1', $tableColumn[2])
+->setCellValue('D1', $tableColumn[3]);
 
 
 $sl = 0;
@@ -80,7 +81,8 @@ foreach ($allItems as $item):
 $objPHPExcel->setActiveSheetIndex(0)
     ->setCellValue('A'.$counter, $sl)
     ->setCellValue('B'.$counter, $item->ID)
-    ->setCellValue('C'.$counter, $item->bookTitle);
+    ->setCellValue('C'.$counter, $item->bookTitle)
+    ->setCellValue('D'.$counter, $item->description);
 
 // Rename worksheet
 $objPHPExcel->getActiveSheet()->setTitle("$title");

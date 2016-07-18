@@ -12,6 +12,10 @@ class Birthday
     public $pageNumber;
     public $fromtrash = false;
 
+    public $nameFilter = "";
+    public $resourceFilter = "";
+    public $search = "";
+
     public $conn;
     public $dbName = "shibli_atomicprojectB22_133704";
     public $user = "shibli_atomic";
@@ -47,6 +51,19 @@ class Birthday
 
     public function prepare ($data="")
     {
+        if(isset($data['nameFilter']) && array_key_exists("nameFilter",$data)){
+            $this->nameFilter = $data['nameFilter'];
+
+        }
+        if(isset($data['resourceFilter']) && array_key_exists("resourceFilter",$data)){
+            $this->resourceFilter = $data['resourceFilter'];
+
+        }
+        if(array_key_exists("search",$data)){
+            $this->search = $data['search'];
+
+        }
+        
         if(array_key_exists("birthday",$data)){
             $this->birthday = $data['birthday'];
 
@@ -113,8 +130,22 @@ class Birthday
 
     public function index()
     {
+        $andSql  = "AND 1=1 ";
+        if(!empty($this->resourceFilter)){
+            $andSql .= " AND  $this->tableColumn3 LIKE '%".$this->search."%'";
+        }
+        if(!empty($this->nameFilter)){
+            $andSql .= " AND  $this->tableColumn2 LIKE '%".$this->search."%'";
+        }
+        if(!empty($this->resourceFilter) && !empty($this->nameFilter )) {
+            $andSql .= " AND  $this->tableColumn3 LIKE '%".$this->search."%' OR $this->tableColumn2 LIKE '%".$this->search."%'";
+        }
+        if (empty($this->resourceFilter) && empty($this->nameFilter )) {
+            $andSql .= " AND  $this->tableColumn3 LIKE '%".$this->search."%' OR $this->tableColumn2 LIKE '%".$this->search."%'";
+        }
+        
         $_list =  array();
-        $query = "SELECT * FROM $this->tableName WHERE `$this->tableColumn4` IS NULL ";
+        $query = "SELECT * FROM $this->tableName WHERE `$this->tableColumn4` IS NULL ".$andSql;
         $result =  mysqli_query($this->conn,$query);
         if($result){
             while($row = mysqli_fetch_object($result)){
@@ -146,7 +177,7 @@ class Birthday
                         <script>
                             $('#message').show().delay(2000).fadeOut();
                         </script>");
-            Utility::redirect("index.php?pageNumber=$this->pageNumber");
+            if(!empty($this->pageNumber))   Utility::redirect("index.php?pageNumber=$this->pageNumber"); else Utility::redirect("index.php");
         }
         else {
             Message::message("
@@ -174,7 +205,9 @@ class Birthday
                             $('#message').show().delay(2000).fadeOut();
                         </script>");
             if($this->fromtrash==true) Utility::redirect("trashed.php");
-            else Utility::redirect("index.php?pageNumber=$this->pageNumber");
+            else {
+                if(!empty($this->pageNumber))   Utility::redirect("index.php?pageNumber=$this->pageNumber"); else Utility::redirect("index.php");
+            }
         }
         else {
             Message::message("
@@ -206,7 +239,7 @@ class Birthday
                         <script>
                             $('#message').show().delay(2000).fadeOut();
                         </script>");
-            Utility::redirect("index.php?pageNumber=$this->pageNumber");
+            if(!empty($this->pageNumber))   Utility::redirect("index.php?pageNumber=$this->pageNumber"); else Utility::redirect("index.php");
         }
         else {
             Message::message("
@@ -354,6 +387,40 @@ class Birthday
 
 
         return $_list;
+
+    }
+
+    public function getAllFirstSearch()
+    {
+
+        $_all = array();
+        $query = "SELECT * FROM $this->tableName WHERE `$this->tableColumn4` IS NULL";
+        $result = mysqli_query($this->conn, $query);
+        while ($row = mysqli_fetch_assoc($result)) {
+            if(!empty($this->resourceFilter)){
+                $_all[] = $row["$this->tableColumn3"];
+            }
+            if(!empty($this->nameFilter)){
+                $_all[] = $row["$this->tableColumn2"];
+
+            }
+            if(!empty($this->search)){
+                $_all[] .= $row["$this->tableColumn2"];
+                $_all[] .= $row["$this->tableColumn3"];
+
+            }
+
+            $_all[] = $row["$this->tableColumn3"];
+            $_all[] = $row["$this->tableColumn2"];
+
+
+
+        }
+        
+
+        return $_all;
+
+
 
     }
 

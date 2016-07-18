@@ -18,12 +18,17 @@
                 Enter <?php echo Uses::siteKeyword()  ?>
 
             </h2>
-            <div class="form-group">
-                <label class="control-label col-sm-2"><?php echo Uses::siteKeyword()  ?></label>
-                <div class="col-sm-6">
+            <div class="form-group col-sm-6">
+                <label for="title" class="control-label"><?php echo Uses::siteKeyword()  ?></label>
+
 <!--                    Mind it! name field goes in $_POST. We will use it on other pages-->
                     <input type="text" class="form-control" id="title" name="title" placeholder="Enter Your <?php echo Uses::siteKeyword()  ?>" required>
-                </div>
+
+                <label for="description" class="control-label">Description</label>
+
+                    <!--                    Mind it! name field goes in $_POST. We will use it on other pages-->
+                    <input type="text" class="form-control" id="description" name="description" placeholder="Enter Your <?php echo Uses::siteKeyword()  ?> Description" required>
+
             </div>
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">

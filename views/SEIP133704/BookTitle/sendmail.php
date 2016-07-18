@@ -17,9 +17,11 @@ if(!empty($_POST['id'])) {
 
     $id = $singleItem->ID;
     $itemName = $singleItem->bookTitle;
+    $itemData = $singleItem->description;
+    
 
 
-    $tableColumn = array("SL","ID","Book Title");
+    $tableColumn = array("SL","ID","Book Title","Description");
     $title =  Uses::siteName();
     $keyword =  Uses::siteKeyword();
 
@@ -30,6 +32,7 @@ if(!empty($_POST['id'])) {
         $tableDynamicData .= "<td>$sl</td>";
         $tableDynamicData .= "<td>$id</td>";
         $tableDynamicData .= "<td>$itemName</td>";
+    $tableDynamicData .= "<td>$itemData</td>";
         $tableDynamicData .= "</tr>";
 $html = <<<ATOMIC
 <!DOCTYPE html>
@@ -57,6 +60,7 @@ $html = <<<ATOMIC
             <th>$tableColumn[0]</th>
             <th>$tableColumn[1]</th>
             <th>$tableColumn[2]</th>
+            <th>$tableColumn[3]</th>
             
         </tr>
         </thead>
@@ -85,7 +89,7 @@ else {
 
 
 
-$tableColumn = array("SL","ID","Book Title");
+$tableColumn = array("SL","ID","Book Title","Description");
 $title =  Uses::siteName();
 $keyword =  Uses::siteKeyword();
 
@@ -101,6 +105,7 @@ foreach ($allItems as $item ):
     $tableDynamicData .= "<td>$sl</td>";
     $tableDynamicData .= "<td>$item->ID</td>";
     $tableDynamicData .= "<td>$item->bookTitle</td>";
+    $tableDynamicData .= "<td>$item->description</td>";
     $tableDynamicData .= "</tr>";
 
 endforeach;
@@ -134,6 +139,7 @@ $html = <<<ATOMIC
             <th>$tableColumn[0]</th>
             <th>$tableColumn[1]</th>
             <th>$tableColumn[2]</th>
+            <th>$tableColumn[3]</th>
             
         </tr>
         </thead>

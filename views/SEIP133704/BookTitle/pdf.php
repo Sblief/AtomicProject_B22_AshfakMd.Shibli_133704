@@ -8,7 +8,7 @@ use App\Bitm\SEIP133704\BookTitle\Uses;
 $newPdf = new Book();
 $allItems = $newPdf->index();
 
-$tableColumn = array("SL","ID","Book Title","Action","","");
+$tableColumn = array("SL","ID","Book Title","Description","","");
 $title =  Uses::siteName();
 $keyword =  Uses::siteKeyword();
 
@@ -23,6 +23,7 @@ $tableDynamicData .= "<tr>";
     $tableDynamicData .= "<td>$sl</td>";
     $tableDynamicData .= "<td>$item->ID</td>";
     $tableDynamicData .= "<td>$item->bookTitle</td>";
+    $tableDynamicData .= "<td>$item->description</td>";
 $tableDynamicData .= "</tr>";
 
 endforeach;
@@ -56,6 +57,7 @@ $html = <<<ATOMIC
             <th>$tableColumn[0]</th>
             <th>$tableColumn[1]</th>
             <th>$tableColumn[2]</th>
+            <th>$tableColumn[3]</th>
             
         </tr>
         </thead>

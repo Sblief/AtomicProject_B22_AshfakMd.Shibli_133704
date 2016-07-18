@@ -11,10 +11,11 @@ class Summary
     public $summaryNoTag = "";
     public $name = "";
     public $pageNumber;
-    public $organizationFilter = "";
-    public $summaryFilter = "";
-    public $search = "";
     public $fromtrash = false;
+
+    public $nameFilter = "";
+    public $resourceFilter = "";
+    public $search = "";
 
     public $conn;
     public $dbName = "shibli_atomicprojectB22_133704";
@@ -52,23 +53,26 @@ class Summary
 
     public function prepare ($data="")
     {
-        if(array_key_exists("summary",$data)){
-            $this->summary = $data['summary'];
-            $this->summaryNoTag = strip_tags($this->summary);
+        if(isset($data['nameFilter']) && array_key_exists("nameFilter",$data)){
+            $this->nameFilter = $data['nameFilter'];
 
         }
-        if(isset($data['organizationFilter']) && array_key_exists("organizationFilter",$data)){
-            $this->organizationFilter = $data['organizationFilter'];
-
-        }
-        if(isset($data['summaryFilter']) && array_key_exists("summaryFilter",$data)){
-            $this->summaryFilter = $data['summaryFilter'];
+        if(isset($data['resourceFilter']) && array_key_exists("resourceFilter",$data)){
+            $this->resourceFilter = $data['resourceFilter'];
 
         }
         if(array_key_exists("search",$data)){
             $this->search = $data['search'];
 
         }
+        
+        
+        if(array_key_exists("summary",$data)){
+            $this->summary = $data['summary'];
+            $this->summaryNoTag = strip_tags($this->summary);
+
+        }
+        
         if(array_key_exists("id",$data)){
             $this->id = $data['id'];
 
@@ -135,21 +139,24 @@ class Summary
 
     public function index()
     {
-        $andSql  = " 1=1 ";
-        if(!empty($this->summaryFilter)){
+        $andSql  = "AND 1=1 ";
+        if(!empty($this->resourceFilter)){
             $andSql .= " AND  $this->tableColumn4 LIKE '%".$this->search."%'";
         }
-        if(!empty($this->organizationFilter)){
+        if(!empty($this->nameFilter)){
             $andSql .= " AND  $this->tableColumn2 LIKE '%".$this->search."%'";
         }
-        if(!empty($this->search)){
+        if(!empty($this->resourceFilter) && !empty($this->nameFilter )) {
+            $andSql .= " AND  $this->tableColumn4 LIKE '%".$this->search."%' OR $this->tableColumn2 LIKE '%".$this->search."%'";
+        }
+        if (empty($this->resourceFilter) && empty($this->nameFilter )) {
             $andSql .= " AND  $this->tableColumn4 LIKE '%".$this->search."%' OR $this->tableColumn2 LIKE '%".$this->search."%'";
         }
 
 
 
         $_list =  array();
-        $query = "SELECT * FROM $this->tableName WHERE `$this->tableColumn5` IS NULL AND ".$andSql;
+        $query = "SELECT * FROM $this->tableName WHERE `$this->tableColumn5` IS NULL ".$andSql;
         $result =  mysqli_query($this->conn,$query);
         if($result){
             while($row = mysqli_fetch_object($result)){
@@ -181,7 +188,7 @@ class Summary
                         <script>
                             $('#message').show().delay(2000).fadeOut();
                         </script>");
-            Utility::redirect("index.php?pageNumber=$this->pageNumber");
+            if(!empty($this->pageNumber))   Utility::redirect("index.php?pageNumber=$this->pageNumber"); else Utility::redirect("index.php");
         }
         else {
             Message::message("
@@ -245,7 +252,7 @@ class Summary
                         <script>
                             $('#message').show().delay(2000).fadeOut();
                         </script>");
-            Utility::redirect("index.php?pageNumber=$this->pageNumber");
+            if(!empty($this->pageNumber))   Utility::redirect("index.php?pageNumber=$this->pageNumber"); else Utility::redirect("index.php");
         }
         else {
             Message::message("
@@ -399,10 +406,10 @@ class Summary
         $query = "SELECT * FROM $this->tableName WHERE `$this->tableColumn5` IS NULL";
         $result = mysqli_query($this->conn, $query);
         while ($row = mysqli_fetch_assoc($result)) {
-            if(!empty($this->summaryFilter)){
+            if(!empty($this->resourceFilter)){
                 $_all[] = $row["$this->tableColumn2"];
             }
-            if(!empty($this->organizationFilter)){
+            if(!empty($this->nameFilter)){
                 $_all[] = $row["$this->tableColumn3"];
 
             }
@@ -411,6 +418,7 @@ class Summary
                 $_all[] .= $row["$this->tableColumn3"];
 
             }
+            $_all[] = $row["$this->tableColumn3"];
             $_all[] = $row["$this->tableColumn2"];
             
             

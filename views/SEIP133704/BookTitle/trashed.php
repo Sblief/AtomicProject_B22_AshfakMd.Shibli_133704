@@ -13,7 +13,7 @@ session_start();
 
     //Utility::d($_SESSION);
     
-    $tableColumn = array("SL","ID","Book Title","Action","","");
+    $tableColumn = array("SL","ID","Book Title","Description","Action","","");
 
     if(array_key_exists('itemPerTrashPage',$_SESSION)) {
         if(array_key_exists('itemPerTrashPage',$_GET))
@@ -86,6 +86,7 @@ if(!empty($list)){
                         <th><?php echo $tableColumn[1] ?></th>
                         <th><?php echo $tableColumn[2] ?></th>
                         <th><?php echo $tableColumn[3] ?></th>
+                        <th><?php echo $tableColumn[4] ?></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -99,6 +100,7 @@ if(!empty($list)){
                             <td><?php echo $sl1 = $sl+$pageStartFrom ;?></td>
                             <td><?php echo $item->ID ;?></td>
                             <td><?php echo $item->bookTitle ;?></td>
+                            <td><?php echo $item->description ;?></td>
                             <td>
                                 <a href="recover.php?id=<?php echo $item->ID ?>" ><button type="button" class="btn btn-warning">Recover</button>
                                 <a href="delete.php?id=<?php echo $item->ID ?>&fromtrash=true"  ><button type="button" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this item?');">Delete</button>

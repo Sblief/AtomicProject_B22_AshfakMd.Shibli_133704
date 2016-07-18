@@ -30,7 +30,7 @@
             <ul class="list-group">
                 <li class="list-group-item">ID:   <?php echo $singleItem->ID?></li>
                 <li class="list-group-item"><?php echo Uses::siteKeyword() ?>:   <?php echo $singleItem->bookTitle?></li>
-                <li class="list-group-item"> </li>
+                <li class="list-group-item">Description:<br> <?php echo $singleItem->description?> </li>
                 <li class="list-group-item"> </li>
             </ul>
         </div>

@@ -5,8 +5,11 @@ use App\Bitm\SEIP133704\OrganizationSummary\Uses;
 use App\Bitm\SEIP133704\GlobalClasses\Utility;
 use App\Bitm\SEIP133704\GlobalClasses\Message;
 
-$id1 = "Organization";
-$id2 = "Summary";
+$showID1 = "Organiztion";
+$showID2 = "Summary";
+
+$id1 = "name";
+$id2 = "resource";
 
 $name1 = strtolower($id1)."Filter";
 $name2 = strtolower($id2)."Filter";
@@ -80,14 +83,15 @@ $comaSeparated = '"'.implode('","',$available).'"';
                 <li><a href="create.php">ADD</a></li>
                 <li><a href="trashed.php">TRASH</a></li>
             </ul>
+<!--            Search area                    -->
             <form method="get" action="search.php">
             <ul class="nav navbar-nav navbar-right">
 
                 <li>
                     <div class="checkbox">
-                        <label><input class="checkbox" type="checkbox" id="<?php echo $id1 ?>" name="<?php echo $name1 ?>">In <?php echo $id1 ?></label>
+                        <label><input class="checkbox" type="checkbox" id="<?php echo $id1 ?>" name="<?php echo $name1 ?>">In <?php echo $showID1 ?></label>
 
-                        <label><input class="checkbox" type="checkbox" id="<?php echo $id2 ?>" name="<?php echo $name2 ?>">In <?php echo $id2 ?></label>
+                        <label><input class="checkbox" type="checkbox" id="<?php echo $id2 ?>" name="<?php echo $name2 ?>">In <?php echo $showID2 ?></label>
                     </div>
                 </li>
                 <li>
@@ -98,6 +102,7 @@ $comaSeparated = '"'.implode('","',$available).'"';
                 </li>
             </ul>
             </form>
+            <!--            Search area         -->
         </div>
     </div>
 </nav>

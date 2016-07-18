@@ -90,6 +90,11 @@ if(isset($_GET['pdf']) && $_GET['pdf'] == 'download'){
 }
 
 else {
+    $files = glob('../../../resource/pdf/*'); // get all file names
+    foreach($files as $file){ // iterate files
+        if(is_file($file))
+            unlink($file); // delete file
+    }
     $title = $title.time();
     $mpdf->Output('../../../resource/pdf/'.$title.'.pdf','F');
     $_SESSION['attach'] = '../../../resource/pdf/'.$title.'.pdf';

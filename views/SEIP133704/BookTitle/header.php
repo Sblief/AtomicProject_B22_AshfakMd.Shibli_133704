@@ -1,6 +1,21 @@
 <?php
 include_once ('../../../vendor/autoload.php');
 use App\Bitm\SEIP133704\BookTitle\Uses;
+use App\Bitm\SEIP133704\BookTitle\Book;
+
+$showID1 = "Book Title	";
+$showID2 = "Description";
+
+$id1 = "name";
+$id2 = "resource";
+
+$name1 = strtolower($id1)."Filter";
+$name2 = strtolower($id2)."Filter";
+
+$newIndex =  new Book();
+$available = $newIndex->getAllFirstSearch();
+$comaSeparated = '"'.implode('","',$available).'"';
+
 ?>
 
 <!DOCTYPE html>
@@ -9,17 +24,19 @@ use App\Bitm\SEIP133704\BookTitle\Uses;
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../../../resource/bootstrap-3.3.6/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../../../resource/CustomDesign/css/style.css">
     <link rel="stylesheet" href="../../../resource/jquery/jquery-ui.min.css">
+    <link rel="stylesheet" href="../../../resource/CustomDesign/css/style.css">
     <script src="../../../resource/jquery/1.12.0/jquery.min.js"></script>
-    <script src="../../../resource/jquery/jquery.validate.js"></script>
+    <script src="../../../resource/tinymce/js/tinymce/tinymce.min.js"></script>
     <script src="../../../resource/bootstrap-3.3.6/js/bootstrap.min.js"></script>
-    <script src="../../../resource/jquery/jquery-ui.min.js"></script>
+    <script src="../../../resource/jquery/1.12.0/jquery-ui.js"></script>
     <link rel="stylesheet" href="../../../resource/font-awesome-4.6.3/css/font-awesome.min.css">
+
 
     <title><?php echo Uses::siteName() ?></title>
 
 </head>
+
 
 <body>
 <!--Navigation Bar start-->
@@ -66,14 +83,47 @@ use App\Bitm\SEIP133704\BookTitle\Uses;
                 <li><a href="create.php">ADD</a></li>
                 <li><a href="trashed.php">TRASH</a></li>
             </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li><input class="input-lg" type="text" id="search" placeholder="Search"></li>
+            <!--            Search area                    -->
+            <form method="get" action="search.php">
+                <ul class="nav navbar-nav navbar-right">
 
-            </ul>
+                    <li>
+                        <div class="checkbox">
+                            <label><input class="checkbox" type="checkbox" id="<?php echo $id1 ?>" name="<?php echo $name1 ?>">In <?php echo $showID1 ?></label>
+
+                            <label><input class="checkbox" type="checkbox" id="<?php echo $id2 ?>" name="<?php echo $name2 ?>">In <?php echo $showID2 ?></label>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="has-feedback">
+                            <input class="input-lg" type="text" id="search" name="search" placeholder="Search" required>
+                            <span class="fa fa-search form-control-feedback"></span>
+                        </div>
+                    </li>
+                </ul>
+            </form>
+            <!--            Search area         -->
         </div>
-        
-
     </div>
 </nav>
-
 <!--Navigation bar end-->
+<script>
+    $(function() {
+        $('#search').change(function() {
+            this.form.submit();
+        });
+    });
+</script>
+<script>
+    $( function() {
+        var availableTags = [
+            <?php echo $comaSeparated ?>
+        ];
+        $( "#search" ).autocomplete({
+            source: availableTags
+        });
+    } );
+</script>
+</body>
+
+</html>

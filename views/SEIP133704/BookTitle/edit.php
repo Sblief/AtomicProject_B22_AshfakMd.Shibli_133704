@@ -19,13 +19,14 @@
             <h2 style="padding-left: 80px; margin-bottom: 20px">
                 Edit Your <?php echo Uses::siteKeyword() ?>
             </h2>
-            <div class="form-group">
-                <label class="control-label col-sm-2"><?php echo Uses::siteKeyword() ?></label>
-                <div class="col-sm-6">
-                    <input type="hidden" name="bringBackPage" id="bringBackPage" value="<?php echo $_GET['bringBackPage']?>">
-                    <input type="hidden" name="id" id="title" value="<?php echo $singleItem->ID ?>">
-                    <input type="text" class="form-control" id="title" name="title" placeholder="Enter <?php echo Uses::siteKeyword() ?>" value="<?php echo $singleItem->bookTitle ?>" required>
-                </div>
+            <div class="form-group col-sm-6">
+                <label class="control-label"><?php echo Uses::siteKeyword() ?></label>
+                <input type="hidden" name="bringBackPage" id="bringBackPage" value="<?php echo $_GET['bringBackPage']?>">
+                <input type="hidden" name="id" id="title" value="<?php echo $singleItem->ID ?>">
+                <input type="text" class="form-control" id="title" name="title" placeholder="Enter <?php echo Uses::siteKeyword() ?>" value="<?php echo $singleItem->bookTitle ?>" required>
+               <label class="control-label">Description</label>
+                <input type="text" class="form-control" id="description" name="description" placeholder="Enter Your <?php echo Uses::siteKeyword()  ?> Description" value="<?php echo $singleItem->description?>" required>
+
             </div>
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">

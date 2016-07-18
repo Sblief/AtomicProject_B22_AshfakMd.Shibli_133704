@@ -4,6 +4,20 @@ use App\Bitm\SEIP133704\NewsLetter\Email;
 use App\Bitm\SEIP133704\GlobalClasses\Utility;
 use App\Bitm\SEIP133704\GlobalClasses\Message;
 use App\Bitm\SEIP133704\NewsLetter\Uses;
+
+$showID1 = "Name";
+$showID2 = "Email Addresses	";
+
+$id1 = "name";
+$id2 = "resource";
+
+$name1 = strtolower($id1)."Filter";
+$name2 = strtolower($id2)."Filter";
+
+$newIndex =  new Email();
+$available = $newIndex->getAllFirstSearch();
+$comaSeparated = '"'.implode('","',$available).'"';
+
 ?>
 
 <!DOCTYPE html>
@@ -12,13 +26,14 @@ use App\Bitm\SEIP133704\NewsLetter\Uses;
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../../../resource/bootstrap-3.3.6/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../../../resource/CustomDesign/css/style.css">
     <link rel="stylesheet" href="../../../resource/jquery/jquery-ui.min.css">
+    <link rel="stylesheet" href="../../../resource/CustomDesign/css/style.css">
     <script src="../../../resource/jquery/1.12.0/jquery.min.js"></script>
-    <script src="../../../resource/jquery/jquery.validate.js"></script>
+    <script src="../../../resource/tinymce/js/tinymce/tinymce.min.js"></script>
     <script src="../../../resource/bootstrap-3.3.6/js/bootstrap.min.js"></script>
-    <script src="../../../resource/jquery/jquery-ui.min.js"></script>
+    <script src="../../../resource/jquery/1.12.0/jquery-ui.js"></script>
     <link rel="stylesheet" href="../../../resource/font-awesome-4.6.3/css/font-awesome.min.css">
+
 
     <title><?php echo Uses::siteName() ?></title>
 
@@ -39,9 +54,9 @@ use App\Bitm\SEIP133704\NewsLetter\Uses;
             <ul class="nav navbar-nav navbar-left nav-tabs">
                 <li><a href="../../../index.php">ATOMIC PROJECT HOME</a></li>
                 <li ><a href="../BookTitle">1.Text</a></li>
-                <li class="active"><a href="../DateOfBirth">2.Date</a></li>
+                <li ><a href="../DateOfBirth">2.Date</a></li>
                 <li><a href="../OrganizationSummary">3.Textarea</a></li>
-                <li><a href="../NewsLetter">4.Email</a></li>
+                <li class="active"><a href="../NewsLetter">4.Email</a></li>
                 <li><a href="../Profile">5.File</a></li>
                 <li><a href="../EducationLevel">6.Radio</a></li>
                 <li><a href="../Hobby">7.Multiple Checkbox</a></li>
@@ -68,10 +83,47 @@ use App\Bitm\SEIP133704\NewsLetter\Uses;
                 <li><a href="create.php">ADD</a></li>
                 <li><a href="trashed.php">TRASH</a></li>
             </ul>
+            <!--            Search area                    -->
+            <form method="get" action="search.php">
+                <ul class="nav navbar-nav navbar-right">
+
+                    <li>
+                        <div class="checkbox">
+                            <label><input class="checkbox" type="checkbox" id="<?php echo $id1 ?>" name="<?php echo $name1 ?>">In <?php echo $showID1 ?></label>
+
+                            <label><input class="checkbox" type="checkbox" id="<?php echo $id2 ?>" name="<?php echo $name2 ?>">In <?php echo $showID2 ?></label>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="has-feedback">
+                            <input class="input-lg" type="text" id="search" name="search" placeholder="Search" required>
+                            <span class="fa fa-search form-control-feedback"></span>
+                        </div>
+                    </li>
+                </ul>
+            </form>
+            <!--            Search area         -->
         </div>
     </div>
 </nav>
 <!--Navigation bar end-->
+<script>
+    $(function() {
+        $('#search').change(function() {
+            this.form.submit();
+        });
+    });
+</script>
+<script>
+    $( function() {
+        var availableTags = [
+            <?php echo $comaSeparated ?>
+        ];
+        $( "#search" ).autocomplete({
+            source: availableTags
+        });
+    } );
+</script>
 </body>
 
 </html>
