@@ -10,7 +10,6 @@
 
     $newIndex =  new Summary();
     $list = $newIndex->index();
-    //Utility::dd($list);
 
     $tableColumn = array("SL","ID","Organization","Summary","Action","","");
 
@@ -177,4 +176,5 @@ else{
             });
         });
     </script>
+    
 <?php include "footer.php"?>

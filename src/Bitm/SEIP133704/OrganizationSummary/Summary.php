@@ -150,8 +150,6 @@ class Summary
 
         $_list =  array();
         $query = "SELECT * FROM $this->tableName WHERE `$this->tableColumn5` IS NULL AND ".$andSql;
-//        echo $query;
-//        die();
         $result =  mysqli_query($this->conn,$query);
         if($result){
             while($row = mysqli_fetch_object($result)){
@@ -388,6 +386,34 @@ class Summary
 
 
         return $_list;
+
+    }
+    public function getAllFirstSearch()
+    {
+        
+        $_all = array();
+        $query = "SELECT * FROM $this->tableName WHERE `$this->tableColumn5` IS NULL";
+        $result = mysqli_query($this->conn, $query);
+        while ($row = mysqli_fetch_assoc($result)) {
+            if(!empty($this->summaryFilter)){
+                $_all[] = $row["$this->tableColumn2"];
+            }
+            if(!empty($this->organizationFilter)){
+                $_all[] = $row["$this->tableColumn3"];
+
+            }
+            if(!empty($this->search)){
+                $_all[] .= $row["$this->tableColumn2"];
+                $_all[] .= $row["$this->tableColumn3"];
+
+            }
+            $_all[] = $row["$this->tableColumn2"];
+            
+            
+        }
+
+        return $_all;
+
 
     }
 

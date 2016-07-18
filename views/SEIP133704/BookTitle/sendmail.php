@@ -189,7 +189,7 @@ $mail->SMTPAuth = true;
 //Username to use for SMTP authentication - use full email address for gmail
 $mail->Username = "sblief.sb@gmail.com";
 //Password to use for SMTP authentication
-$mail->Password = "emon744254";
+$mail->Password = "emON#744254";
 //Set who the message is to be sent from
 $mail->setFrom('atomicproject@shibliemon.com', 'Ashfak Md. Shibli');
 //Set an alternative reply-to address
