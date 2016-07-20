@@ -85,11 +85,4 @@ else{
 
 }//end of if..else
 ?>
-    <script>
-        $(function() {
-            $('#slct').change(function() {
-                this.form.submit();
-            });
-        });
-    </script>
 <?php include "footer.php"?>
