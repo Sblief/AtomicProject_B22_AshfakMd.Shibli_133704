@@ -86,7 +86,7 @@ $comaSeparated = '"'.$array.'"';
                 <li><a href="trashed.php">TRASH</a></li>
             </ul>
             <!--            Search area                    -->
-            <form method="get" action="search.php">
+            <form id="searchForm" method="get" action="search.php">
                 <ul class="nav navbar-nav navbar-right">
 
                     <li>
@@ -109,20 +109,34 @@ $comaSeparated = '"'.$array.'"';
     </div>
 </nav>
 <!--Navigation bar end-->
-<script>
-    $(function() {
-        $('#search').change(function() {
-            this.form.submit();
-        });
-    });
-</script>
+
 <script>
     $( function() {
         var availableTags = [
             <?php echo $comaSeparated ?>
         ];
         $( "#search" ).autocomplete({
-            source: availableTags
+            source: function(request, response) {
+
+                var results = $.ui.autocomplete.filter(availableTags, request.term);
+
+                results = $.map(availableTags, function (tag) {
+                    if (tag.toUpperCase().indexOf(request.term.toUpperCase()) === 0) {
+                        return tag;
+                    }
+                });
+
+                response(results.slice(0, 15));
+
+            }
+        });
+
+
+        $( "#search" ).autocomplete({
+            select: function(event, ui) {
+                $("#search").val(ui.item.label);
+                $("#searchForm").submit();
+            }
         });
     } );
 </script>

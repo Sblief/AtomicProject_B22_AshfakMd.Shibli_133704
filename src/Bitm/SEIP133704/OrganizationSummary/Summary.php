@@ -140,14 +140,17 @@ class Summary
     public function index()
     {
         $andSql  = "AND 1=1 ";
-        if(!empty($this->resourceFilter)){
-            $andSql .= " AND  $this->tableColumn4 LIKE '%".$this->search."%'";
-        }
-        if(!empty($this->nameFilter)){
-            $andSql .= " AND  $this->tableColumn2 LIKE '%".$this->search."%'";
-        }
+        
         if(!empty($this->resourceFilter) && !empty($this->nameFilter )) {
             $andSql .= " AND  $this->tableColumn4 LIKE '%".$this->search."%' OR $this->tableColumn2 LIKE '%".$this->search."%'";
+        }
+        else{
+            if(!empty($this->resourceFilter)){
+                $andSql .= " AND  $this->tableColumn4 LIKE '%".$this->search."%'";
+            }
+            if(!empty($this->nameFilter)){
+                $andSql .= " AND  $this->tableColumn2 LIKE '%".$this->search."%'";
+            }
         }
         if (empty($this->resourceFilter) && empty($this->nameFilter )) {
             $andSql .= " AND  $this->tableColumn4 LIKE '%".$this->search."%' OR $this->tableColumn2 LIKE '%".$this->search."%'";
@@ -405,26 +408,32 @@ class Summary
         $_all = array();
         $query = "SELECT * FROM $this->tableName WHERE `$this->tableColumn5` IS NULL";
         $result = mysqli_query($this->conn, $query);
-        while ($row = mysqli_fetch_assoc($result)) {
-            if(!empty($this->resourceFilter)){
-                $_all[] = $row["$this->tableColumn2"];
+        if($result) {
+            while ($row = mysqli_fetch_assoc($result)) {
+                $eachTableColumn = strip_tags($row["$this->tableColumn2"]);
+                $eachTableColumn = trim($eachTableColumn);
+                $eachTableColumn = preg_replace( "/\r|\n/", " ",$eachTableColumn);
+                $eachTableColumn= str_replace("&nbsp;","", $eachTableColumn);
+                $tableColumnArray = explode(" ",$eachTableColumn);
+                foreach ($tableColumnArray as $tableColumnWord){
+                    $_all[] = trim($tableColumnWord);
+                }
             }
-            if(!empty($this->nameFilter)){
-                $_all[] = $row["$this->tableColumn3"];
+            mysqli_data_seek($result,0);
+            while ($row = mysqli_fetch_assoc($result)) {
+                $eachTableColumn = strip_tags($row["$this->tableColumn3"]);
+                $eachTableColumn = trim($eachTableColumn);
+                $eachTableColumn = preg_replace( "/\r|\n/", " ",$eachTableColumn);
+                $eachTableColumn= str_replace("&nbsp;","", $eachTableColumn);
+                $tableColumnArray = explode(" ",$eachTableColumn);
+                foreach ($tableColumnArray as $tableColumnWord){
+                    $_all[] = trim($tableColumnWord);
+                }
+            }
 
-            }
-            if(!empty($this->search)){
-                $_all[] .= $row["$this->tableColumn2"];
-                $_all[] .= $row["$this->tableColumn3"];
-
-            }
-            $_all[] = $row["$this->tableColumn3"];
-            $_all[] = $row["$this->tableColumn2"];
-            
-            
         }
 
-        return $_all;
+        return array_unique($_all);
 
 
     }

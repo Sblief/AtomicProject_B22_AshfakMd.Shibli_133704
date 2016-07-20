@@ -18,11 +18,11 @@ $filter = "";
 if(isset($_GET["nameFilter"])) {
     $filter .= "filtering " ."'". $tableColumn[2]."'";
     if (isset($_GET["resourceFilter"])) {
-        $filter .= " and " ."'". $tableColumn[3]."'";
+        $filter .= " and " ."'". $tableColumn[1]."'";
     }
 }
 elseif (isset($_GET["resourceFilter"])){
-    $filter = "filtering "."'".$tableColumn[3]."'";
+    $filter = "filtering "."'".$tableColumn[1]."'";
 }
 else{
     $filter = "";
