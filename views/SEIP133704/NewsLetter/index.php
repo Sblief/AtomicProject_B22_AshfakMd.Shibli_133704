@@ -132,7 +132,7 @@ if(!empty($list)){    //if the list of items is not empty the table will be show
                 <a href="edit.php?id=<?php echo $emails->ID ?>&bringBackPage=<?php echo $pageNumber ?>" ><button type="button" class="btn btn-info">Edit</button></a>
                 <a href="delete.php?id=<?php echo $emails->ID ?>&bringBackPage=<?php echo $pageNumberBack ?>" ><button type="button" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this item?');">Delete</button>
                     <a href="trash.php?id=<?php echo $emails->ID ?>&bringBackPage=<?php echo $pageNumberBack ?>" ><button type="button" class="btn btn-warning">Trash</button>
-                        <a href="mailformatter.php?id=<?php echo $emails->ID ?>"  ><button type="button" class="btn btn-success">Send Item to Friend</button>
+                        <a href="mailformatter.php?id=<?php echo $emails->ID ?>"  ><button type="button" class="btn btn-success">Send Newsletter</button>
 
             </td>
         </tr>

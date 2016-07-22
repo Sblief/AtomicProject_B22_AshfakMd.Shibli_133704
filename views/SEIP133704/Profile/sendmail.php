@@ -207,10 +207,13 @@ $mail->addAddress($email, $name);
 $mail->Subject = $title;
 //Read an HTML message body from an external file, convert referenced images to embedded,
 //convert HTML into a basic plain-text alternative body
-//$mail->msgHTML(file_get_contents('contents.html'), dirname(__FILE__));
+$file = fopen("mailBody.html","w");
+fwrite($file,$html);
+fclose($file);
+$mail->msgHTML(file_get_contents('mailBody.html'), dirname(__FILE__));
 //Replace the plain text body with one created manually
 $mail->AltBody = 'This is a plain-text message body';
-$mail->Body= $html;
+//$mail->Body= $html;
 //Attach an image file
 if(isset($_SESSION['attach'])){
     $mail->addAttachment($_SESSION['attach']);
