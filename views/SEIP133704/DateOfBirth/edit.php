@@ -27,7 +27,7 @@ use App\Bitm\SEIP133704\GlobalClasses\Utility;
                     <input type="hidden" name="id" id="title" value="<?php echo $singleItem->id ?>">
                     <input  type="text" class="form-control" id="email" name="name" placeholder="Enter Your Name" value="<?php echo $singleItem->name ?>" required>
                     <label for="datepicker" class="control-label"><?php echo Uses::siteKeyword() ?></label>
-                    <input type="text" id="datepicker" name="birthday" placeholder="dd/mm/yyyy"  value="<?php echo $singleItem->date_of_birth ?>" required>
+                    <input type="text" id="datepicker" name="birthday" placeholder="dd-MM-yyyy"  value="<?php echo $singleItem->date_of_birth ?>" required>
                     <button type="submit" class="btn btn-success col-sm-offset-10">Submit</button>
                 </div>
             </div>
@@ -39,7 +39,7 @@ use App\Bitm\SEIP133704\GlobalClasses\Utility;
 
 <script>
     $(function() {
-        $( "#datepicker" ).datepicker({ dateFormat: 'dd/mm/yy' ,changeMonth: true,
-            changeYear: true, yearRange: "1950:2016"  }).val();
+        $( "#datepicker" ).datepicker({ dateFormat: 'dd-MM-yy' ,changeMonth: true,
+            changeYear: true, yearRange: "1930:2016"  }).val();
     });
 </script>

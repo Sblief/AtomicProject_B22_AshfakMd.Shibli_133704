@@ -416,7 +416,7 @@ class Birthday
                 $eachTableColumn = trim($eachTableColumn);
                 $eachTableColumn = preg_replace( "/\r|\n/", " ",$eachTableColumn);
                 $eachTableColumn= str_replace("&nbsp;","", $eachTableColumn);
-                $tableColumnArray = explode("/",$eachTableColumn);
+                $tableColumnArray = explode("-",$eachTableColumn);
                 foreach ($tableColumnArray as $tableColumnWord){
                     $_all[] = trim($tableColumnWord);
                 }
